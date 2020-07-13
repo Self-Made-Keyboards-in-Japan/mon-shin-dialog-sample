@@ -11,9 +11,11 @@
 </head>
 <body>
   <div class="container">
-    <h1>問診票テンプレート</h1>
-    <p>Discord の #mon-shin チャンネルに投稿する際に必要な情報をまとめたテンプレートです。</p>
-    <p>このテンプレートの該当する項目を入力して、一番したのボタンをクリックすると、投稿用の文章が作成されます。</p>
+    <div class="border m-3 p-3">
+      <h1>問診票テンプレート</h1>
+      <p>Discord の #mon-shin チャンネルに投稿する際に必要な情報をまとめたテンプレートです。</p>
+      <p>このテンプレートの該当する項目を入力して、一番したのボタンをクリックすると、投稿用の文章が作成されます。</p>
+    </div>
     <div class="border m-3 p-3 bg-light">
       <h2>キーボードの情報</h2>
       <form>
@@ -154,7 +156,7 @@
             <input class="form-check-input" type="radio" name="notExpect" id="notExpect_parts" value="option2">
             <label class="form-check-label" for="notExpect_parts">一部のキーの入力が設定と異なる</label>
             <div class="form-group">
-              <label for="notExpect_textarea">設定と異なるキーの説明</label>
+              <label for="notExpect_textarea">設定と異なるキーの状況</label>
               <textarea class="form-control" id="notExpect_textarea" rows="3"></textarea>
             </div>
           </div>
@@ -171,7 +173,7 @@
             <input class="form-check-input" type="radio" name="ledOff" id="ledOff_parts" value="option3" >
             <label class="form-check-label" for="ledOff_parts">一部のLEDが点灯しない</label>
             <div class="form-group">
-              <label for="notExpect_textarea">設定と異なるキーの説明</label>
+              <label for="notExpect_textarea">点灯しないLEDの箇所</label>
               <textarea class="form-control" id="notExpect_textarea" rows="3"></textarea>
             </div>
           </div>
