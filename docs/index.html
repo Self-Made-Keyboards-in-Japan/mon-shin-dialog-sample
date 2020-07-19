@@ -89,11 +89,11 @@
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="socket" id="mx_socket" value="MXソケット使用">
-            <label class="form-check-label" for="mx_socket">MXソケット使用</label>
+            <label class="form-check-label" for="mx_socket">ソケット( Cherry MX用 )使用</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="socket" id="kailh_socket" value="Kailhソケット使用">
-            <label class="form-check-label" for="kailh_socket">Kailhソケット使用</label>
+            <label class="form-check-label" for="kailh_socket">ソケット( Kailh Choc V1用 )使用</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="socket" id="beryllium" value="ベリリウムソケット使用">
@@ -103,16 +103,20 @@
         <div class="form-group p-2 border bg-white">
           <label for="">配線方法</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="wiring" id="pcb_solder" value="PCB基板（既製品・オリジナル設計）">
-            <label class="form-check-label" for="pcb_solder">PCB基板（既製品・オリジナル設計）</label>
+            <input class="form-check-input" type="radio" name="wiring" id="readyMadePcb" value="PCB基板 (既製品) ">
+            <label class="form-check-label" for="readyMadePcb">PCB基板( 既製品 )</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="wiring" id="selfMadePcb" value="PCB基板 (オリジナル) ">
+            <label class="form-check-label" for="selfMadePcb">PCB基板( オリジナル )</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="infinitePossibilities" value="無限の可能性">
             <label class="form-check-label" for="infinitePossibilities">無限の可能性</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="wiring" id="sus120" value="SUS120">
-            <label class="form-check-label" for="sus120">SUS120</label>
+            <input class="form-check-input" type="radio" name="wiring" id="su120" value="SU120">
+            <label class="form-check-label" for="su120">SU120</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="handWired" value="空中配線">
@@ -122,103 +126,132 @@
 
         <h2>現在起きている問題</h2>
         <div class="form-group p-2 border bg-white">
-          <label>キーを押しても入力されない</label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="noInput" id="noInputAll" value="全部のキーが反応しない">
-            <label class="form-check-label" for="noInputAll">全部のキーが反応しない</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="noInput" id="noInputParts" value="一部のキーが反応しない">
-            <label class="form-check-label" for="noInputParts">一部のキーが反応しない</label>
+          <h3>キー入力関係</h3> 
+          <div class="form-group p-2 border bg-white">
+            <label>キーを押しても反応しない</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="noInput" id="noInputAll" value="全部のキーが反応しない">
+              <label class="form-check-label" for="noInputAll">全部のキーが反応しない</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="noInput" id="noInputParts" value="一部のキーが反応しない">
+              <label class="form-check-label" for="noInputParts">一部のキーが反応しない</label>
+              <div class="form-group">
+                <label for="noInputTextarea">反応しないキーの説明</label>
+                <textarea class="form-control" name="noInputTextarea" id="noInputTextarea" rows="3" disabled></textarea>
+              </div>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="noInput" id="notApplicableNoInput" value="該当しない">
+              <label class="form-check-label" for="notApplicableNoInput">該当しない</label>
+            </div>
             <div class="form-group">
-              <label for="noInputTextarea">反応しないキーの説明</label>
-              <textarea class="form-control" name="noInputTextarea" id="noInputTextarea" rows="3" disabled></textarea>
+              <button class="btn btn-warning" type="button" onclick="radioDeselection('noInput', 'noInputTextarea')">選択解除</button>
             </div>
           </div>
-          <div class="form-group">
-            <button class="btn btn-warning" type="button" onclick="radioDeselection('noInput', 'noInputTextarea')">選択解除</button>
-          </div>
-        </div>
-        <div class="form-group p-2 border bg-white">
-          <label>設定と異なるキーが入力される</label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="notExpect" id="notExpectAll" value="全部のキーの入力が設定と異なる">
-            <label class="form-check-label" for="notExpectAll">全部のキーの入力が設定と異なる</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="notExpect" id="notExpectParts" value="一部のキーの入力が設定と異なる">
-            <label class="form-check-label" for="notExpectParts">一部のキーの入力が設定と異なる</label>
+          <div class="form-group p-2 border bg-white">
+            <label>設定と異なるキーが入力される</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="notExpect" id="notExpectAll" value="全部のキーの入力が設定と異なる">
+              <label class="form-check-label" for="notExpectAll">全部のキーの入力が設定と異なる</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="notExpect" id="notExpectParts" value="一部のキーの入力が設定と異なる">
+              <label class="form-check-label" for="notExpectParts">一部のキーの入力が設定と異なる</label>
+              <div class="form-group">
+                <label for="notexpectTextarea">設定と異なるキーの状況</label>
+                <textarea class="form-control" name="notExpectTextarea" id="notExpectTextarea" rows="3" disabled></textarea>
+              </div>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="notExpect" id="notApplicableNotExpect" value="該当しない">
+              <label class="form-check-label" for="notApplicableNotExpect">該当しない</label>
+            </div>
             <div class="form-group">
-              <label for="notexpectTextarea">設定と異なるキーの状況</label>
-              <textarea class="form-control" name="notExpectTextarea" id="notExpectTextarea" rows="3" disabled></textarea>
+              <button class="btn btn-warning" type="button" onclick="radioDeselection('notExpect', 'notExpectTextarea')">選択解除</button>
             </div>
           </div>
-          <div class="form-group">
-            <button class="btn btn-warning" type="button" onclick="radioDeselection('notExpect', 'notExpectTextarea')">選択解除</button>
-          </div>
         </div>
         <div class="form-group p-2 border bg-white">
-          <label>ledが点灯しない</label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="ledOff" id="ledOffAll" value="全部のledが点灯しない">
-            <label class="form-check-label" for="ledOffAll">全部のledが点灯しない</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="ledOff" id="ledOffParts" value="一部のledが点灯しない">
-            <label class="form-check-label" for="ledOffParts">一部のledが点灯しない</label>
+          <H3>ファームウェア書き込み関係</H3>
+          <div class="form-group p-2 border bg-white">
+            <label for="">ファームウェア書き込みがエラー終了する（qmkコマンドライン）</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="writeErrorQmkCommandLine" id="connectionOkCmdline" value="キーボードはpcに認識されている">
+              <label class="form-check-label" for="connectionOkCmdline">キーボードはPCに認識されている</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="writeErrorQmkCommandLine" id="connectionErrorWiredCmdline" value="キーボードがpcに認識されない（有線接続）">
+              <label class="form-check-label" for="connectionErrorWiredCmdline">キーボードがPCに認識されない（有線接続）</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="writeErrorQmkCommandLine" id="connectionErrorWirelessCmdline" value="キーボードがpcに認識されない（無線接続）">
+              <label class="form-check-label" for="connectionErrorWirelessCmdline">キーボードがPCに認識されない（無線接続）</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="writeErrorQmkCommandLine" id="notApplicableWriteErrorCmdline" value="該当しない">
+              <label class="form-check-label" for="notApplicableWriteErrorCmdline">該当しない</label>
+            </div>
             <div class="form-group">
-              <textarea class="form-control" name="ledOffPartsTextarea" id="ledOffPartsTextarea" rows="3" disabled></textarea>
-              <label for="ledOffPartsTextarea">点灯しないledの箇所</label>
+              <button class="btn btn-warning" type="button" onclick="radioDeselection('writeErrorQmkCommandLine')">選択解除</button>
             </div>
           </div>
-          <div class="form-group">
-            <button class="btn btn-warning" type="button" onclick="radioDeselection('ledOff', 'ledOffPartsTextarea')">選択解除</button>
+          <div class="form-group p-2 border bg-white">
+            <label for="">ファームウェア書き込みがエラー終了する（qmk toolbox）</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="writeErrorQmkToolbox" id="connectionOkToolbox" value="キーボードはpcに認識されている">
+              <label class="form-check-label" for="connectionOkToolbox">キーボードはPCに認識されている</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="writeErrorQmkToolbox" id="connectionErrorWiredToolbox" value="キーボードがpcに認識されない（有線接続）">
+              <label class="form-check-label" for="connectionErrorWiredToolbox">キーボードがpcに認識されない（有線接続）</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="writeErrorQmkToolbox" id="connectionErrorWirelessToolbox" value="キーボードがpcに認識されない（無線接続）">
+              <label class="form-check-label" for="connectionErrorWirelessToolbox">キーボードがPCに認識されない（無線接続）</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="writeErrorQmkToolbox" id="notApplicableWriteErrorToolbox" value="該当しない">
+              <label class="form-check-label" for="notApplicableWriteErrorToolbox">該当しない</label>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-warning" type="button" onclick="radioDeselection('writeErrorQmkToolbox')">選択解除</button>
+            </div>
           </div>
         </div>
         <div class="form-group p-2 border bg-white">
-          <label for="">ファームウェア書き込みがエラー終了する（qmkコマンドライン）</label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="writeErrorQmkCommandLine" id="connectionOkCmdline" value="キーボードはpcに認識されている">
-            <label class="form-check-label" for="connectionOkCmdline">キーボードはpcに認識されている</label>
+          <H3>その他の問題</H3>
+          <div class="form-group p-2 border bg-white">
+            <label>ledが点灯しない</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="ledOff" id="ledOffAll" value="全部のledが点灯しない">
+              <label class="form-check-label" for="ledOffAll">全部のLEDが点灯しない</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="ledOff" id="ledOffParts" value="一部のledが点灯しない">
+              <label class="form-check-label" for="ledOffParts">一部のLEDが点灯しない</label>
+              <div class="form-group">
+                <label for="ledOffPartsTextarea">点灯しないledの箇所</label>
+                <textarea class="form-control" name="ledOffPartsTextarea" id="ledOffPartsTextarea" rows="3" disabled></textarea>
+              </div>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="ledOff" id="notApplicableLedOff" value="該当しない">
+              <label class="form-check-label" for="notApplicableLedOff">該当しない</label>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-warning" type="button" onclick="radioDeselection('ledOff', 'ledOffPartsTextarea')">選択解除</button>
+            </div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="writeErrorQmkCommandLine" id="connectionErrorWiredCmdline" value="キーボードがpcに認識されない（有線接続）">
-            <label class="form-check-label" for="connectionErrorWiredCmdline">キーボードがpcに認識されない（有線接続）</label>
+          <div class="form-group p-2 border bg-white">
+            <label for="">上記以外の問題（トラックボールが動かない、ランドが剥がれた etc）</label>
+            <div class="form-group">
+              <textarea class="form-control" id="otherProblem" rows="3"></textarea>
+            </div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="writeErrorQmkCommandLine" id="connectionErrorWirelessCmdline" value="キーボードがpcに認識されない（無線接続）">
-            <label class="form-check-label" for="connectionErrorWirelessCmdline">キーボードがpcに認識されない（無線接続）</label>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-warning" type="button" onclick="radioDeselection('writeErrorQmkCommandLine')">選択解除</button>
-          </div>
-        </div>
-        <div class="form-group p-2 border bg-white">
-          <label for="">ファームウェア書き込みがエラー終了する（qmk toolbox）</label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="writeErrorQmkToolbox" id="connectionOkToolbox" value="キーボードはpcに認識されている">
-            <label class="form-check-label" for="connectionOkToolbox">キーボードはpcに認識されている</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="writeErrorQmkToolbox" id="connectionErrorWiredToolbox" value="キーボードがpcに認識されない（有線接続）">
-            <label class="form-check-label" for="connectionErrorWiredToolbox">キーボードがpcに認識されない（有線接続）</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="writeErrorQmkToolbox" id="connectionErrorWirelessToolbox" value="キーボードがpcに認識されない（無線接続）">
-            <label class="form-check-label" for="connectionErrorWirelessToolbox">キーボードがpcに認識されない（無線接続）</label>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-warning" type="button" onclick="radioDeselection('writeErrorQmkToolbox')">選択解除</button>
-          </div>
-        </div>
-        <div class="form-group p-2 border bg-white">
-          <label for="">上記以外の問題（トラックボールが動かない、ランドが剥がれた etc）</label>
-          <div class="form-group">
-            <textarea class="form-control" id="otherproblem" rows="3"></textarea>
-          </div>
-        </div>
 
-        <h2>pcの環境と書き込みツール</h2>
+        </div>
+        <h2>PCの環境と書き込みツール</h2>
         <div class="form-group p-2 border bg-white">
           <label for="">os</label>
           <div class="form-check">
@@ -251,29 +284,29 @@
           </div>
         </div>
         <div class="form-group p-2 border bg-white">
-          <label for="">os側のキーボードの配列認識</label>
+          <label for="">OS側のキーボードの配列認識</label>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="keyboardLayout" id="jisLayout" value="jis配列">
-            <label class="form-check-label" for="jisLayout">jis配列</label>
+            <label class="form-check-label" for="jisLayout">JIS配列</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="keyboardLayout" id="usLayout" value="us配列">
-            <label class="form-check-label" for="usLayout">us配列</label>
+            <label class="form-check-label" for="usLayout">US配列</label>
           </div>
         </div>
         <div class="form-group p-2 border bg-white">
           <label for="">書き込みツール</label>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="writingTool" id="qmkToolbox" value="qmk toolbox">
-            <label class="form-check-label" for="qmkToolbox">qmk toolbox</label>
+            <label class="form-check-label" for="qmkToolbox">QMK Toolbox</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="writingTool" id="qmkCommandline" value="qmkコマンドライン">
-            <label class="form-check-label" for="qmkCommandline">qmkコマンドライン</label>
+            <label class="form-check-label" for="qmkCommandline">QMKコマンドライン</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="writingTool" id="via" value="via">
-            <label class="form-check-label" for="via">via</label>
+            <label class="form-check-label" for="via">VIA</label>
           </div>
         </div>
         <h2>不具合発生の状況と簡単なテストの結果</h2>
@@ -311,7 +344,7 @@
             <label class="form-check-label" for="havetesterno">いいえ</label>
           </div>
         </div>
-        <input type="submit" class="btn btn-primary" name="button" value="確認">
+        <!-- <input type="submit" class="btn btn-primary" name="button" value="確認"> -->
         <!-- <input type="button" value="戻る" class="autoconfirmback" style="display:none;"> -->
       </form>
     </div>

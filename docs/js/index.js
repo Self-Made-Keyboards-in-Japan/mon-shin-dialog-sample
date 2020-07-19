@@ -18,8 +18,8 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 	// フォーム要素を取得する
 	var form = document.getElementById("questionForm");
 
-	// サブミット直前に実行されるイベント
-	form.addEventListener("submit" , function(e){
+	// リアルタイムで投稿文を作成するため "input" イベントに割り当て
+	form.addEventListener("input", function(e) {
 
 		let nameToQuestion = new Map([
 			['keyboardName', 'キーボード名'],
@@ -28,14 +28,14 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 			['keyboardForm', 'キーボードの形状'],
 			['socket', 'キースイッチ用のソケットの使用状況'],
 			['wiring', '配線方法'],
-			['noInput', 'キーを押しても入力されない'],
+			['noInput', 'キーを押しても反応しない'],
 			['noInputTextarea', '反応しないキーの説明'],
 			['notExpect', '設定と異なるキーが入力される'],
 			['notExpectTextarea', '設定と異なるキーの状況'],
 			['ledOff', 'LEDが点灯しない'],
 			['ledOffPartsTextarea', '点灯しないledの箇所'],
-			['qmkCommandLine', 'ファームウェア書き込みがエラー終了する（QMKコマンドライン）キーボード名'],
-			['qmkToolbox', 'ファームウェア書き込みがエラー終了する（QMKコマンドライン）'],
+			['writeErrorQmkCommandLine', 'ファームウェア書き込みがエラー終了する（QMKコマンドライン）'],
+			['writeErrorQmkToolbox', 'ファームウェア書き込みがエラー終了する（QMKコマンドライン）'],
 			['otherProblem', '上記以外の問題（トラックボールが動かない、ランドが剥がれた etc）'],
 			['osName', 'OS名'],
 			['windowsTerminalSoft', 'Windowsのターミナルソフト'],
@@ -73,10 +73,10 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 				postsText.value += userText + "\n\n";
 			}
 		}
-	});
+	// });
 
 	// ユーザーの操作で値が変化したときのイベントに関数を割当
-	form.addEventListener("change", function(e) {
+	// form.addEventListener("change", function(e) {
 		
 		// ユーザーの操作で値が変化したフォームの要素を取得
 		let target = e.target;
