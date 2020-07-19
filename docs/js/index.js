@@ -4,23 +4,61 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
   for (const radiobox of radioboxGroup) {
 		radiobox.checked = false;
 	}
-	if (textareaAndInputId) {
-		document.getElementById(textareaAndInputId).disabled = true;
-	}
+	// if (textareaAndInputId) {
+	// 	document.getElementById(textareaAndInputId).disabled = true;
+	// }
 } 
 
 // 匿名関数を即時実行
 (function(){
 
+	//------------------------------------------------------------------------------------------
+	// clipboard.js
+	//-----------------------------------------------------------------------------------------
+	// Tooltip 
+	$('#copyBtn').tooltip({
+		trigger: 'click',
+		placement: 'bottom'
+	});
+
+	function setTooltip(message) {
+		$('#copyBtn').tooltip('hide')
+			.attr('data-original-title', message)
+			.tooltip('show');
+	}
+
+	function hideTooltip() {
+		setTimeout(function() {
+			$('#copyBtn').tooltip('hide');
+		}, 1000);
+	}
+
+	// Clipboard 
+	let clipboard = new ClipboardJS('#copyBtn'); 
+	clipboard.on('success', function(e) {
+		setTooltip('Copied!');
+		hideTooltip();
+	}); 
+	clipboard.on('error', function(e) {
+		setTooltip('Failed!');
+		hideTooltip();
+	});
+
 	// FormData に対応していない
-	if(!(window.FormData)) return;
+	if(!(window.FormData)) {
+		document.getElementById('cantUseAlert').classList.toggle('invisible');
+	}
 
 	// フォーム要素を取得する
 	var form = document.getElementById("questionForm");
 
 	// リアルタイムで投稿文を作成するため "input" イベントに割り当て
 	form.addEventListener("input", function(e) {
+		// console.log('change form value');
 
+		//------------------------------------------------------------------------------------------
+		//投稿文作成機能
+		//-----------------------------------------------------------------------------------------
 		let nameToQuestion = new Map([
 			['keyboardName', 'キーボード名'],
 			['microcontroller', 'マイコンの種類'],
@@ -28,19 +66,23 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 			['keyboardForm', 'キーボードの形状'],
 			['socket', 'キースイッチ用のソケットの使用状況'],
 			['wiring', '配線方法'],
+			['keyInputProblem', 'キー入力関連の問題'],
 			['noInput', 'キーを押しても反応しない'],
 			['noInputTextarea', '反応しないキーの説明'],
 			['notExpect', '設定と異なるキーが入力される'],
 			['notExpectTextarea', '設定と異なるキーの状況'],
+			['notActionOneHand', '左右分離型で片方だけ反応しない'],
+			['notActionOneHandTextarea', '左右のどちらをPCに接続しているか、左右のどちらが反応しないか。'],
 			['ledOff', 'LEDが点灯しない'],
-			['ledOffPartsTextarea', '点灯しないledの箇所'],
-			['writeErrorQmkCommandLine', 'ファームウェア書き込みがエラー終了する（QMKコマンドライン）'],
-			['writeErrorQmkToolbox', 'ファームウェア書き込みがエラー終了する（QMKコマンドライン）'],
+			['ledOffTextarea', '点灯しないledの箇所'],
+			['writeErrorQmk', 'ファームウェアを書き込めない'],
 			['otherProblem', '上記以外の問題（トラックボールが動かない、ランドが剥がれた etc）'],
+			['otherProblemTextarea', '問題の内容'],
 			['osName', 'OS名'],
-			['windowsTerminalSoft', 'Windowsのターミナルソフト'],
-			['macosVersion', 'MacOSのバージョン'],
-			['linuxDistribution', 'Linuxのディストリビューション'],
+			['windowsVersion', 'Windowsのバージョン'],
+			['windowsTerminalSoftInput', 'Windowsのターミナルソフト'],
+			['macosVersionInput', 'MacOSのバージョン'],
+			['linuxDistributionInput', 'Linuxのディストリビューション'],
 			['keyboardLayout', 'OS側のキーボードの配列認識'],
 			['writingTool', '書き込みツール'],
 			['situation', '不具合が発生する時の状況'],
@@ -51,7 +93,7 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 		]);
 
 		// デフォルトの動作をキャンセル（フォームの送信を中止）
-		e.preventDefault();
+		// e.preventDefault();
 
 		// FormData オブジェクトを作成する
 		var form_data = new FormData(form);
@@ -65,7 +107,7 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 		// }
 
 		// テキストボックスに投稿文を作成
-		let postsText = document.getElementById("postsText")
+		let postsText = document.getElementById("postsText");
 		postsText.value = '';
 		for (let key of form_data.keys()) { 
 			if (nameToQuestion.has(key)) {
@@ -73,59 +115,76 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 				postsText.value += userText + "\n\n";
 			}
 		}
-	// });
+		if (postsText.scrollHeight > postsText.clientHeight) {
+			postsText.style.height = postsText.scrollHeight + "px";
+		}
 
-	// ユーザーの操作で値が変化したときのイベントに関数を割当
-	// form.addEventListener("change", function(e) {
-		
+		//------------------------------------------------------------------------------------------
+		// ラジオボックスとテキストエリアの連動機能
+		//-----------------------------------------------------------------------------------------
 		// ユーザーの操作で値が変化したフォームの要素を取得
 		let target = e.target;
+		// console.log(e.target);
 
 		if (target.name == "microcontroller") {
-			if (target.id !== "othersMicrocontroller") {
-				document.getElementById("microcontrollerName").disabled = true;
-			} else if (target.name == "microcontroller" && target.id == "othersMicrocontroller") {
-				document.getElementById("microcontrollerName").disabled = false;
-			}
-		}
-
-		if (target.name == "noInput") {
-			if (target.id !== "noInputParts") {
-				document.getElementById("noInputTextarea").disabled = true;
-			} else if (target.id == "noInputParts") {
-				document.getElementById("noInputTextarea").disabled = false;
-			}
-		}
-
-		if (target.name == "notExpect") {
-			if (target.id !== "notExpectParts") {
-				document.getElementById("notExpectTextarea").disabled = true;
-			} else if (target.name == "notExpect" && target.id == "notExpectParts") {
-				document.getElementById("notExpectTextarea").disabled = false;
-			}
-		}
-
-		if (target.name == "ledOff") {
-			if (target.id !== "ledOffParts") {
-				document.getElementById("ledOffPartsTextarea").disabled = true;
-			} else if (target.name == "ledOff" && target.id == "ledOffParts") {
-				document.getElementById("ledOffPartsTextarea").disabled = false;
+			if (target.id !== "microcontrollerNameInput") {
+				document.getElementById("microcontrollerNameInput").disabled = true;
+			} else if (target.name == "microcontroller" && target.id == "microcontrollerNameInput") {
+				document.getElementById("microcontrollerNameInput").disabled = false;
 			}
 		}
 
 		if (target.name === "osName") {
-			if (target.id == "windows10" || target.id == "windows8.1") {
-				document.getElementById("windowsTerminalSoft").disabled = false;
-				document.getElementById("macosVersion").disabled = true;
-				document.getElementById("linuxDistribution").disabled = true;
+			if (target.id == "windows") {
+				document.getElementById("windowsVersion").disabled = false;
+				document.getElementById("windowsTerminalSoftInput").disabled = false;
+				document.getElementById("macosVersionInput").disabled = true;
+				document.getElementById("linuxDistributionInput").disabled = true;
 			} else if (target.id == "macos") {
-				document.getElementById("windowsTerminalSoft").disabled = true;
-				document.getElementById("macosVersion").disabled = false;
-				document.getElementById("linuxDistribution").disabled = true;
+				document.getElementById("windowsVersion").disabled = true;
+				document.getElementById("windowsTerminalSoftInput").disabled = true;
+				document.getElementById("macosVersionInput").disabled = false;
+				document.getElementById("linuxDistributionInput").disabled = true;
 			} else if (target.id == "linux") {
-				document.getElementById("windowsTerminalSoft").disabled = true;
-				document.getElementById("macosVersion").disabled = true;
-				document.getElementById("linuxDistribution").disabled = false;
+				document.getElementById("windowsVersion").disabled = true;
+				document.getElementById("windowsTerminalSoftInput").disabled = true;
+				document.getElementById("macosVersionInput").disabled = true;
+				document.getElementById("linuxDistributionInput").disabled = false;
+			} 
+		}
+
+		//------------------------------------------------------------------------------------------
+		// チェックボックスとテキストエリアの連動機能
+		//-----------------------------------------------------------------------------------------
+		// console.log(e.target.dataset.relationTextarea);
+		if (e.target.dataset.relationTextarea) {
+			// console.log(e.target.dataset.relationTextarea);
+			let relationTextarea = e.target.dataset.relationTextarea;
+			if (e.target.checked) {
+				document.getElementById(relationTextarea).disabled = false;
+			} else {
+				document.getElementById(relationTextarea).disabled = true;
+			}
+		}
+
+		//------------------------------------------------------------------------------------------
+		// 質問同士のチェック連動機能
+		//-----------------------------------------------------------------------------------------
+		if (target.name === "microcontroller") {
+			if (target.id == "atmega32u4" || target.id == "atmega328" || target.id == "othersMicrocontroller") {
+				document.getElementById("promicroOnlyYes").disabled = true;
+				document.getElementById("promicroOnlyNo").disabled = true;
+			} else {
+				document.getElementById("promicroOnlyYes").disabled = false;
+				document.getElementById("promicroOnlyNo").disabled = false;
+			} 
+		}
+
+		if (target.name === "keyboardForm") {
+			if (target.id == "notSplit") {
+				document.getElementById("notActionOneHand").disabled = true;
+			} else {
+				document.getElementById("notActionOneHand").disabled = false;
 			} 
 		}
 
