@@ -46,7 +46,13 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 
 	// FormData に対応していない
 	if(!(window.FormData)) {
-		document.getElementById('cantUseAlert').classList.toggle('invisible');
+		// document.getElementById('cantUseAlert').classList.toggle('invisible');
+		let divAlert = document.createElement("div");
+		divAlert.id = 'cantUseAlert';
+		divAlert.className = "alert alert-danger";
+		divAlert.setAttribute('role', 'alert');
+		divAlert.innerText = 'お使いのブラウザはこのフォームに対応していません。\nお手数ですが、ここにある項目を参考にして投稿用の文章を作成して、Discord の #mon-shin チャンネルに投稿してください。';
+		document.getElementById('container').insertAdjacentHTML("afterbegin", divAlert.outerHTML);
 	}
 
 	// フォーム要素を取得する
