@@ -82,6 +82,7 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 			['ledOff', 'LEDが点灯しない'],
 			['ledOffTextarea', '点灯しないledの箇所'],
 			['writeErrorQmk', 'ファームウェアを書き込めない'],
+			['writingToolLog', 'ファームウェア書き込みツールのログ'],
 			['otherProblem', '上記以外の問題（トラックボールが動かない、ランドが剥がれた etc）'],
 			['otherProblemTextarea', '問題の内容'],
 			['osName', 'OS名'],
@@ -117,8 +118,14 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 		postsText.value = '';
 		for (let key of form_data.keys()) { 
 			if (nameToQuestion.has(key)) {
-				let userText = '【' + nameToQuestion.get(key) + '】\n' +  form_data.get(key);
-				postsText.value += userText + "\n\n";
+				// console.log(key);
+				if (key === 'writingToolLog') {
+					let userText = '【' + nameToQuestion.get(key) + '】\n```\n' +  form_data.get(key) + '\n```';
+					postsText.value += userText + "\n\n";
+				} else{
+					let userText = '【' + nameToQuestion.get(key) + '】\n' +  form_data.get(key);
+					postsText.value += userText + "\n\n";
+				}
 			}
 		}
 		if (postsText.scrollHeight > postsText.clientHeight) {
