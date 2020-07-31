@@ -1,14 +1,3 @@
-// ラジオボタンの選択状態を解消する関数
-function radioDeselection(radioBoxName, textareaAndInputId) {
-	let radioboxGroup = document.getElementsByName(radioBoxName);
-  for (const radiobox of radioboxGroup) {
-		radiobox.checked = false;
-	}
-	// if (textareaAndInputId) {
-	// 	document.getElementById(textareaAndInputId).disabled = true;
-	// }
-} 
-
 // 匿名関数を即時実行
 (function(){
 
@@ -43,17 +32,6 @@ function radioDeselection(radioBoxName, textareaAndInputId) {
 		setTooltip('Failed!');
 		hideTooltip();
 	});
-
-	// FormData に対応していない
-	if(!(window.FormData)) {
-		// document.getElementById('cantUseAlert').classList.toggle('invisible');
-		let divAlert = document.createElement("div");
-		divAlert.id = 'cantUseAlert';
-		divAlert.className = "alert alert-danger";
-		divAlert.setAttribute('role', 'alert');
-		divAlert.innerText = 'お使いのブラウザはこのフォームに対応していません。\nお手数ですが、ここにある項目を参考にして投稿用の文章を作成して、Discord の #mon-shin チャンネルに投稿してください。';
-		document.getElementById('container').insertAdjacentHTML("afterbegin", divAlert.outerHTML);
-	}
 
 	// フォーム要素を取得する
 	var form = document.getElementById("questionForm");
