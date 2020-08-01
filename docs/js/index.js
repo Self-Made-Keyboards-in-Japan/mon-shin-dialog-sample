@@ -64,7 +64,7 @@
 			['otherProblem', '上記以外の問題（トラックボールが動かない、ランドが剥がれた etc）'],
 			['otherProblemTextarea', '問題の内容'],
 			['osName', 'OS名'],
-			['windowsVersion', 'Windowsのバージョン'],
+			['windowsVersionInput', 'Windowsのバージョン'],
 			['windowsTerminalSoftInput', 'Windowsのターミナルソフト'],
 			['macosVersionInput', 'MacOSのバージョン'],
 			['linuxDistributionInput', 'Linuxのディストリビューション'],
@@ -127,17 +127,17 @@
 
 		if (target.name === "osName") {
 			if (target.id == "windows") {
-				document.getElementById("windowsVersion").disabled = false;
+				document.getElementById("windowsVersionInput").disabled = false;
 				document.getElementById("windowsTerminalSoftInput").disabled = false;
 				document.getElementById("macosVersionInput").disabled = true;
 				document.getElementById("linuxDistributionInput").disabled = true;
 			} else if (target.id == "macos") {
-				document.getElementById("windowsVersion").disabled = true;
+				document.getElementById("windowsVersionInput").disabled = true;
 				document.getElementById("windowsTerminalSoftInput").disabled = true;
 				document.getElementById("macosVersionInput").disabled = false;
 				document.getElementById("linuxDistributionInput").disabled = true;
 			} else if (target.id == "linux") {
-				document.getElementById("windowsVersion").disabled = true;
+				document.getElementById("windowsVersionInput").disabled = true;
 				document.getElementById("windowsTerminalSoftInput").disabled = true;
 				document.getElementById("macosVersionInput").disabled = true;
 				document.getElementById("linuxDistributionInput").disabled = false;
