@@ -1,5 +1,7 @@
+require('formdata-polyfill');
+
 // 匿名関数を即時実行
-(function(){
+(() => {
 
 	//------------------------------------------------------------------------------------------
 	// clipboard.js
@@ -17,27 +19,27 @@
 	}
 
 	function hideTooltip() {
-		setTimeout(function() {
+		setTimeout(() => {
 			$('#copyBtn').tooltip('hide');
 		}, 1000);
 	}
 
 	// Clipboard 
 	let clipboard = new ClipboardJS('#copyBtn'); 
-	clipboard.on('success', function(e) {
+	clipboard.on('success', (e) => {
 		setTooltip('Copied!');
 		hideTooltip();
 	}); 
-	clipboard.on('error', function(e) {
+	clipboard.on('error', (e) => {
 		setTooltip('Failed!');
 		hideTooltip();
 	});
 
 	// フォーム要素を取得する
-	var form = document.getElementById("questionForm");
+	let form = document.getElementById("questionForm");
 
 	// リアルタイムで投稿文を作成するため "input" イベントに割り当て
-	form.addEventListener("input", function(e) {
+	form.addEventListener("input", (e) => {
 		// console.log('change form value');
 
 		//------------------------------------------------------------------------------------------
@@ -81,7 +83,7 @@
 		// e.preventDefault();
 
 		// FormData オブジェクトを作成する
-		var form_data = new FormData(form);
+		let form_data = new FormData(form);
 
 		// 出力テスト
 		// console.log(form_data);
