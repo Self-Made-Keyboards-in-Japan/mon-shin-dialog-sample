@@ -79,9 +79,6 @@ require('formdata-polyfill');
 			['haveTester', 'テスターを持っていますか？'],
 		]);
 
-		// デフォルトの動作をキャンセル（フォームの送信を中止）
-		// e.preventDefault();
-
 		// FormData オブジェクトを作成する
 		let form_data = new FormData(form);
 
@@ -117,7 +114,7 @@ require('formdata-polyfill');
 		//-----------------------------------------------------------------------------------------
 		// ユーザーの操作で値が変化したフォームの要素を取得
 		let target = e.target;
-		// console.log(e.target);
+		console.log('e.target: ' + e.target);
 
 		if (target.name == "microcontroller") {
 			if (target.id !== "microcontrollerNameInput") {
@@ -163,8 +160,8 @@ require('formdata-polyfill');
 		//------------------------------------------------------------------------------------------
 		// 質問同士のチェック連動機能
 		//-----------------------------------------------------------------------------------------
-		if (target.name === "microcontroller") {
-			if (target.id == "atmega32u4" || target.id == "atmega328" || target.id == "othersMicrocontroller") {
+		if (e.target.name === "microcontroller") {
+			if (e.target.id == "atmega32u4" || e.target.id == "atmega328" || e.target.id == "othersMicrocontroller") {
 				document.getElementById("promicroOnlyYes").disabled = true;
 				document.getElementById("promicroOnlyNo").disabled = true;
 			} else {
@@ -173,8 +170,8 @@ require('formdata-polyfill');
 			} 
 		}
 
-		if (target.name === "keyboardForm") {
-			if (target.id == "notSplit") {
+		if (e.target.name === "keyboardForm") {
+			if (e.target.id == "notSplit") {
 				document.getElementById("notActionOneHand").disabled = true;
 			} else {
 				document.getElementById("notActionOneHand").disabled = false;
