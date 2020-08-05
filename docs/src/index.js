@@ -108,10 +108,10 @@ require('formdata-polyfill');
 		// 選択したマイコンに応じてテキストボックスの使用可否を切り替える
 		//-----------------------------------------------------------------------------------------
 		if (target.name == "microcontroller") {
-			if (target.id !== "microcontrollerNameInput") {
-				document.getElementById("microcontrollerNameInput").disabled = true;
-			} else if (target.name == "microcontroller" && target.id == "microcontrollerNameInput") {
+			if (target.id == "othersMicrocontroller") {
 				document.getElementById("microcontrollerNameInput").disabled = false;
+			} else {
+				document.getElementById("microcontrollerNameInput").disabled = true;
 			}
 		}
 
