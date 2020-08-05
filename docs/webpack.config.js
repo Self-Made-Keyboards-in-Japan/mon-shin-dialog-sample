@@ -5,7 +5,7 @@ module.exports = (env, argv) => ({
   // development だとソースマップ有効でJSファイルが出力される
 
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: './src/index.js',
+  entry: [ './src/index.js', './src/closest.js' ],
   // ファイルの出力設定
   output: {
     // 出力ファイル名

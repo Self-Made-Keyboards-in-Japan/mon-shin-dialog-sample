@@ -177,6 +177,22 @@ require('formdata-polyfill');
 				document.getElementById("notActionOneHand").disabled = false;
 			} 
 		}
+		//------------------------------------------------------------------------------------------
+		// 補足情報の表示機能
+		//-----------------------------------------------------------------------------------------
+		if (e.target.name === "wiring") {
+			let parentFormGroupDiv = e.target.closest('.form-group')
+			let spanList = parentFormGroupDiv.getElementsByTagName('span')
+			for (const span of spanList) {
+				if (span.dataset.wiringindex === e.target.dataset.wiringindex) {
+					span.classList.remove('invisible')
+				} else {
+					if (!(span.classList.contains('invisible'))) {
+						span.classList.add('invisible')
+					}
+				}
+			}
+		}
 
 	}); 
 
