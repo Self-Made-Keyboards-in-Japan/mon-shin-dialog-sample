@@ -40,8 +40,6 @@ require('formdata-polyfill');
 
 	// リアルタイムで投稿文を作成するため "input" イベントに割り当て
 	form.addEventListener("input", (e) => {
-		// console.log('change form value');
-
 		//------------------------------------------------------------------------------------------
 		//投稿文作成機能
 		//-----------------------------------------------------------------------------------------
@@ -79,23 +77,13 @@ require('formdata-polyfill');
 			['haveTester', 'テスターを持っていますか？'],
 		]);
 
-		// FormData オブジェクトを作成する
-		let form_data = new FormData(form);
-
-		// 出力テスト
-		// console.log(form_data);
-		// for (let value of form_data.keys()) { 
-		// 	if (nameToQuestion.has(value)) {
-    //     console.log(nameToQuestion.get(value) + ': ' + form_data.get(value));
-		// 	}
-		// }
+		const form_data = new FormData(form);
 
 		// テキストボックスに投稿文を作成
-		let postsText = document.getElementById("postsText");
+		const postsText = document.getElementById("postsText");
 		postsText.value = '';
 		for (let key of form_data.keys()) { 
 			if (nameToQuestion.has(key)) {
-				// console.log(key);
 				if (key === 'writingToolLog') {
 					let userText = '【' + nameToQuestion.get(key) + '】\n```\n' +  form_data.get(key) + '\n```';
 					postsText.value += userText + "\n\n";
@@ -105,6 +93,7 @@ require('formdata-polyfill');
 				}
 			}
 		}
+		// 投稿文の行数に合わせてテキストボックスの高さを調整
 		if (postsText.scrollHeight > postsText.clientHeight) {
 			postsText.style.height = postsText.scrollHeight + "px";
 		}
@@ -113,9 +102,11 @@ require('formdata-polyfill');
 		// ラジオボックスとテキストエリアの連動機能
 		//-----------------------------------------------------------------------------------------
 		// ユーザーの操作で値が変化したフォームの要素を取得
-		let target = e.target;
-		console.log('e.target: ' + e.target);
+		const target = e.target;
 
+		//------------------------------------------------------------------------------------------
+		// 選択したマイコンに応じてテキストボックスの使用可否を切り替える
+		//-----------------------------------------------------------------------------------------
 		if (target.name == "microcontroller") {
 			if (target.id !== "microcontrollerNameInput") {
 				document.getElementById("microcontrollerNameInput").disabled = true;
@@ -124,67 +115,79 @@ require('formdata-polyfill');
 			}
 		}
 
-		if (target.name === "osName") {
-			if (target.id == "windows") {
-				document.getElementById("windowsVersionInput").disabled = false;
-				document.getElementById("windowsTerminalSoftInput").disabled = false;
-				document.getElementById("macosVersionInput").disabled = true;
-				document.getElementById("linuxDistributionInput").disabled = true;
-			} else if (target.id == "macos") {
-				document.getElementById("windowsVersionInput").disabled = true;
-				document.getElementById("windowsTerminalSoftInput").disabled = true;
-				document.getElementById("macosVersionInput").disabled = false;
-				document.getElementById("linuxDistributionInput").disabled = true;
-			} else if (target.id == "linux") {
-				document.getElementById("windowsVersionInput").disabled = true;
-				document.getElementById("windowsTerminalSoftInput").disabled = true;
-				document.getElementById("macosVersionInput").disabled = true;
-				document.getElementById("linuxDistributionInput").disabled = false;
-			} 
-		}
-
 		//------------------------------------------------------------------------------------------
-		// チェックボックスとテキストエリアの連動機能
+		// 選択したOSに応じてテキストボックスの使用可否を切り替える
 		//-----------------------------------------------------------------------------------------
-		// console.log(e.target.dataset.relationTextarea);
-		if (e.target.dataset.relationTextarea) {
-			// console.log(e.target.dataset.relationTextarea);
-			let relationTextarea = e.target.dataset.relationTextarea;
-			if (e.target.checked) {
-				document.getElementById(relationTextarea).disabled = false;
-			} else {
-				document.getElementById(relationTextarea).disabled = true;
+		if (target.name === "osName") {
+			const parentFormGroupDiv = target.closest('.form-group')
+			// 使用可否を切り替えるテキストボックスは、クラス名が「'form-control'」となっている
+			const inputList = parentFormGroupDiv.querySelectorAll('.form-control')
+			for (const input of inputList) {
+				// 使用可能にする必要があるテキストボックスは、選択したOSと同じ`name`を持っている
+				if (input.name.includes(target.id)) {
+					input.disabled = false
+				} else {
+					input.disabled = true
+				}
 			}
 		}
 
 		//------------------------------------------------------------------------------------------
-		// 質問同士のチェック連動機能
+		// 現在起きている問題に合わせてテキストエリアの使用可否を切り替える
 		//-----------------------------------------------------------------------------------------
-		if (e.target.name === "microcontroller") {
-			if (e.target.id == "atmega32u4" || e.target.id == "atmega328" || e.target.id == "othersMicrocontroller") {
+		if (target.id === 'noInput') {
+			document.getElementById('noInputTextarea').disabled = !target.checked
+		}
+		if (target.id === 'notExpect') {
+			document.getElementById('notExpectTextarea').disabled = !target.checked
+		}
+		if (target.id === 'notActionOneHand') {
+			document.getElementById('notActionOneHandTextarea').disabled = !target.checked
+		}
+		if (target.id === 'writeErrorQmk') {
+			document.getElementById('writingToolLog').disabled = !target.checked
+		}
+		if (target.id === 'ledOff') {
+			document.getElementById('ledOffTextarea').disabled = !target.checked
+		}
+		if (target.id === 'otherProblem') {
+			document.getElementById('otherProblemTextarea').disabled = !target.checked
+		}
+
+		//------------------------------------------------------------------------------------------
+		// マイコン基板直付けならコンスルー単体のテストの結果は選択できないようにする
+		//-----------------------------------------------------------------------------------------
+		if (target.name === "microcontroller") {
+			if (target.id == "atmega32u4" || target.id == "atmega328" || target.id == "othersMicrocontroller") {
 				document.getElementById("promicroOnlyYes").disabled = true;
 				document.getElementById("promicroOnlyNo").disabled = true;
+				// 合わせて「コンスルー未使用」にチェックを付けておく
+				document.getElementById("noUseConthrough").checked = true;
 			} else {
 				document.getElementById("promicroOnlyYes").disabled = false;
 				document.getElementById("promicroOnlyNo").disabled = false;
 			} 
 		}
 
-		if (e.target.name === "keyboardForm") {
-			if (e.target.id == "notSplit") {
+		//------------------------------------------------------------------------------------------
+		// 一体型のキーボードなら、左右分離型の質問は使用不可にする。
+		//-----------------------------------------------------------------------------------------
+		if (target.name === "keyboardForm") {
+			if (target.id == "notSplit") {
 				document.getElementById("notActionOneHand").disabled = true;
 			} else {
 				document.getElementById("notActionOneHand").disabled = false;
 			} 
 		}
 		//------------------------------------------------------------------------------------------
-		// 補足情報の表示機能
+		// 補足情報の表示・非表示切り替え機能
 		//-----------------------------------------------------------------------------------------
-		if (e.target.name === "wiring") {
-			let parentFormGroupDiv = e.target.closest('.form-group')
-			let spanList = parentFormGroupDiv.getElementsByTagName('span')
+		if (target.name === "wiring") {
+			const parentFormGroupDiv = target.closest('.form-group')
+			const spanList = parentFormGroupDiv.getElementsByTagName('span')
 			for (const span of spanList) {
-				if (span.dataset.wiringindex === e.target.dataset.wiringindex) {
+				// 表示させる補足情報は、選択したラジオボタンと同じ`data-wiringindex`を持つ`span`タグ。
+				if (span.dataset.wiringindex === target.dataset.wiringindex) {
 					span.classList.remove('invisible')
 				} else {
 					if (!(span.classList.contains('invisible'))) {
