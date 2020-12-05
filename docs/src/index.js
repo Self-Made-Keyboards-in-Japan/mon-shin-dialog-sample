@@ -3,6 +3,8 @@ require('formdata-polyfill');
 // 匿名関数を即時実行
 (() => {
 
+  document.getElementById('postLogAlert').style.visibility = 'hidden';
+
 	//------------------------------------------------------------------------------------------
 	// clipboard.js
 	//-----------------------------------------------------------------------------------------
@@ -34,6 +36,10 @@ require('formdata-polyfill');
 		setTooltip('Failed!');
 		hideTooltip();
 	});
+
+	//------------------------------------------------------------------------------------------
+	// 投稿文フォーム関係の処理
+	//-----------------------------------------------------------------------------------------
 
 	// フォーム要素を取得する
 	let form = document.getElementById("questionForm");
@@ -72,7 +78,6 @@ require('formdata-polyfill');
 			['writingTool', '書き込みツール'],
 			['situation', '不具合が発生する時の状況'],
 			['detail', 'これまでに行った作業の内容'],
-			['firmwareWritingLog', 'ファームウェア書き込み時のログ'],
 			['testProMicroOnly', 'コンスルー（スプリングピンヘッダ）を利用している場合、基板から Pro Micro を取り外して Pro Micro だけ USB 接続した場合にキーボードとして認識されますか？'],
 			['haveTester', 'テスターを持っていますか？'],
 		]);
@@ -84,8 +89,9 @@ require('formdata-polyfill');
 		postsText.value = '';
 		for (let key of form_data.keys()) { 
 			if (nameToQuestion.has(key)) {
-				if (key === 'writingToolLog') {
-					let userText = '【' + nameToQuestion.get(key) + '】\n```\n' +  form_data.get(key) + '\n```';
+				// if (key === 'writingToolLog') {
+				if (key === 'writeErrorQmk') {
+					let userText = '【' + nameToQuestion.get(key) + '】\n' +  form_data.get(key) + '\n**※ファームウェア書き込み時のログを別途投稿します**';
 					postsText.value += userText + "\n\n";
 				} else{
 					let userText = '【' + nameToQuestion.get(key) + '】\n' +  form_data.get(key);
@@ -144,14 +150,22 @@ require('formdata-polyfill');
 		if (target.id === 'notActionOneHand') {
 			document.getElementById('notActionOneHandTextarea').disabled = !target.checked
 		}
-		if (target.id === 'writeErrorQmk') {
-			document.getElementById('writingToolLog').disabled = !target.checked
-		}
 		if (target.id === 'ledOff') {
 			document.getElementById('ledOffTextarea').disabled = !target.checked
 		}
 		if (target.id === 'otherProblem') {
 			document.getElementById('otherProblemTextarea').disabled = !target.checked
+		}
+
+		//------------------------------------------------------------------------------------------
+		// ファームウェア書き込みツールのログも投稿するよう指示するメッセージを表示する
+		//-----------------------------------------------------------------------------------------
+		if (target.id === 'writeErrorQmk') {
+			if (target.checked) {
+				document.getElementById('postLogAlert').style.visibility = "visible"
+			} else {
+				document.getElementById('postLogAlert').style.visibility = "hidden"
+			}
 		}
 
 		//------------------------------------------------------------------------------------------
