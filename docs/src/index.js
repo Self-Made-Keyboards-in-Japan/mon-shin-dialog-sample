@@ -1,8 +1,26 @@
 require('formdata-polyfill');
+import {nameToQuestionJP} from './nameToQuestionJP.js'
+import {nameToQuestionEN} from './nameToQuestionEN.js'
+let nameToQuestion = new Map();
+let postLogAlertText = '';
+if (document.documentElement.lang == 'ja') {
+	nameToQuestionJP.forEach((value, key) => {
+		nameToQuestion.set(key, value);
+		postLogAlertText = '\n*※ファームウェア書き込み時のログを別途投稿します*';
+	});
+} else if (document.documentElement.lang == 'en') {
+	nameToQuestionEN.forEach((value, key) => {
+		nameToQuestion.set(key, value);
+		postLogAlertText = '\n*※I will post firmware writing tool log separetely.*';
+	});
+}
 
-// 匿名関数を即時実行
 (() => {
 
+	//------------------------------------------------------------------------------------------
+	// 投稿文フォームの前処理
+	//----------------------------------------------------------------------------------------- 
+	const form = document.getElementById("questionForm");
   document.getElementById('postLogAlert').style.visibility = 'hidden';
 
 	//------------------------------------------------------------------------------------------
@@ -37,64 +55,58 @@ require('formdata-polyfill');
 		hideTooltip();
 	});
 
+
 	//------------------------------------------------------------------------------------------
-	// 投稿文フォーム関係の処理
+	// リセット機能登録
 	//-----------------------------------------------------------------------------------------
+	let formResetBtn = document.getElementById("resetBtn");
+	formResetBtn.addEventListener("click", (e) => document.forms["form"].reset());
 
-	// フォーム要素を取得する
-	let form = document.getElementById("questionForm");
 
+	//------------------------------------------------------------------------------------------
+	// キーボードリスト作成
+	//-----------------------------------------------------------------------------------------
+	const domKeyboardList = document.getElementById("keyboardList");
+	fetch('https://api.qmk.fm/v1/keyboards')
+	.then(response => {
+		if (!response.ok) {
+			throw new Error('Response not success.');
+		}
+			return response.text();
+	}) 
+	.then(data => {
+		const keyboardList = data.split(',');
+		return keyboardList;
+	})
+	.then(keyboardList => {
+		for (let keyboard of keyboardList) {
+			const option = document.createElement('option');	
+			option.value = keyboard.replace(/\"/g, '');
+			domKeyboardList.appendChild(option);
+		};
+	})
+	.catch(error => console.error('There has been a problem with your fetch operation:', error));
+
+
+	//------------------------------------------------------------------------------------------
+	// 投稿文作成機能
 	// リアルタイムで投稿文を作成するため "input" イベントに割り当て
-	form.addEventListener("input", (e) => {
-		//------------------------------------------------------------------------------------------
-		//投稿文作成機能
-		//-----------------------------------------------------------------------------------------
-		let nameToQuestion = new Map([
-			['keyboardName', 'キーボード名'],
-			['microcontroller', 'マイコンの種類'],
-			['connection', 'PCとキーボードの接続方法'],
-			['keyboardForm', 'キーボードの形状'],
-			['socket', 'キースイッチ用のソケットの使用状況'],
-			['wiring', '配線方法'],
-			['keyInputProblem', 'キー入力関連の問題'],
-			['noInput', 'キーを押しても反応しない'],
-			['noInputTextarea', '反応しないキーの説明'],
-			['notExpect', '設定と異なるキーが入力される'],
-			['notExpectTextarea', '設定と異なるキーの状況'],
-			['notActionOneHand', '左右分離型で片方だけ反応しない'],
-			['notActionOneHandTextarea', '左右のどちらをPCに接続しているか、左右のどちらが反応しないか。'],
-			['ledOff', 'LEDが点灯しない'],
-			['ledOffTextarea', '点灯しないledの箇所'],
-			['writeErrorQmk', 'ファームウェアを書き込めない'],
-			['writingToolLog', 'ファームウェア書き込みツールのログ'],
-			['otherProblem', '上記以外の問題（トラックボールが動かない、ランドが剥がれた etc）'],
-			['otherProblemTextarea', '問題の内容'],
-			['osName', 'OS名'],
-			['windowsVersionInput', 'Windowsのバージョン'],
-			['windowsTerminalSoftInput', 'Windowsのターミナルソフト'],
-			['macosVersionInput', 'MacOSのバージョン'],
-			['linuxDistributionInput', 'Linuxのディストリビューション'],
-			['keyboardLayout', 'OS側のキーボードの配列認識'],
-			['writingTool', '書き込みツール'],
-			['situation', '不具合が発生する時の状況'],
-			['detail', 'これまでに行った作業の内容'],
-			['testProMicroOnly', 'コンスルー（スプリングピンヘッダ）を利用している場合、基板から Pro Micro を取り外して Pro Micro だけ USB 接続した場合にキーボードとして認識されますか？'],
-			['haveTester', 'テスターを持っていますか？'],
-		]);
+	//-----------------------------------------------------------------------------------------
+	form.addEventListener("input", (e) => { 
 
-		const form_data = new FormData(form);
-
-		// テキストボックスに投稿文を作成
+		const form_data = new FormData(form); 
 		const postsText = document.getElementById("postsText");
+
+		// 投稿文作成
 		postsText.value = '';
 		for (let key of form_data.keys()) { 
 			if (nameToQuestion.has(key)) {
 				// if (key === 'writingToolLog') {
 				if (key === 'writeErrorQmk') {
-					let userText = '【' + nameToQuestion.get(key) + '】\n' +  form_data.get(key) + '\n**※ファームウェア書き込み時のログを別途投稿します**';
+					let userText = '__**' + nameToQuestion.get(key) + '**__\n' +  form_data.get(key) + postLogAlertText;
 					postsText.value += userText + "\n\n";
-				} else{
-					let userText = '【' + nameToQuestion.get(key) + '】\n' +  form_data.get(key);
+				} else {
+					let userText = '__**' + nameToQuestion.get(key) + '**__\n' +  form_data.get(key);
 					postsText.value += userText + "\n\n";
 				}
 			}
@@ -125,15 +137,17 @@ require('formdata-polyfill');
 		// 選択したOSに応じてテキストボックスの使用可否を切り替える
 		//-----------------------------------------------------------------------------------------
 		if (target.name === "osName") {
+			// Checkboxに応じて使用可否を切り替えるTextboxは並列関係で簡単に選択できないので、
+			// 一旦親要素を取得して、その親要素に含まれるDOM要素として取得している。
 			const parentFormGroupDiv = target.closest('.form-group')
-			// 使用可否を切り替えるテキストボックスは、クラス名が「'form-control'」となっている
 			const inputList = parentFormGroupDiv.querySelectorAll('.form-control')
 			for (const input of inputList) {
-				// 使用可能にする必要があるテキストボックスは、選択したOSと同じ`name`を持っている
+				// 使用可能にする必要があるテキストボックスの`name`には、選択したOSの名前を含めている。
 				if (input.name.includes(target.id)) {
 					input.disabled = false
 				} else {
 					input.disabled = true
+					input.value = "";
 				}
 			}
 		}
