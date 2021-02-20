@@ -5,23 +5,29 @@ module.exports = (env, argv) => ({
   // development だとソースマップ有効でJSファイルが出力される
 
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: [ './src/index.js', './src/closest.js' ],
+  entry: ['@babel/polyfill', './src/index.js', './src/closest.js' ],
   // ファイルの出力設定
   output: {
     // 出力ファイル名
     filename: 'bundle.js',
     //  出力ファイルのディレクトリ名
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: "/dist/",
 
   },
   //監視有効
   watch: true,
   //開発用サーバー
   devServer:{
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, './'),
     watchContentBase: true,
+    index: 'index.html',
+    host: '0.0.0.0',
     //ポート指定
     port: 3000,
+    open: true,
+    openPage: "index.html",
+    inline: true
   },
 
   module: {

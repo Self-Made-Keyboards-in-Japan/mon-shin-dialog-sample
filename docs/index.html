@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
 
   <title>問診票テンプレート</title>
 </head>
@@ -67,7 +66,7 @@
           </div>
           <div class="form-group p-2 border bg-white">
             <label for="microcontrollerName">マイコン名</label>
-            <input class="form-control" type="text" name="microcontroller" id="microcontrollerNameInput" disabled>
+            <input class="form-control" type="text" name="microcontrollerName" id="microcontrollerNameInput" disabled>
           </div>
         </div> 
         <div class="form-group p-2 border bg-white">
@@ -83,10 +82,6 @@
         </div>
         <div class="form-group p-2 border bg-white">
           <label>キーボードは分割型ですか？</label>
-          <!-- <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="keyboardForm" id="notSplit" value="一体型">
-            <label class="form-check-label" for="notSplit">一体型</label>
-          </div> -->
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="keyboardForm" id="split" value="はい">
             <label class="form-check-label" for="split">はい</label>
@@ -104,7 +99,7 @@
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="socket" id="kailh_socket" value="Kailhソケット使用">
-            <label class="form-check-label" for="kailh_socket">ソケット( Kailh Choc V1用 )使用</label>
+            <label class="form-check-label" for="kailh_socket">ソケット( Kailh Choc用 )使用</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="socket" id="beryllium" value="ベリリウムソケット使用">
@@ -181,6 +176,10 @@
             <input class="form-check-input" type="radio" name="keyboardLayout" id="usLayout" value="US配列">
             <label class="form-check-label" for="usLayout">US配列</label>
           </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="keyboardLayout" id="otherLayout" value="その他の言語の配列">
+            <label class="form-check-label" for="otherLayout">その他の言語の配列</label>
+          </div>
         </div>
         <div class="form-group p-2 border bg-white">
           <label>ファームウェア書き込みツール</label>
@@ -195,6 +194,10 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="writingTool" id="via" value="via">
             <label class="form-check-label" for="via">VIA</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="writingTool" id="bleMicroProWebConfiguretor" value="BLE Micro Pro Web Configuretor" disabled>
+            <label class="form-check-label" for="bleMicroProWebConfiguretor">BLE Micro Pro Web Configurator (BLE Micro Pro Only)</label>
           </div>
         </div>
 
@@ -217,7 +220,7 @@
             </div>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="notActionOneHand" id="notActionOneHand" value="該当します" data-relation-textarea="notActionOneHandTextarea">
+            <input class="form-check-input" type="checkbox" name="notActionOneHand" id="notActionOneHand" value="該当します" data-relation-textarea="notActionOneHandTextarea" disabled>
             <label class="form-check-label" for="notActionOneHand">左右分離型で片方だけ反応しない</label>
             <div class="form-group">
               <label for="notActionOneHandTextarea">左右のどちらをPCに接続しているか、左右のどちらが反応しないか。</label>
@@ -251,7 +254,7 @@
         <h2 class="">不具合が発生する時の状況など</h2>
         <div class="form-group p-2 border bg-white">
           <label for="situation">いつ不具合が発生するか</label>
-          <textarea class="form-control" rows="3" name="situation" id="situation"></textarea>
+          <textarea class="form-control" rows="3" name="whenProblemOccur" id="whenProblemOccur"></textarea>
         </div>
         <div class="form-group p-2 border bg-white">
           <label for="detail">これまでに行った作業の内容</label>

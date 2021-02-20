@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
 
   <title>Troubleshooting Questionnaire</title>
 </head>
@@ -67,7 +66,7 @@
           </div>
           <div class="form-group p-2 border bg-white">
             <label for="microcontrollerName">Microcontroller Name</label>
-            <input class="form-control" type="text" name="microcontroller" id="microcontrollerNameInput" disabled>
+            <input class="form-control" type="text" name="microcontrollerName" id="microcontrollerNameInput" disabled>
           </div>
         </div> 
         <div class="form-group p-2 border bg-white">
@@ -100,7 +99,7 @@
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="socket" id="kailh_socket" value="Use Socket (kailh Choc V1)">
-            <label class="form-check-label" for="kailh_socket">Use Socket (kailh Choc V1)</label>
+            <label class="form-check-label" for="kailh_socket">Use Socket (kailh Choc)</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="socket" id="beryllium" value="Use Mill-Max Socket.">
@@ -120,12 +119,12 @@
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="infinitePossibilities" value="InfinitePossibilities" data-wiringIndex="3">
-            <label class="form-check-label" for="infinitePossibilities"><a href="https://github.com/swanmatch/MxLEDBitPCB/blob/master/readme_en.md">"Infinite Possibilities"</a></label>
+            <label class="form-check-label" for="infinitePossibilities">"Infinite Possibilities"<a href="https://github.com/swanmatch/MxLEDBitPCB/blob/master/readme_en.md">( Link )</a></label>
             <span class="bg-warning invisible m-1 p-1" id="alertTxtForInfinitePossibilities" data-wiringIndex="3">If you have schematics and wiring diagrams, please post them as well.</span>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="su120" value="SU120" data-wiringIndex="4">
-            <label class="form-check-label" for="su120"><a href="https://github.com/e3w2q/su120-keyboard">"SU120"</a></label>
+            <label class="form-check-label" for="su120">"SU120"<a href="https://github.com/e3w2q/su120-keyboard">( Link )</a></label>
             <span class="bg-warning invisible m-1 p-1" id="alertTxtForSu120" data-wiringIndex="4">If you have schematics and wiring diagrams, please post them as well.</span>
           </div>
           <div class="form-check">
@@ -177,6 +176,10 @@
             <input class="form-check-input" type="radio" name="keyboardLayout" id="usLayout" value="US Layout">
             <label class="form-check-label" for="usLayout">US Layout</label>
           </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="keyboardLayout" id="otherLayout" value="Other Language Layout">
+            <label class="form-check-label" for="otherLayout">Other Language Layout</label>
+          </div>
         </div>
         <div class="form-group p-2 border bg-white">
           <label>Firmware Writting Tool</label>
@@ -191,6 +194,10 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="writingTool" id="via" value="VIA">
             <label class="form-check-label" for="via">VIA</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="writingTool" id="bleMicroProWebConfiguretor" value="BLE Micro Pro Web Configuretor" disabled>
+            <label class="form-check-label" for="bleMicroProWebConfiguretor">BLE Micro Pro Web Configurator (BLE Micro Pro Only)</label>
           </div>
         </div>
 
@@ -213,7 +220,7 @@
             </div>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="notActionOneHand" id="notActionOneHand" value="Applicable" data-relation-textarea="notActionOneHandTextarea">
+            <input class="form-check-input" type="checkbox" name="notActionOneHand" id="notActionOneHand" value="Applicable" data-relation-textarea="notActionOneHandTextarea" disabled>
             <label class="form-check-label" for="notActionOneHand">One side keyboard isn't react. (split keyboard)</label>
             <div class="form-group">
               <label for="notActionOneHandTextarea">Which did you connected either left side or right side keyboard?<br>Which of either left side or right side keyboard isn't reacted?</label>
@@ -247,7 +254,7 @@
         <h2>Situation when occured problem.</h2>
         <div class="form-group p-2 border bg-white">
           <label for="situation">When does problem occur?</label>
-          <textarea class="form-control" rows="3" name="situation" id="situation"></textarea>
+          <textarea class="form-control" rows="3" name="whenProblemOccur" id="whenProblemOccur"></textarea>
         </div>
         <div class="form-group p-2 border bg-white">
           <label for="detail">Description of work so far.</label>

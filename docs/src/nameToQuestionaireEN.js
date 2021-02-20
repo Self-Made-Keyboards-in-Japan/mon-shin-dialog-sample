@@ -1,9 +1,10 @@
 	//------------------------------------------------------------------------------------------
 	// 各 DOM の Name 属性と投稿文で使う質問の関連付け
 	//----------------------------------------------------------------------------------------- 
-	const nameToQuestionEN = new Map([
+	const nameToQuestionaireEN = new Map([
 		['keyboardName', 'Keyboard Name'],
 		['microcontroller', 'Microcomputer Name'],
+		['microcontrollerName', 'Microcontroller Name'],
 		['connection', 'Connection method for keyboard and PC'],
 		['keyboardForm', 'Is your keyboard a split type?'],
 		['socket', 'Do you use Socket?'],
@@ -21,17 +22,17 @@
 		['notExpect', 'There is key that diffrent action from settings.'],
 		['notExpectTextarea', 'Description of diffrent action key from settings'],
 		['notActionOneHand', 'Not reacted one side keyboard (split keyboard)'],
-		['notActionOneHandTextarea', 'Which you connected either left side or right side keyboard? Which is not reacted either left side or right side?'],
+		['notActionOneHandTextarea', "Which you connected either left side or right side keyboard? Which of either left side or right side keyboard isn't reacted?"],
 		['writeErrorQmk', "Can't write firmware"],
 		['ledOff', "LED doesn't light up."],
 		['ledOffTextarea', 'Place that not light up LED.'],
 		['writingToolLog', 'Firmware writing tool log.'],
 		['otherProblem', 'Other Problem.'],
 		['otherProblemTextarea', 'Description of other Problem.'],
-		['situation', 'Situation when occured problem.'],
-		['detail', 'When does the problem occur?'],
+		['whenProblemOccur', 'When does problem occur?'],
+		['detail', 'Description of work so far.'],
 		['testProMicroOnly', 'Conthrough, detach ProMicro from PCB. Next, if ProMicro only connect to PC by USB, ProMicro was recognized keyboard by OS?'],
 		['haveTester', 'Do you have tester?'],
 	]);
 
-export {nameToQuestionEN};
+export {nameToQuestionaireEN};

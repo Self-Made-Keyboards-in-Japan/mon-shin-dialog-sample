@@ -1,3 +1,6 @@
+// JavaScriptのclosestメソッドをIEに対応させるポリフィル
+// https://hirakublog.com/code/345/ 参照
+
 if (!Element.prototype.matches) {
   Element.prototype.matches = Element.prototype.msMatchesSelector || 
                               Element.prototype.webkitMatchesSelector;
