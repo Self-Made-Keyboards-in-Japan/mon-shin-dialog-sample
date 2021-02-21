@@ -115,22 +115,22 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="selfMadePcb" value="Original PCB" data-wiringIndex="2">
             <label class="form-check-label" for="selfMadePcb">Original PCB</label>
-            <span class="bg-warning invisible m-1 p-1" id="alertTxtForSelfMadePcb" data-wiringindex="2">Please post schematics and wiring diagrams as well.</span>
+            <span class="bg-warning invisible m-1 p-1" id="alertTextForSelfMadePcb" data-wiringindex="2">Please post schematics and wiring diagrams as well.</span>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="infinitePossibilities" value="InfinitePossibilities" data-wiringIndex="3">
             <label class="form-check-label" for="infinitePossibilities">"Infinite Possibilities"<a href="https://github.com/swanmatch/MxLEDBitPCB/blob/master/readme_en.md">( Link )</a></label>
-            <span class="bg-warning invisible m-1 p-1" id="alertTxtForInfinitePossibilities" data-wiringIndex="3">If you have schematics and wiring diagrams, please post them as well.</span>
+            <span class="bg-warning invisible m-1 p-1" id="alertTextForInfinitePossibilities" data-wiringIndex="3">If you have schematics and wiring diagrams, please post them as well.</span>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="su120" value="SU120" data-wiringIndex="4">
             <label class="form-check-label" for="su120">"SU120"<a href="https://github.com/e3w2q/su120-keyboard">( Link )</a></label>
-            <span class="bg-warning invisible m-1 p-1" id="alertTxtForSu120" data-wiringIndex="4">If you have schematics and wiring diagrams, please post them as well.</span>
+            <span class="bg-warning invisible m-1 p-1" id="alertTextForSu120" data-wiringIndex="4">If you have schematics and wiring diagrams, please post them as well.</span>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="handWired" value="Hand wired" data-wiringIndex="5">
             <label class="form-check-label" for="handWired">Hand wired (Not use PCB)</label>
-            <span class="bg-warning invisible m-1 p-1" id="alertTxtForHandWired" data-wiringIndex="5">Please post schematics and wiring diagrams as well.</span>
+            <span class="bg-warning invisible m-1 p-1" id="alertTextForHandWired" data-wiringIndex="5">Please post schematics and wiring diagrams as well.</span>
           </div>
         </div>
 
@@ -196,8 +196,8 @@
             <label class="form-check-label" for="via">VIA</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="writingTool" id="bleMicroProWebConfiguretor" value="BLE Micro Pro Web Configuretor" disabled>
-            <label class="form-check-label" for="bleMicroProWebConfiguretor">BLE Micro Pro Web Configurator (BLE Micro Pro Only)</label>
+            <input class="form-check-input" type="radio" name="writingTool" id="bleMicroProWebConfigurator" value="BLE Micro Pro Web Configurator" disabled>
+            <label class="form-check-label" for="bleMicroProWebConfigurator">BLE Micro Pro Web Configurator (BLE Micro Pro Only)</label>
           </div>
         </div>
 
@@ -231,7 +231,14 @@
             <input class="form-check-input" type="checkbox" name="writeErrorQmk" id="writeErrorQmk" value="Applicable" data-relation-textarea="writingToolLog">
             <label class="form-check-label" for="writeErrorQmk">Can't write firmware</label>
             <div class="form-group">
-              <label for="writingToolLog" id="postLogAlert" class="alert alert-warning" role="alert">Post firmware writing tool log separately, after post Questionnaire text.</label>
+              <label for="writingToolLog" id="postWriteToolLogAlert" class="alert alert-warning" role="alert">Post firmware writing tool log separately, after post Questionnaire text.</label>
+            </div>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="buildErrorQmk" id="buildErrorQmk" value="Applicable" data-relation-textarea="buildLog">
+            <label class="form-check-label" for="buildErrorQmk">Can't build firmware.</label>
+            <div class="form-group">
+              <label for="buildLog" id="postBuildLogAlert" class="alert alert-warning" role="alert">Post firmware building log separately, after post Questionnaire text.</label>
             </div>
           </div>
           <div class="form-check">
@@ -295,11 +302,14 @@
     <div class="border m-3 p-3 bg-light">
       <div class="form-group p-2 border bg-white">
         <form id="resultForm">
-          <label for="result">Please post below text to Discord #mon-shin channel.</label>
+          <div id="replaceDom">
+            <label id="announceLabel" for="result">Please post below text to Discord #mon-shin channel.</label>
+          </div>
           <div class="form-group">
             <input id="copyBtn" type="button" class="btn btn-primary" data-clipboard-target="#postsText" value="Copy">
           </div>
           <div class="form-group">
+            <p class="text-secondary">Character + Line = <span id="characterAndLines">0</span></p>
             <textarea class="form-control" id="postsText" rows="3" readonly></textarea>
           </div>
         </form>

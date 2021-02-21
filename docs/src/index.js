@@ -3,6 +3,46 @@ import {nameToQuestionaireJP} from './nameToQuestionaireJP.js'
 import {nameToQuestionaireEN} from './nameToQuestionaireEN.js'
 
 //------------------------------------------------------------------------------------------
+// DOM の 使用可否等を切り替えて、その結果を Console に出力する関数群
+//-----------------------------------------------------------------------------------------
+const DEBUG_MODE = true;  //デバッグ完了後に false に変更
+function toggleDomDisabled(manupulateDom, toggle, outputResult=false) {
+  toggleDomAttribute(manupulateDom, toggle, 'disabled', outputResult);
+}
+function toggleDomChecked(manupulateDom, toggle, outputResult=false) {
+  toggleDomAttribute(manupulateDom, toggle, 'checked', outputResult);
+}
+function toggleDomVisible(manupulateDom, toggle, outputResult=false) {
+  toggleDomAttribute(manupulateDom, toggle, 'visible', outputResult);
+}
+function toggleDomAttribute(manupulateDom, toggle, attribute, outputResult=false) {
+  if (attribute == 'disabled') {
+    manupulateDom.disabled = toggle;
+  } else if (attribute == 'checked') {
+    manupulateDom.checked = toggle;
+  } else if (attribute == 'visible') {
+    manupulateDom.style.visibility = toggle;
+  }
+  if (outputResult) {
+    outputResultToConsole(manupulateDom, attribute);
+  }
+} 
+function outputResultToConsole(manupulateDom, attribute) {
+  switch(attribute) {
+    case 'disabled':
+      console.log(manupulateDom.id + '.' + attribute + '=' + manupulateDom.disabled);
+      break;
+    case 'checked':
+      console.log(manupulateDom.id + '.' + attribute + '=' + manupulateDom.checked);
+      break;
+    case 'visible':
+      console.log(manupulateDom.id + '.' + attribute + '=' + manupulateDom.style.visibility);
+      break;
+    }  
+}
+
+
+//------------------------------------------------------------------------------------------
 // DOM の Name 属性と投稿文に使う質問文を結びつけた Map を返す
 //-----------------------------------------------------------------------------------------
 function linktNameToQuestionaire() {
@@ -12,12 +52,14 @@ function linktNameToQuestionaire() {
     nameToQuestionaireJP.forEach((value, key) => {
       nameToQuestionaire.set(key, value);
     });
-    nameToQuestionaire.set('postLogAlertText', '\n*※ファームウェア書き込み時のログを別途投稿します*')
+    nameToQuestionaire.set('postWriteToolLogAlert', '\n*※ファームウェア書き込み時のログを別途投稿します*')
+    nameToQuestionaire.set('postBuildLogAlert', '\n*※ファームウェアビルド時のログを別途投稿します*')
   } else if (document.documentElement.lang == 'en') {
     nameToQuestionaireEN.forEach((value, key) => {
       nameToQuestionaire.set(key, value);
     });
-    nameToQuestionaire.set('postLogAlertText', '\n*※I will post firmware writing tool log separetely.*')
+    nameToQuestionaire.set('postWriteToolLogAlert', '\n*※I will post firmware writing tool log separetely.*')
+    nameToQuestionaire.set('postBuildLogAlert', '\n*※I will post firmware build log separetely.*')
   }
   return nameToQuestionaire;
 }
@@ -43,7 +85,7 @@ function setupClipboardJS() {
   }
 
   // Clipboard 
-  let clipboard = new ClipboardJS('#copyBtn'); 
+  let clipboard = new ClipboardJS('#copyBtn');
   clipboard.on('success', (e) => {
     setTooltip('Copied!');
     hideTooltip();
@@ -58,39 +100,45 @@ function setupClipboardJS() {
 // 選択したマイコンに応じてテキストボックスなどの使用可否を切り替える
 //-----------------------------------------------------------------------------------------
 function microcontrollerNameLinked(e) {
+  const microcontrollerNameLinked = document.getElementById("microcontrollerNameInput");
+  const bleMicroProWebConfigurator = document.getElementById("bleMicroProWebConfigurator");
+  const promicroOnlyYes = document.getElementById("promicroOnlyYes");
+  const promicroOnlyNo = document.getElementById("promicroOnlyNo");
+  const noUseConthrough = document.getElementById("noUseConthrough");
   switch (e.target.id) {
     case "blemicropro": 
-      document.getElementById("microcontrollerNameInput").disabled = true;
-      document.getElementById("bleMicroProWebConfiguretor").disabled = false;
-      document.getElementById("promicroOnlyYes").disabled = false;
-      document.getElementById("promicroOnlyNo").disabled = false;
+      toggleDomDisabled(microcontrollerNameLinked, true, DEBUG_MODE);
+      toggleDomDisabled(bleMicroProWebConfigurator, false, DEBUG_MODE);
+      toggleDomChecked(noUseConthrough, false, DEBUG_MODE);
+      toggleDomDisabled(promicroOnlyYes, false, DEBUG_MODE);
+      toggleDomDisabled(promicroOnlyNo, false, DEBUG_MODE); 
       break;
     case "atmega328":
     case "atmega32u4":
-      document.getElementById("microcontrollerNameInput").disabled = true;
-      document.getElementById("bleMicroProWebConfiguretor").disabled = true;
-      document.getElementById("bleMicroProWebConfiguretor").checked = false;
-      document.getElementById("noUseConthrough").checked = true;
-      document.getElementById("promicroOnlyYes").disabled = true;
-      document.getElementById("promicroOnlyNo").disabled = true;
+      toggleDomDisabled(microcontrollerNameLinked, true, DEBUG_MODE);
+      toggleDomDisabled(bleMicroProWebConfigurator, true, DEBUG_MODE);
+      toggleDomChecked(bleMicroProWebConfigurator, false, DEBUG_MODE);
+      toggleDomChecked(noUseConthrough, true, DEBUG_MODE);
+      toggleDomDisabled(promicroOnlyYes, true, DEBUG_MODE); 
+      toggleDomDisabled(promicroOnlyNo, true, DEBUG_MODE); 
       break;
     case "othersMicrocontroller":
     case "microcontrollerNameInput":
-      document.getElementById("microcontrollerNameInput").disabled = false;
-      document.getElementById("bleMicroProWebConfiguretor").disabled = true;
-      document.getElementById("bleMicroProWebConfiguretor").checked = false;
-      document.getElementById("noUseConthrough").checked = true;
-      document.getElementById("promicroOnlyYes").disabled = true;
-      document.getElementById("promicroOnlyNo").disabled = true;
+      toggleDomDisabled(microcontrollerNameLinked, false, DEBUG_MODE);
+      toggleDomDisabled(bleMicroProWebConfigurator, true, DEBUG_MODE);
+      toggleDomChecked(bleMicroProWebConfigurator, false, DEBUG_MODE);
+      toggleDomChecked(noUseConthrough, true, DEBUG_MODE);
+      toggleDomDisabled(promicroOnlyYes, true, DEBUG_MODE); 
+      toggleDomDisabled(promicroOnlyNo, true, DEBUG_MODE); 
       break;
     default:
       // ProMicro と Elite-C は連動させる項目が無いので、初期状態に戻す。
-      document.getElementById("microcontrollerNameInput").disabled = true;
-      document.getElementById("bleMicroProWebConfiguretor").disabled = true;
-      document.getElementById("bleMicroProWebConfiguretor").checked = false;
-      document.getElementById("noUseConthrough").checked = false;
-      document.getElementById("promicroOnlyYes").disabled = false;
-      document.getElementById("promicroOnlyNo").disabled = false;
+      toggleDomDisabled(microcontrollerNameLinked, true, DEBUG_MODE);
+      toggleDomDisabled(bleMicroProWebConfigurator, true, DEBUG_MODE);
+      toggleDomChecked(bleMicroProWebConfigurator, false, DEBUG_MODE);
+      toggleDomChecked(noUseConthrough, false, DEBUG_MODE);
+      toggleDomDisabled(promicroOnlyYes, false, DEBUG_MODE); 
+      toggleDomDisabled(promicroOnlyNo, false, DEBUG_MODE); 
       break;
   }
 }
@@ -106,9 +154,9 @@ function linkOsNameAndTextbox(e) {
   for (const input of inputList) {
     // 使用可能にする必要があるテキストボックスの`name`には、選択したOSの名前を含めている。
     if (input.name.includes(e.target.id)) {
-      input.disabled = false
+      toggleDomDisabled(input, false, DEBUG_MODE);
     } else {
-      input.disabled = true
+      toggleDomDisabled(input, true, DEBUG_MODE);
       input.value = "";
     }
   }
@@ -119,30 +167,40 @@ function linkOsNameAndTextbox(e) {
 //-----------------------------------------------------------------------------------------
 function linkProblemAndTextbox(e) {
   if (e.target.id === 'noInput') {
-    document.getElementById('noInputTextarea').disabled = !e.target.checked
+    toggleDomDisabled(document.getElementById('noInputTextarea'), !e.target.checked, DEBUG_MODE);
   }
   if (e.target.id === 'notExpect') {
-    document.getElementById('notExpectTextarea').disabled = !e.target.checked
+    toggleDomDisabled(document.getElementById('notExpectTextarea'), !e.target.checked, DEBUG_MODE);
   }
   if (e.target.id === 'notActionOneHand') {
-    document.getElementById('notActionOneHandTextarea').disabled = !e.target.checked
+    toggleDomDisabled(document.getElementById('notActionOneHandTextarea'), !e.target.checked, DEBUG_MODE);
   }
   if (e.target.id === 'ledOff') {
-    document.getElementById('ledOffTextarea').disabled = !e.target.checked
+    toggleDomDisabled(document.getElementById('ledOffTextarea'), !e.target.checked, DEBUG_MODE);
   }
   if (e.target.id === 'otherProblem') {
-    document.getElementById('otherProblemTextarea').disabled = !e.target.checked
+    toggleDomDisabled(document.getElementById('otherProblemTextarea'), !e.target.checked, DEBUG_MODE);
   }
 }
 
 //------------------------------------------------------------------------------------------
-// ファームウェア書き込みツールのログも投稿するよう指示するメッセージを表示する
+// ファームウェア書き込みツールとビルド時のログも投稿するよう指示するメッセージを表示する
 //-----------------------------------------------------------------------------------------
 function displayPostLogAlert(e) {
-  if (e.target.checked) {
-    document.getElementById('postLogAlert').style.visibility = "visible"
-  } else {
-    document.getElementById('postLogAlert').style.visibility = "hidden"
+  const postWriteToolLogAlert = document.getElementById('postWriteToolLogAlert');
+  const postBuildLogAlert = document.getElementById('postBuildLogAlert');
+  if (e.target.id == 'writeErrorQmk') {
+    if (e.target.checked) {
+      toggleDomVisible(postWriteToolLogAlert, 'visible', true);
+    } else {
+      toggleDomVisible(postWriteToolLogAlert, 'hidden', true);
+    }
+  } else if (e.target.id == 'buildErrorQmk') {
+    if (e.target.checked) {
+      toggleDomVisible(postBuildLogAlert, 'visible', true);
+    } else {
+      toggleDomVisible(postBuildLogAlert, 'hidden', true);
+    }
   }
 }
 
@@ -151,13 +209,15 @@ function displayPostLogAlert(e) {
 // target.checked = false になるのは、一度チェックしてから解除した時だけ。
 //-----------------------------------------------------------------------------------------
 function splitKeyboardLinked(e) {
+  const notActionOneHand = document.getElementById("notActionOneHand");
+  const notActionOneHandTextarea = document.getElementById("notActionOneHandTextarea");
   if (e.target.id == "split") {
     if (e.target.checked) {
-      document.getElementById("notActionOneHand").disabled = false;
+      toggleDomDisabled(notActionOneHand, false, DEBUG_MODE);
     } else {
-      document.getElementById("notActionOneHand").disabled = true;
-      document.getElementById("notActionOneHand").checked = false;
-      document.getElementById("notActionOneHandTextarea").disabled = true;
+      toggleDomDisabled(notActionOneHand, true, DEBUG_MODE);
+      toggleDomChecked(notActionOneHand, false, DEBUG_MODE);
+      toggleDomDisabled(notActionOneHandTextarea, true, DEBUG_MODE);
       document.getElementById("notActionOneHandTextarea").value = "";
     }
   } 
@@ -167,7 +227,6 @@ function splitKeyboardLinked(e) {
 // 配線方法毎の補足情報の表示・非表示切り替え機能
 //-----------------------------------------------------------------------------------------
 function wiringMethodLinked(e) {
-  // const parentFormGroupDiv = target.closest('.form-group')
   const spanList = e.target.closest('.form-group').getElementsByTagName('span');
   for (const span of spanList) {
     // 表示させる補足情報は、選択したラジオボタンと同じ`data-wiringindex`を持つ`span`タグ。
@@ -219,10 +278,13 @@ function generatePostText(nameToQuestionaire) {
 
   postsText.value = '';
 
-  for (let key of form_data.keys()) { 
+  for (let key of form_data.keys()) {
     if (nameToQuestionaire.has(key)) {
       if (key === 'writeErrorQmk') {
-        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key) + nameToQuestionaire.get('postLogAlertText');
+        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key) + nameToQuestionaire.get('postWriteToolLogAlert');
+        postsText.value += userText + "\n\n";
+      } else if (key === 'buildErrorQmk') {
+        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key) + nameToQuestionaire.get('postBuildLogAlert');
         postsText.value += userText + "\n\n";
       } else {
         userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key);
@@ -232,6 +294,7 @@ function generatePostText(nameToQuestionaire) {
   }
   postsText.value = postsText.value.replace(ex, ''); 
   fixedTextBoxHeight(postsText);
+  checkDiscordLimit(postsText);
 }
 
 //------------------------------------------------------------------------------------------
@@ -244,13 +307,59 @@ function fixedTextBoxHeight(postsText) {
 }
 
 //------------------------------------------------------------------------------------------
+// Discord の投稿欄の制限（文字数＋行数が2002になると貼付け不可）対策
+//-----------------------------------------------------------------------------------------
+function checkDiscordLimit(postsText) {
+  const character = postsText.value.length;
+  const lineBreak = (postsText.value.match(/\n/g)||[]).length;
+  const alertTextDiscord = document.getElementById('alertTextDiscord');
+  const announceLabel = document.getElementById('announceLabel');
+  const replace = document.getElementById('replaceDom');
+  const copyBtn = document.getElementById('copyBtn');
+
+  document.getElementById('characterAndLines').innerText = character + lineBreak;
+
+  if (character + lineBreak > 2001) {
+    if (!(alertTextDiscord === null)) {
+      return;
+    } else {
+      const p = document.createElement('p');
+      const span = document.createElement('span');
+      span.classList.add('bg-warning', 'm-1', 'p-1');
+      if (document.documentElement.lang == 'ja') {
+        span.textContent = 'Discord の投稿欄の制限は「文字数＋行数 ≦ 2001」です。';
+      } else if(document.documentElement.lang == 'en') {
+        span.textContent = 'Limitation of Discord  is "character + line ≦ 2001".';
+      }
+      p.id = 'alertTextDiscord';
+      p.appendChild(span);
+      replace.appendChild(p);
+      copyBtn.disabled = true;
+      copyBtn.classList.remove('btn-primary');
+      copyBtn.classList.add('btn-secondary');
+    }
+    announceLabel.style.textDecoration = 'line-through';
+  } else {
+    if (!(alertTextDiscord === null)) {
+      replace.removeChild(alertTextDiscord);
+    }
+    announceLabel.style.textDecoration = 'none';
+    copyBtn.disabled = false;
+    copyBtn.classList.remove('btn-secondary');
+    copyBtn.classList.add('btn-primary');
+  }
+}
+
+
+//------------------------------------------------------------------------------------------
 // 初期化処理
 //------------------------------------------------------------------------------------------
 (() => {
   //------------------------------------------------------------------------------------------
   // 投稿文フォームの前処理
   //----------------------------------------------------------------------------------------- 
-  document.getElementById('postLogAlert').style.visibility = 'hidden';
+  document.getElementById('postWriteToolLogAlert').style.visibility = 'hidden';
+  document.getElementById('postBuildLogAlert').style.visibility = 'hidden';
   document.getElementById("resetBtn").addEventListener("click", (e) => document.forms["form"].reset()); 
   generateKeyboardList();
   const nameToQuestionaire = linktNameToQuestionaire();
@@ -278,6 +387,9 @@ function fixedTextBoxHeight(postsText) {
   			wiringMethodLinked(e);
         break;
       case "writeErrorQmk":
+        displayPostLogAlert(e);
+        break;
+      case "buildErrorQmk":
         displayPostLogAlert(e);
         break;
       default:

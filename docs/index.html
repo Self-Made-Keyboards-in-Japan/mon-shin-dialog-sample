@@ -115,22 +115,22 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="selfMadePcb" value="PCB基板 (オリジナル) " data-wiringIndex="2">
             <label class="form-check-label" for="selfMadePcb">PCB基板( オリジナル )</label>
-            <span class="bg-warning invisible m-1 p-1" id="alertTxtForSelfMadePcb" data-wiringindex="2">回路図・配線図も投稿してください</span>
+            <span class="bg-warning invisible m-1 p-1" id="alertTextForSelfMadePcb" data-wiringindex="2">回路図・配線図も投稿してください</span>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="infinitePossibilities" value="無限の可能性" data-wiringIndex="3">
             <label class="form-check-label" for="infinitePossibilities">無限の可能性</label>
-            <span class="bg-warning invisible m-1 p-1" id="alertTxtForInfinitePossibilities" data-wiringIndex="3">回路図・配線図があれば、それらも投稿してください</span>
+            <span class="bg-warning invisible m-1 p-1" id="alertTextForInfinitePossibilities" data-wiringIndex="3">回路図・配線図があれば、それらも投稿してください</span>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="su120" value="SU120" data-wiringIndex="4">
             <label class="form-check-label" for="su120">SU120</label>
-            <span class="bg-warning invisible m-1 p-1" id="alertTxtForSu120" data-wiringIndex="4">回路図・配線図があれば、それらも投稿してください</span>
+            <span class="bg-warning invisible m-1 p-1" id="alertTextForSu120" data-wiringIndex="4">回路図・配線図があれば、それらも投稿してください</span>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="wiring" id="handWired" value="空中配線" data-wiringIndex="5">
             <label class="form-check-label" for="handWired">空中配線</label>
-            <span class="bg-warning invisible m-1 p-1" id="alertTxtForHandWired" data-wiringIndex="5">回路図・配線図も投稿してください</span>
+            <span class="bg-warning invisible m-1 p-1" id="alertTextForHandWired" data-wiringIndex="5">回路図・配線図も投稿してください</span>
           </div>
         </div>
 
@@ -196,8 +196,8 @@
             <label class="form-check-label" for="via">VIA</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="writingTool" id="bleMicroProWebConfiguretor" value="BLE Micro Pro Web Configuretor" disabled>
-            <label class="form-check-label" for="bleMicroProWebConfiguretor">BLE Micro Pro Web Configurator (BLE Micro Pro Only)</label>
+            <input class="form-check-input" type="radio" name="writingTool" id="bleMicroProWebConfigurator" value="BLE Micro Pro Web Configurator" disabled>
+            <label class="form-check-label" for="bleMicroProWebConfigurator">BLE Micro Pro Web Configurator (BLE Micro Pro Only)</label>
           </div>
         </div>
 
@@ -231,7 +231,14 @@
             <input class="form-check-input" type="checkbox" name="writeErrorQmk" id="writeErrorQmk" value="該当します" data-relation-textarea="writingToolLog">
             <label class="form-check-label" for="writeErrorQmk">ファームウェアを書き込めない</label>
             <div class="form-group">
-              <label for="writingToolLog" id="postLogAlert" class="alert alert-warning" role="alert">質問文の投稿後に書き込みツールのログも別途投稿してください</label>
+              <label for="writingToolLog" id="postWriteToolLogAlert" class="alert alert-warning" role="alert">質問文の投稿後に書き込みツールのログも別途投稿してください</label>
+            </div>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="buildErrorQmk" id="buildErrorQmk" value="該当します" data-relation-textarea="buildLog">
+            <label class="form-check-label" for="buildErrorQmk">ファームウェアをビルドできない</label>
+            <div class="form-group">
+              <label for="buildLog" id="postBuildLogAlert" class="alert alert-warning" role="alert">質問文の投稿後にビルド時のログも別途投稿してください</label>
             </div>
           </div>
           <div class="form-check">
@@ -295,11 +302,14 @@
     <div class="border m-3 p-3 bg-light">
       <div class="form-group p-2 border bg-white">
         <form id="resultForm">
-          <label for="result">以下の文章を Discord の #mon-shin チャンネルに投稿してください</label>
+          <div id="replaceDom">
+            <label id="announceLabel" for="result">以下の文章を Discord の #mon-shin チャンネルに投稿してください</label>
+          </div>
           <div class="form-group">
             <input id="copyBtn" type="button" class="btn btn-primary" data-clipboard-target="#postsText" value="Copy">
           </div>
           <div class="form-group">
+            <p class="text-secondary">文字数＋行数 = <span id="characterAndLines">0</span></p>
             <textarea class="form-control" id="postsText" rows="3" readonly></textarea>
           </div>
         </form>
