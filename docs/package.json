@@ -13,6 +13,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "ssri": ">=8.0.1",
+    "elliptic": ">=6.5.4",
     "@babel/core": "^7.11.0",
     "@babel/polyfill": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
@@ -24,6 +26,6 @@
   "dependencies": {
     "bindings": "^1.5.0",
     "formdata-polyfill": "^3.0.20",
-    "nan": "^2.14.1"
+    "nan": "^2.14.1",
   }
 }
