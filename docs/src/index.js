@@ -278,6 +278,42 @@ function linkOsNameAndTextbox(e) {
     }
   }
 }
+
+//------------------------------------------------------------------------------------------
+// 写真やログも投稿するよう指示するメッセージを表示する
+//-----------------------------------------------------------------------------------------
+function displayPostLogOrPhotoAlert(e) {
+  // 写真やログの投稿が必要な問題の checkbox の data-relation-label には、関係する label の ID を格納している。
+  // Copy ボタンの上にもログ投稿を促す注意喚起のアラートを表示する
+  // Copy ボタン上のアラートは2つだけなので、データセット属性を使わずに指定する。
+  const noInput = document.getElementById('noInput');
+  const ledOff = document.getElementById('ledOff');
+  const writeErrorQmk = document.getElementById('writeErrorQmk');
+  const buildErrorQmk = document.getElementById('buildErrorQmk');
+  const environmentErrorQmk = document.getElementById('environmentErrorQmk');
+  const postPhotoAlert = document.getElementById('postPhotoAlert');
+  const postLogAlert = document.getElementById('postLogAlert');
+  const postPhotoReminder = noInput.checked || ledOff.checked;
+  const postLogReminder = writeErrorQmk.checked || buildErrorQmk.checked || environmentErrorQmk.checked;
+  const relationLabel = document.getElementById(e.target.dataset.relationLabel);
+
+  if (e.target.checked) {
+    relationLabel.classList.remove('sr-only', 'sr-only-focusable');
+    if (postPhotoReminder) {
+      postPhotoAlert.classList.remove('sr-only', 'sr-only-focusable');
+    }
+    if (postLogReminder) {
+      postLogAlert.classList.remove('sr-only', 'sr-only-focusable');
+    }
+  } else {
+    relationLabel.classList.add('sr-only', 'sr-only-focusable');
+    if (!(postPhotoReminder)) {
+      postPhotoAlert.classList.add('sr-only', 'sr-only-focusable');
+    }
+    if (!(postLogReminder)) {
+      postLogAlert.classList.add('sr-only', 'sr-only-focusable');
+    }
+  }
 }
 
 //------------------------------------------------------------------------------------------
