@@ -48,21 +48,16 @@ function outputResultToConsole(manupulateDom, attribute) {
 //------------------------------------------------------------------------------------------
 // DOM の Name 属性と投稿文に使う質問文を結びつけた Map を返す
 //-----------------------------------------------------------------------------------------
-function linktNameToQuestionaire() {
+function linkNameToQuestionaire() {
   let nameToQuestionaire = new Map();
-  // let postLogAlertText = '';
   if (document.documentElement.lang == 'ja') {
     nameToQuestionaireJP.forEach((value, key) => {
       nameToQuestionaire.set(key, value);
     });
-    nameToQuestionaire.set('postWriteToolLogAlert', '\n*※ファームウェア書き込み時のログを別途投稿します*')
-    nameToQuestionaire.set('postBuildLogAlert', '\n*※ファームウェアビルド時のログを別途投稿します*')
   } else if (document.documentElement.lang == 'en') {
     nameToQuestionaireEN.forEach((value, key) => {
       nameToQuestionaire.set(key, value);
     });
-    nameToQuestionaire.set('postWriteToolLogAlert', '\n*※I will post firmware writing tool log separetely.*')
-    nameToQuestionaire.set('postBuildLogAlert', '\n*※I will post firmware build log separetely.*')
   }
   return nameToQuestionaire;
 }
@@ -297,16 +292,8 @@ function generatePostText(nameToQuestionaire) {
 
   for (let key of form_data.keys()) {
     if (nameToQuestionaire.has(key)) {
-      if (key === 'writeErrorQmk') {
-        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key) + nameToQuestionaire.get('postWriteToolLogAlert');
-        postsText.value += userText + "\n\n";
-      } else if (key === 'buildErrorQmk') {
-        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key) + nameToQuestionaire.get('postBuildLogAlert');
-        postsText.value += userText + "\n\n";
-      } else {
-        userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key);
-        postsText.value += userText + "\n\n";
-      }
+      userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key);
+      postsText.value += userText + "\n\n";
     }
   }
   postsText.value = postsText.value.replace(ex, ''); 
