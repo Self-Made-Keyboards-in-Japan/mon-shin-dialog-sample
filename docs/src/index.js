@@ -1,4 +1,4 @@
-require('formdata-polyfill');
+import 'formdata-polyfill';
 import {nameToQuestionaireJP} from './nameToQuestionaireJP.js'
 import {nameToQuestionaireEN} from './nameToQuestionaireEN.js'
 
