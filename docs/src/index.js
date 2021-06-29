@@ -1,6 +1,9 @@
 import 'formdata-polyfill';
+import 'dark-mode-switch';
 import {nameToQuestionaireJP} from './nameToQuestionaireJP.js'
 import {nameToQuestionaireEN} from './nameToQuestionaireEN.js'
+// node-modules を Git の管理対象から除外しているので、ここで dark-mode-switch の CSS を読み込んでおく
+import 'dark-mode-switch/dark-mode.css'
 
 //------------------------------------------------------------------------------------------
 // DOM の 使用可否等を切り替えて、その結果を Console に出力する関数群
@@ -82,7 +85,21 @@ function setupClipboardJS() {
     setTimeout(() => {
       $('#copyBtn').tooltip('hide');
     }, 1000);
+//----
+// 夜10時〜朝6時までダークモードにする
+//----
+function toggleDarkMode() {
+  const darkSwitch = document.getElementById('darkSwitch');
+  const today = new Date();
+  const currentHour = today.getHours();
+  if (currentHour <= 6 || currentHour >= 22) {
+    document.body.setAttribute('data-theme', 'dark');
+    darkSwitch.checked = true;
+  } else {
+    document.body.removeAttribute('data-theme');
+    darkSwitch.checked = false;
   }
+}
 
   // Clipboard 
   let clipboard = new ClipboardJS('#copyBtn');
@@ -364,6 +381,11 @@ function checkDiscordLimit(postsText) {
   generateKeyboardList();
   const nameToQuestionaire = linktNameToQuestionaire();
   setupClipboardJS();
+
+  //------------------------------------------------------------------------------------------
+  // 現地時刻で夜10時〜朝6時はダークモードにする
+  //----------------------------------------------------------------------------------------- 
+  toggleDarkMode()
 
   //------------------------------------------------------------------------------------------
   // "input" イベントに投稿文をリアルタイムで作成する処理などを割り当て
