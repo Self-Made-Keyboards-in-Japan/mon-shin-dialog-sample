@@ -261,21 +261,23 @@ function generateKeyboardList() {
   .then(response => {
     if (!response.ok) {
       throw new Error('Response not success.');
+function linkOsNameAndTextbox(e) {
+  // データ属性には文字列しか格納できないので、配列にする変換する必要がある。
+  const activateDomIds = e.target.dataset.activateDom.replace(/\s/g, '').split(',');
+  const disabledDomIds = e.target.dataset.disabledDom.replace(/\s/g, '').split(',');
+  for(let activateDomId of activateDomIds) {
+    toggleDomDisabled(document.getElementById(activateDomId), false, DEBUG_MODE);
+  }
+  for(let disabledDomId of disabledDomIds) {
+    let disabledDom = document.getElementById(disabledDomId)
+    toggleDomDisabled(disabledDom, true, DEBUG_MODE);
+    if (disabledDom.id == 'WSL2Checkbox') {
+      disabledDom.checked = false;
+    } else {
+      disabledDom.value = '';
     }
-      return response.text();
-  }) 
-  .then(data => {
-    const keyboardList = data.split(',');
-    return keyboardList;
-  })
-  .then(keyboardList => {
-    for (let keyboard of keyboardList) {
-      const option = document.createElement('option');  
-      option.value = keyboard.replace(/\"/g, '');
-      domKeyboardList.appendChild(option);
-    };
-  })
-  .catch(error => console.error('There has been a problem with your fetch operation:', error));
+  }
+}
 }
 
 //------------------------------------------------------------------------------------------
