@@ -1,5 +1,6 @@
 import 'formdata-polyfill';
 import 'dark-mode-switch';
+import 'whatwg-fetch';
 import {nameToQuestionaireJP} from './nameToQuestionaireJP.js'
 import {nameToQuestionaireEN} from './nameToQuestionaireEN.js'
 // node-modules を Git の管理対象から除外しているので、ここで dark-mode-switch の CSS を読み込んでおく
