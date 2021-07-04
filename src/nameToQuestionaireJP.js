@@ -1,0 +1,43 @@
+//------------------------------------------------------------------------------------------
+// 各 DOM の Name 属性と投稿文で使う質問の関連付け
+//-----------------------------------------------------------------------------------------
+const nameToQuestionaireJP = new Map([
+	["keyboardName", "キーボード名"],
+	["buildGuideURL", "ビルドガイドのURL"],
+	["kicadFileURL", "KiCadファイルのURL"],
+	["microcontroller", "マイコンの種類"],
+	["microcontrollerName", "マイコン名"],
+	["connection", "PCとキーボードの接続方法"],
+	["keyboardForm", "分割型キーボードか"],
+	["socket", "キースイッチ用のソケットの使用状況"],
+	["wiring", "配線方法"],
+	["osName", "OS名"],
+	["windowsVersionInput", "Windowsのバージョン"],
+	["windowsWSL2", "WSL2を使っていますか"],
+	["windowsTerminalSoftInput", "Windowsのターミナルソフト"],
+	["macosVersionInput", "MacOSのバージョン"],
+	["linuxDistributionInput", "Linuxのディストリビューション"],
+	["dockerCheckbox", "ファームウェアのビルドで Docker を使っていますか"],
+	["keyboardLayout", "OS側のキーボードの配列認識"],
+	["keyInputProblem", "キー入力関連の問題"],
+	["noInputTextarea", "入力できないキーがある"],
+	["notExpectTextarea", "設定と異なる入力となるキーがある"],
+	["notActionOneHandTextarea", "左右分離型で片方だけ反応しない"],
+	["pointerDeviceProblemTextarea", "ポインターデバイスに問題がある"],
+	["writeErrorQmk", "ファームウェアを書き込めない"],
+	["writingToolLog", "ファームウェア書き込みツールのログ"],
+	["buildErrorQmk", "ファームウェアをビルドできない"],
+	["buildLog", "ファームウェアビルド時のログ"],
+	["environmentErrorQmk", "ファームウェアのビルド環境を構築できない"],
+	["environmentLog", "ビルド環境構築時のログ"],
+	["ledOffTextarea", "点灯しない LED がある"],
+	["otherProblemTextarea", "上記以外の問題（ランドが剥がれた etc）が起きている"],
+	["whenProblemOccur", "いつ不具合が発生するか"],
+	["detail", "これまでに行った作業の内容"],
+	["informationReferredTo", "参考にした情報（ビルドガイド除く）"],
+	["writingTool", "書き込みツール"],
+	["testProMicroOnly", "コンスルー（スプリングピンヘッダ）を利用している場合、基板から取り外したマイコンボードを USB 接続してキーボードとして認識されますか？"],
+	["haveTester", "テスターを持っていますか？"],
+]);
+
+export {nameToQuestionaireJP};
