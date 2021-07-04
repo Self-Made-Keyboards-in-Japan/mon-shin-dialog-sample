@@ -5,6 +5,8 @@ module.exports = (env, argv) => ({
   mode: 'production',
   // メインとなるJavaScriptファイル（エントリーポイント）
   entry: ['@babel/polyfill', './src/index.js', './src/closest.js' ],
+  // IE11 に対応させるために 'es5' でトランスパイルする
+  target: ['web', 'es5'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -21,6 +23,7 @@ module.exports = (env, argv) => ({
     watchContentBase: true,
     index: 'index.html',
     host: '0.0.0.0',
+    useLocalIp: true,
     port: 3000,
     open: true,
     openPage: "index.html",
@@ -32,8 +35,8 @@ module.exports = (env, argv) => ({
       {
         test: /\.js$/,
         // dark-mode-switch をバンドルするため node_modules を除外しない。
-        use: 
         // exclude: /node_modules/,
+        use:
           {
             loader: 'babel-loader',
             options: {

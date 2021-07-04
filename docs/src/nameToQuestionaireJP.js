@@ -34,6 +34,7 @@ const nameToQuestionaireJP = new Map([
 	['otherProblemTextarea', '上記以外の問題（ランドが剥がれた etc）が起きている'],
 	['whenProblemOccur', 'いつ不具合が発生するか'],
 	['detail', 'これまでに行った作業の内容'],
+	['informationReferredTo', '参考にした情報（ビルドガイド除く）'],
 	['writingTool', '書き込みツール'],
 	['testProMicroOnly', 'コンスルー（スプリングピンヘッダ）を利用している場合、基板から Pro Micro を取り外して Pro Micro だけ USB 接続した場合にキーボードとして認識されますか？'],
 	['haveTester', 'テスターを持っていますか？'],
