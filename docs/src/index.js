@@ -30,7 +30,7 @@ function toggleDomAttribute(manupulateDom, toggle, attribute, outputResult=false
   if (outputResult) {
     outputResultToConsole(manupulateDom, attribute);
   }
-} 
+}
 function outputResultToConsole(manupulateDom, attribute) {
   switch(attribute) {
     case 'disabled':
@@ -42,7 +42,7 @@ function outputResultToConsole(manupulateDom, attribute) {
     case 'visible':
       console.log(manupulateDom.id + '.' + attribute + '=' + manupulateDom.style.visibility);
       break;
-    }  
+    }
 }
 
 //------------------------------------------------------------------------------------------
@@ -82,6 +82,7 @@ function toggleDarkMode() {
 // キーボード名入力ボックスのオートコンプリート用のデータ登録
 //-----------------------------------------------------------------------------------------
 function generateKeyboardList() {
+  console.time('generateKeyboardList()');
   const domKeyboardList = document.getElementById("keyboardList");
   fetch('https://api.qmk.fm/v1/keyboards')
   .then(response => {
@@ -89,20 +90,21 @@ function generateKeyboardList() {
       throw new Error('Response not success.');
     }
       return response.text();
-  }) 
+  })
   .then(data => {
     const keyboardList = data.split(',');
     return keyboardList;
   })
   .then(keyboardList => {
     for (let keyboard of keyboardList) {
-      const option = document.createElement('option');  
+      const option = document.createElement('option');
       option.value = keyboard.replace(/\"/g, '');
       domKeyboardList.appendChild(option);
     };
     console.info('Keyboard list generated.')
   })
   .catch(error => console.error('There has been a problem with your fetch operation:', error));
+  console.timeEnd('generateKeyboardList()');
 }
 
 //------------------------------------------------------------------------------------------
@@ -115,12 +117,12 @@ function microcontrollerNameLinked(e) {
   const promicroOnlyNo = document.getElementById("promicroOnlyNo");
   const noUseConthrough = document.getElementById("noUseConthrough");
   switch (e.target.id) {
-    case "blemicropro": 
+    case "blemicropro":
       toggleDomDisabled(microcontrollerNameLinked, true, DEBUG_MODE);
       toggleDomDisabled(bleMicroProWebConfigurator, false, DEBUG_MODE);
       toggleDomChecked(noUseConthrough, false, DEBUG_MODE);
       toggleDomDisabled(promicroOnlyYes, false, DEBUG_MODE);
-      toggleDomDisabled(promicroOnlyNo, false, DEBUG_MODE); 
+      toggleDomDisabled(promicroOnlyNo, false, DEBUG_MODE);
       break;
     case "atmega328":
     case "atmega32u4":
@@ -128,8 +130,8 @@ function microcontrollerNameLinked(e) {
       toggleDomDisabled(bleMicroProWebConfigurator, true, DEBUG_MODE);
       toggleDomChecked(bleMicroProWebConfigurator, false, DEBUG_MODE);
       toggleDomChecked(noUseConthrough, true, DEBUG_MODE);
-      toggleDomDisabled(promicroOnlyYes, true, DEBUG_MODE); 
-      toggleDomDisabled(promicroOnlyNo, true, DEBUG_MODE); 
+      toggleDomDisabled(promicroOnlyYes, true, DEBUG_MODE);
+      toggleDomDisabled(promicroOnlyNo, true, DEBUG_MODE);
       break;
     case "othersMicrocontroller":
     case "microcontrollerNameInput":
@@ -137,8 +139,8 @@ function microcontrollerNameLinked(e) {
       toggleDomDisabled(bleMicroProWebConfigurator, true, DEBUG_MODE);
       toggleDomChecked(bleMicroProWebConfigurator, false, DEBUG_MODE);
       toggleDomChecked(noUseConthrough, true, DEBUG_MODE);
-      toggleDomDisabled(promicroOnlyYes, true, DEBUG_MODE); 
-      toggleDomDisabled(promicroOnlyNo, true, DEBUG_MODE); 
+      toggleDomDisabled(promicroOnlyYes, true, DEBUG_MODE);
+      toggleDomDisabled(promicroOnlyNo, true, DEBUG_MODE);
       break;
     default:
       // ProMicro と Elite-C は連動させる項目が無いので、初期状態に戻す。
@@ -146,8 +148,8 @@ function microcontrollerNameLinked(e) {
       toggleDomDisabled(bleMicroProWebConfigurator, true, DEBUG_MODE);
       toggleDomChecked(bleMicroProWebConfigurator, false, DEBUG_MODE);
       toggleDomChecked(noUseConthrough, false, DEBUG_MODE);
-      toggleDomDisabled(promicroOnlyYes, false, DEBUG_MODE); 
-      toggleDomDisabled(promicroOnlyNo, false, DEBUG_MODE); 
+      toggleDomDisabled(promicroOnlyYes, false, DEBUG_MODE);
+      toggleDomDisabled(promicroOnlyNo, false, DEBUG_MODE);
       break;
   }
 }
@@ -168,7 +170,7 @@ function splitKeyboardLinked(e) {
       toggleDomDisabled(notActionOneHandTextarea, true, DEBUG_MODE);
       document.getElementById("notActionOneHandTextarea").value = "";
     }
-  } 
+  }
 }
 
 //------------------------------------------------------------------------------------------
@@ -271,7 +273,7 @@ function displayPostLogOrPhotoAlert(e) {
 //-----------------------------------------------------------------------------------------
 function generatePostText(nameToQuestionaire) {
   const form = document.getElementById("questionForm");
-  const form_data = new FormData(form); 
+  const form_data = new FormData(form);
   const postsText = document.getElementById("postsText");
   const ex = /\n\n$/gi;
   let userText = '';
@@ -283,7 +285,7 @@ function generatePostText(nameToQuestionaire) {
       postsText.value += userText + "\n\n";
     }
   }
-  postsText.value = postsText.value.replace(ex, ''); 
+  postsText.value = postsText.value.replace(ex, '');
   fixedTextBoxHeight(postsText);
   checkDiscordLimit(postsText);
 }
@@ -348,21 +350,21 @@ function checkDiscordLimit(postsText) {
 (() => {
   //------------------------------------------------------------------------------------------
   // 投稿文フォームの前処理
-  //----------------------------------------------------------------------------------------- 
-  document.getElementById("resetBtn").addEventListener("click", (e) => document.forms["form"].reset()); 
+  //-----------------------------------------------------------------------------------------
+  document.getElementById("resetBtn").addEventListener("click", (e) => document.forms["form"].reset());
   generateKeyboardList();
   const nameToQuestionaire = linkNameToQuestionaire();
   setupClipboardJS();
 
   //------------------------------------------------------------------------------------------
   // 現地時刻で夜10時〜朝6時はダークモードにする
-  //----------------------------------------------------------------------------------------- 
+  //-----------------------------------------------------------------------------------------
   toggleDarkMode()
 
   //------------------------------------------------------------------------------------------
   // "input" イベントに投稿文をリアルタイムで作成する処理などを割り当て
   //-----------------------------------------------------------------------------------------
-  document.getElementById("questionForm").addEventListener("change", (e) => { 
+  document.getElementById("questionForm").addEventListener("change", (e) => {
 
     //------------------------------------------------------------------------------------------
     // 入力内容に応じてラジオボックスなどの使用可否を切り替える
@@ -397,37 +399,37 @@ function checkDiscordLimit(postsText) {
     //-----------------------------------------------------------------------------------------
     generatePostText(nameToQuestionaire);
 
-  }); 
+  });
 })();
 
 //------------------------------------------------------------------------------------------
 // clipboard.js
 //-----------------------------------------------------------------------------------------
 function setupClipboardJS() {
-  // Tooltip 
+  // Tooltip
   $('#copyBtn').tooltip({
     trigger: 'click',
     placement: 'bottom'
-  }); 
+  });
   function setTooltip(message) {
     $('#copyBtn').tooltip('hide')
       .attr('data-original-title', message)
       .tooltip('show');
-  } 
+  }
   function hideTooltip() {
     setTimeout(() => {
       $('#copyBtn').tooltip('hide');
     }, 1000);
   }
 
-  // Clipboard 
+  // Clipboard
   let clipboard = new ClipboardJS('#copyBtn');
   clipboard.on('success', (e) => {
     setTooltip('Copied!');
     hideTooltip();
-  }); 
+  });
   clipboard.on('error', (e) => {
     setTooltip('Failed!');
     hideTooltip();
-  }); 
+  });
 }
