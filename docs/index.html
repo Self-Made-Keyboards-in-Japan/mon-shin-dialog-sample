@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="image/favicon.ico">
-
-  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
-
   <title>問診票テンプレート</title>
 </head>
 <body>
@@ -93,7 +89,7 @@
             <label for="microcontrollerName">マイコン名</label>
             <input class="form-control" type="text" name="microcontrollerName" id="microcontrollerNameInput" disabled>
           </div>
-        </div> 
+        </div>
         <div class="form-group rounded p-2 border bg-white">
           <label>キーボードは分割型ですか？</label>
           <div class="form-check">
@@ -218,7 +214,7 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="writingTool" id="qmkCommandline" value="make コマンドでビルド＆書き込み">
             <label class="form-check-label" for="qmkCommandline"><code>make</code> or <code>qmk flash</code> コマンドでビルド＆書き込み</label>
-          </div>          
+          </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="writingTool" id="via" value="via">
             <label class="form-check-label" for="via">VIA</label>
@@ -257,7 +253,7 @@
             <textarea class="mt-2 mb-2 form-control" name="notActionOneHandTextarea" id="notActionOneHandTextarea" rows="3" disabled></textarea>
           </div>
           <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" name="ledOff" id="ledOff" value="左右分離型で片方だけ反応しない" data-relation-textarea="ledOffTextarea" data-relation-label="postPhotoLED">
+            <input class="form-check-input" type="checkbox" name="ledOff" id="ledOff" value="LEDが点灯しない" data-relation-textarea="ledOffTextarea" data-relation-label="postPhotoLED">
             <label class="form-check-label" for="ledOff">LEDが点灯しない</label>
             <p class="mt-1 mb-0 text-secondary">どのLEDが点灯しないか記入してください</p>
             <textarea class="mt-2 mb-2 form-control" name="ledOffTextarea" id="ledOffTextarea" rows="3" disabled></textarea>
@@ -344,7 +340,7 @@
       </div>
       </form>
     </div>
-  
+
     <div class="border m-3 p-3 bg-light">
       <div class="form-group rounded p-2 border bg-white">
         <form id="resultForm">
@@ -369,8 +365,10 @@
     </div>
   </div>
 
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
   <script src="dist/bundle.js"></script>
 </html>
