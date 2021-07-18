@@ -1,5 +1,6 @@
 // https://coinbaby8.com/javascriptes6-webpack-babel.html を基に設定
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => ({
   mode: 'production',
@@ -8,7 +9,7 @@ module.exports = (env, argv) => ({
   // IE11 に対応させるために 'es5' でトランスパイルする
   target: ['web', 'es5'],
   output: {
-    filename: 'bundle.js',
+    filename: 'js/bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: "/dist/",
   },
@@ -19,7 +20,7 @@ module.exports = (env, argv) => ({
   //watch: true, -> webpack-cli のアップデート（3.x.x -> 4.x.x）によりこのオプションは不要となる
   //開発用サーバー
   devServer:{
-    contentBase: path.resolve(__dirname, './'),
+    contentBase: path.resolve(__dirname, './dist'),
     watchContentBase: true,
     index: 'index.html',
     host: '0.0.0.0',
@@ -30,12 +31,20 @@ module.exports = (env, argv) => ({
     inline: true
   },
 
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: 'css', to: 'css' },
+        { from: '*.html' },
+        { from: 'favicon.ico' }
+      ]
+    })
+  ],
+
   module: {
     rules: [
       {
         test: /\.js$/,
-        // dark-mode-switch をバンドルするため node_modules を除外しない。
-        // exclude: /node_modules/,
         use:
           {
             loader: 'babel-loader',
@@ -49,8 +58,6 @@ module.exports = (env, argv) => ({
       },
       {
         test: /\.css$/,
-        // dark-mode-switch の CSS をバンドルするため node_modules を除外しない。
-        // exclude: /node_modules/,
         // loaderを複数使用するときは use を使う
         use: [
           'style-loader',
