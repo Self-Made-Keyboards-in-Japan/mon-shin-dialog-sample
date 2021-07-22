@@ -28,7 +28,8 @@ module.exports = (env, argv) => ({
     port: 3000,
     open: true,
     openPage: "index.html",
-    inline: true
+    inline: true,
+    writeToDisk: true
   },
 
   plugins: [
@@ -36,7 +37,7 @@ module.exports = (env, argv) => ({
       patterns: [
         { from: 'css', to: 'css' },
         { from: '*.html' },
-        { from: 'favicon.ico' }
+        { from: 'favicon.ico', to: 'image' }
       ]
     })
   ],

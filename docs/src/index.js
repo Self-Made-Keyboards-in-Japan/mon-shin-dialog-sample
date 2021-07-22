@@ -67,15 +67,8 @@ function linkNameToQuestionaire() {
 //----
 function toggleDarkMode() {
   const darkSwitch = document.getElementById('darkSwitch');
-  const today = new Date();
-  const currentHour = today.getHours();
-  if (currentHour <= 6 || currentHour >= 22) {
-    document.body.setAttribute('data-theme', 'dark');
-    darkSwitch.checked = true;
-  } else {
-    document.body.removeAttribute('data-theme');
-    darkSwitch.checked = false;
-  }
+  document.body.removeAttribute('data-theme');
+  darkSwitch.checked = false;
 }
 
 //------------------------------------------------------------------------------------------
@@ -351,7 +344,6 @@ function checkDiscordLimit(postsText) {
   //------------------------------------------------------------------------------------------
   // 投稿文フォームの前処理
   //-----------------------------------------------------------------------------------------
-  document.getElementById("resetBtn").addEventListener("click", (e) => document.forms["form"].reset());
   generateKeyboardList();
   const nameToQuestionaire = linkNameToQuestionaire();
   setupClipboardJS();
