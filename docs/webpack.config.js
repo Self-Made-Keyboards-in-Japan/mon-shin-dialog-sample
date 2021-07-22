@@ -36,7 +36,7 @@ module.exports = (env, argv) => ({
       patterns: [
         { from: 'css', to: 'css' },
         { from: '*.html' },
-        { from: 'favicon.ico' }
+        { from: 'favicon.ico', to: 'image' }
       ]
     })
   ],
