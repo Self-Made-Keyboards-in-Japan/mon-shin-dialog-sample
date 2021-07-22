@@ -28,7 +28,8 @@ module.exports = (env, argv) => ({
     port: 3000,
     open: true,
     openPage: "index.html",
-    inline: true
+    inline: true,
+    writeToDisk: true
   },
 
   plugins: [
