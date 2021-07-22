@@ -351,7 +351,6 @@ function checkDiscordLimit(postsText) {
   //------------------------------------------------------------------------------------------
   // 投稿文フォームの前処理
   //-----------------------------------------------------------------------------------------
-  document.getElementById("resetBtn").addEventListener("click", (e) => document.forms["form"].reset());
   generateKeyboardList();
   const nameToQuestionaire = linkNameToQuestionaire();
   setupClipboardJS();
