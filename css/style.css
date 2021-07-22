@@ -1,3 +1,11 @@
 #postsText.noscrollbars {
   overflow: hidden;
 }
+
+#alertTextForSelfMadePcb,
+#alertTextForInfinitePossibilities,
+#alertTextForSu120,
+#alertTextForHandWired {
+  color: #856404;
+  background-color: #ffeeba;
+}
