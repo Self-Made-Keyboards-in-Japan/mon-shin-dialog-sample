@@ -19,17 +19,22 @@ module.exports = (env, argv) => ({
   //監視有効
   //watch: true, -> webpack-cli のアップデート（3.x.x -> 4.x.x）によりこのオプションは不要となる
   //開発用サーバー
+  // webpack-dev-server の v3 から v4 へのアップデートで、`index`, `mimeTypes`, `publicPath`, `serverSideRender`,
+  //`stats`, と `writeToDisk` が `devMiddleware` に移動させられた。
+  //また、`inline` オプションは削除された。
+  // [webpack-dev-server/migration-v4.md at master · webpack/webpack-dev-server](https://github.com/webpack/webpack-dev-server/blob/master/migration-v4.md)
   devServer:{
-    contentBase: path.resolve(__dirname, './dist'),
-    watchContentBase: true,
-    index: 'index.html',
+    static: {
+      directory: path.resolve(__dirname, './dist'),
+      watch: true,
+    },
     host: '0.0.0.0',
-    useLocalIp: true,
     port: 3000,
     open: true,
-    openPage: "index.html",
-    inline: true,
-    writeToDisk: true
+    devMiddleware: {
+      index: 'index.html',
+      writeToDisk: true
+    }
   },
 
   plugins: [
