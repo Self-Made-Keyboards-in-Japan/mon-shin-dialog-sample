@@ -35,7 +35,7 @@
       </p>
     </div>
 
-    <div class="border rounded shadow-sm m-3 p-3">
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
       <h2 class="">現在起きている問題</h2>
       <div class="form-group p-2 bg-white">
         <div class="mb-3 form-check">
@@ -72,7 +72,89 @@
       </div>
     </div>
 
-    <div class="border rounded shadow-sm m-3 p-3">
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+      <h2 class="">ファームウェアに関する情報</h2>
+      <div class="form-group p-2 bg-white">
+        <label>ファームウェアの種類</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="firmwareName" id="QMKFirmware" value="QMK Firmware">
+          <label class="form-check-label" for="QMKFirmware">QMK Toolbox</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="firmwareName" id="VIA" value="VIA">
+          <label class="form-check-label" for="VIA">VIA</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="firmwareName" id="KMKFirmware" value="KMK Firmware">
+          <label class="form-check-label" for="KMKFirmware">KMK Firmware</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="firmwareName" id="PRKFirmware" value="PRK Firmware">
+          <label class="form-check-label" for="PRKFirmware">PRK Firmware</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="firmwareName" id="otherFirmware" value="otherFirmware">
+          <label class="form-check-label" for="otherFirmware">その他のファームウェア</label>
+        </div>
+      </div>
+      <div class="form-group p-2 bg-white">
+        <label>ファームウェア書き込みツール</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="writingTool" id="qmkToolbox" value="QMK Toolbox">
+          <label class="form-check-label" for="qmkToolbox">QMK Toolbox</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="writingTool" id="qmkCommandline"
+            value="make コマンドでビルド＆書き込み">
+          <label class="form-check-label" for="qmkCommandline"><code>make</code> or <code>qmk flash</code>
+            コマンドでビルド＆書き込み</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="writingTool" id="via" value="proMicroWebUpdater">
+          <label class="form-check-label" for="proMicroWebUpdater">Pro Micro Web Updater</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+      <div class="form-group p-2">
+        <h2>マイコンの種類</h2>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="microcontroller" id="promicro" value="Pro Micro">
+          <label class="form-check-label" for="promicro">Pro Micro</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="microcontroller" id="blemicropro" value="BLE Micro Pro">
+          <label class="form-check-label" for="blemicropro">BLE Micro Pro</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="microcontroller" id="elite-c" value="Elite-C">
+          <label class="form-check-label" for="elite-c">Elite-C</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="microcontroller" id="RP2040" value="RP2040">
+          <label class="form-check-label" for="RP2040">RP2040</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="microcontroller" id="atmega32u4" value="ATmega32U4を基板直付け">
+          <label class="form-check-label" for="atmega32u4">ATmega32U4 を基板直付け</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="microcontroller" id="atmega328" value="ATmega328を基板直付け">
+          <label class="form-check-label" for="atmega328">ATmega328 を基板直付け</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="microcontroller" id="othersMicrocontroller" value="その他のマイコンを基板直付け" data-relation-textarea="microcontrollerNameInput">
+          <label class="form-check-label" for="othersMicrocontroller">その他のマイコンを基板直付け</label>
+        </div>
+        <div class="form-group p-2">
+          <label for="microcontrollerName">マイコン名</label>
+          <input class="form-control" type="text" name="microcontrollerName" id="microcontrollerNameInput" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
       <h2 class="">OSの情報</h2>
       <div id="osName" class="form-group p-2 bg-white">
         <div class="p-2">
@@ -126,89 +208,7 @@
       </div>
     </div>
 
-    <div class="border rounded shadow-sm m-3 p-3">
-      <div class="form-group p-2">
-        <h2>マイコンの種類</h2>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="microcontroller" id="promicro" value="Pro Micro">
-          <label class="form-check-label" for="promicro">Pro Micro</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="microcontroller" id="blemicropro" value="BLE Micro Pro">
-          <label class="form-check-label" for="blemicropro">BLE Micro Pro</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="microcontroller" id="elite-c" value="Elite-C">
-          <label class="form-check-label" for="elite-c">Elite-C</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="microcontroller" id="RP2040" value="RP2040">
-          <label class="form-check-label" for="RP2040">RP2040</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="microcontroller" id="atmega32u4" value="ATmega32U4を基板直付け">
-          <label class="form-check-label" for="atmega32u4">ATmega32U4 を基板直付け</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="microcontroller" id="atmega328" value="ATmega328を基板直付け">
-          <label class="form-check-label" for="atmega328">ATmega328 を基板直付け</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="microcontroller" id="othersMicrocontroller" value="その他のマイコンを基板直付け" data-relation-textarea="microcontrollerNameInput">
-          <label class="form-check-label" for="othersMicrocontroller">その他のマイコンを基板直付け</label>
-        </div>
-        <div class="form-group p-2">
-          <label for="microcontrollerName">マイコン名</label>
-          <input class="form-control" type="text" name="microcontrollerName" id="microcontrollerNameInput" disabled>
-        </div>
-      </div>
-    </div>
-
-    <div class="border rounded shadow-sm m-3 p-3">
-      <h2 class="">ファームウェアに関する情報</h2>
-      <div class="form-group p-2 bg-white">
-        <label>ファームウェアの種類</label>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="firmwareName" id="QMKFirmware" value="QMK Firmware">
-          <label class="form-check-label" for="QMKFirmware">QMK Toolbox</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="firmwareName" id="VIA" value="VIA">
-          <label class="form-check-label" for="VIA">VIA</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="firmwareName" id="KMKFirmware" value="KMK Firmware">
-          <label class="form-check-label" for="KMKFirmware">KMK Firmware</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="firmwareName" id="PRKFirmware" value="PRK Firmware">
-          <label class="form-check-label" for="PRKFirmware">PRK Firmware</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="firmwareName" id="otherFirmware" value="otherFirmware">
-          <label class="form-check-label" for="otherFirmware">その他のファームウェア</label>
-        </div>
-      </div>
-      <div class="form-group p-2 bg-white">
-        <label>ファームウェア書き込みツール</label>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="writingTool" id="qmkToolbox" value="QMK Toolbox">
-          <label class="form-check-label" for="qmkToolbox">QMK Toolbox</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="writingTool" id="qmkCommandline"
-            value="make コマンドでビルド＆書き込み">
-          <label class="form-check-label" for="qmkCommandline"><code>make</code> or <code>qmk flash</code>
-            コマンドでビルド＆書き込み</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="writingTool" id="via" value="proMicroWebUpdater">
-          <label class="form-check-label" for="proMicroWebUpdater">Pro Micro Web Updater</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="border rounded shadow-sm m-3 p-3">
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
       <h2 class="">不具合が発生する時の状況など</h2>
       <div class="form-group p-2 bg-white">
         <label for="detail">これまでに行った作業の内容</label>
@@ -236,7 +236,7 @@
       </div>
     </div>
 
-    <div class="border rounded shadow-sm m-3 p-3">
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
       <div class="form-group p-2">
         <form id="resultForm">
           <div id="replaceDom">
