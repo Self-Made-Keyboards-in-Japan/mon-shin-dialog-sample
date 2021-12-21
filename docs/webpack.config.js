@@ -42,7 +42,8 @@ module.exports = (env, argv) => ({
       patterns: [
         { from: 'css', to: 'css' },
         { from: '*.html' },
-        { from: 'favicon.ico', to: 'image' }
+        { from: 'favicon.ico', to: 'image' },
+        { from: 'image', to: 'image'}
       ]
     })
   ],
