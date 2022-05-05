@@ -7,6 +7,7 @@ const nameToQuestionaireJP = new Map([
 	["kicadFileURL", "KiCadファイルのURL"],
 	["microcontroller", "マイコンの種類"],
 	["microcontrollerName", "マイコン名"],
+	["firmwareName", "ファームウェアの種類"],
 	["connection", "PCとキーボードの接続方法"],
 	["keyboardForm", "分割型キーボードか"],
 	["socket", "キースイッチ用のソケットの使用状況"],

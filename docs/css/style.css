@@ -9,3 +9,14 @@
   color: #856404;
   background-color: #ffeeba;
 }
+
+.fadeout{
+  opacity: 0;
+  visibility: hidden;
+  transition: 1s;
+  }
+.fadein{
+  transition: 1s;
+  opacity: 1;
+  visibility: visible;
+}

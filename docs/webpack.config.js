@@ -5,9 +5,12 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = (env, argv) => ({
   mode: 'production',
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: ['@babel/polyfill', './src/index.js', './src/closest.js' ],
+//   entry: ['@babel/polyfill', './src/js/index.js', './src/js/closest.js' ],
+  entry: ['@babel/polyfill', './src/js/index.js' ],
   // IE11 に対応させるために 'es5' でトランスパイルする
-  target: ['web', 'es5'],
+//   target: ['web', 'es5'],
+  // IE11 対応を取りやめ 2022/05/05
+  target: ['web'],
   output: {
     filename: 'js/bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -16,13 +19,6 @@ module.exports = (env, argv) => ({
   // ソースマップの設定
   // [webpack-dev-server で Chrome DevTools にエラーが出る - Qiita](https://qiita.com/YoshinoriKanno/items/322ae6e53daa35059c15)
   devtool: 'eval-source-map',
-  //監視有効
-  //watch: true, -> webpack-cli のアップデート（3.x.x -> 4.x.x）によりこのオプションは不要となる
-  //開発用サーバー
-  // webpack-dev-server の v3 から v4 へのアップデートで、`index`, `mimeTypes`, `publicPath`, `serverSideRender`,
-  //`stats`, と `writeToDisk` が `devMiddleware` に移動させられた。
-  //また、`inline` オプションは削除された。
-  // [webpack-dev-server/migration-v4.md at master · webpack/webpack-dev-server](https://github.com/webpack/webpack-dev-server/blob/master/migration-v4.md)
   devServer:{
     static: {
       directory: path.resolve(__dirname, './dist'),

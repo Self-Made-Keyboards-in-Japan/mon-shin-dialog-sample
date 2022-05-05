@@ -9,7 +9,7 @@ import 'dark-mode-switch/dark-mode.css'
 //------------------------------------------------------------------------------------------
 // DOM の 使用可否等を切り替えて、その結果を Console に出力する関数群
 //-----------------------------------------------------------------------------------------
-const DEBUG_MODE = false;  //デバッグ完了後に false に変更
+const DEBUG_MODE = true;  //デバッグ完了後に false に変更
 function toggleDomDisabled(manupulateDom, toggle, outputResult=false) {
   toggleDomAttribute(manupulateDom, toggle, 'disabled', outputResult);
 }
@@ -63,7 +63,7 @@ function linkNameToQuestionaire() {
 }
 
 //----
-// 夜10時〜朝6時までダークモードにする
+// ダークモード
 //----
 function toggleDarkMode() {
   const darkSwitch = document.getElementById('darkSwitch');
@@ -309,17 +309,18 @@ function checkDiscordLimit(postsText) {
     if (!(alertTextDiscord === null)) {
       return;
     } else {
-      const p = document.createElement('p');
-      const span = document.createElement('span');
-      span.classList.add('bg-warning', 'm-1', 'p-1');
+      const label = document.createElement('label');
+      label.classList.add('mt-1', 'mb-3', 'p-1', 'alert', 'alert-warning', 'rounded');
+      const strong = document.createElement('strong');
+    //   span.classList.add('rounded');
       if (document.documentElement.lang == 'ja') {
-        span.textContent = 'Discord の投稿欄の制限は「文字数＋行数 ≦ 2001」です。';
+        strong.textContent = 'Discord の投稿欄の制限は「文字数＋行数 ≦ 2001」です。';
       } else if(document.documentElement.lang == 'en') {
-        span.textContent = 'Limitation of Discord is "character + line ≦ 2001".';
+        strong.textContent = 'Limitation of Discord is "character + line ≦ 2001".';
       }
-      p.id = 'alertTextDiscord';
-      p.appendChild(span);
-      replace.appendChild(p);
+      label.id = 'alertTextDiscord';
+      label.appendChild(strong);
+      replace.appendChild(label);
       copyBtn.disabled = true;
       copyBtn.classList.remove('btn-primary');
       copyBtn.classList.add('btn-secondary');
@@ -353,6 +354,11 @@ function checkDiscordLimit(postsText) {
   //-----------------------------------------------------------------------------------------
   toggleDarkMode()
 
+  let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+	return new bootstrap.Tooltip(tooltipTriggerEl)
+  })  
+
   //------------------------------------------------------------------------------------------
   // "input" イベントに投稿文をリアルタイムで作成する処理などを割り当て
   //-----------------------------------------------------------------------------------------
@@ -379,7 +385,7 @@ function checkDiscordLimit(postsText) {
       case "writeErrorQmk":
       case "buildErrorQmk":
       case "environmentErrorQmk":
-        displayPostLogOrPhotoAlert(e);
+        // displayPostLogOrPhotoAlert(e);
         break;
       default:
         break;
@@ -398,30 +404,27 @@ function checkDiscordLimit(postsText) {
 // clipboard.js
 //-----------------------------------------------------------------------------------------
 function setupClipboardJS() {
-  // Tooltip
-  $('#copyBtn').tooltip({
-    trigger: 'click',
-    placement: 'bottom'
-  });
-  function setTooltip(message) {
-    $('#copyBtn').tooltip('hide')
-      .attr('data-original-title', message)
-      .tooltip('show');
-  }
-  function hideTooltip() {
-    setTimeout(() => {
-      $('#copyBtn').tooltip('hide');
-    }, 1000);
-  }
-
   // Clipboard
   let clipboard = new ClipboardJS('#copyBtn');
+  const copyResult = document.getElementById('copyResult');
   clipboard.on('success', (e) => {
-    setTooltip('Copied!');
-    hideTooltip();
-  });
+	copyResult.classList.remove('fadeout');
+	copyResult.classList.add('fadein');
+	copyResult.innerText = 'Copied!';
+	setTimeout(() => {
+		copyResult.classList.remove('fadein');
+		copyResult.classList.add('fadeout');
+	  }, 2000);
+    });
   clipboard.on('error', (e) => {
-    setTooltip('Failed!');
-    hideTooltip();
+    // setTooltip('Failed!');
+    // hideTooltip();
+	copyResult.classList.remove('fadeout');
+	copyResult.classList.add('fadein');
+	copyResult.innerText = 'Failed!';
+	setTimeout(() => {
+		copyResult.classList.remove('fadein');
+		copyResult.classList.add('fadeout');
+	  }, 2000);
   });
 }
