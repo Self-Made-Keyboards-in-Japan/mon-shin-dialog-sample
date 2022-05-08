@@ -6,13 +6,18 @@ module.exports = (env, argv) => ({
   mode: 'production',
   // メインとなるJavaScriptファイル（エントリーポイント）
 //   entry: ['@babel/polyfill', './src/js/index.js', './src/js/closest.js' ],
-  entry: ['@babel/polyfill', './src/js/index.js' ],
+  entry: {
+	  // '@babel/polyfill',
+		index: './src/js/index.js',
+		buildProblem: './src/js/buildProblem.js',
+		firmwareProblem: './src/js/firmwareProblem.js'
+	},
   // IE11 に対応させるために 'es5' でトランスパイルする
 //   target: ['web', 'es5'],
   // IE11 対応を取りやめ 2022/05/05
   target: ['web'],
   output: {
-    filename: 'js/bundle.js',
+    filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: "/dist/",
   },
@@ -37,7 +42,7 @@ module.exports = (env, argv) => ({
     new CopyPlugin({
       patterns: [
         { from: 'css', to: 'css' },
-        { from: '*.html' },
+        // { from: '*.html' },
         { from: 'favicon.ico', to: 'image' },
         { from: 'image', to: 'image'}
       ]
@@ -71,7 +76,7 @@ module.exports = (env, argv) => ({
             }
           }
         ]
-      }
+	  }
     ]
   }
 });
