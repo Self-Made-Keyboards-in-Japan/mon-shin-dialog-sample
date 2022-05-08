@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	${require('/common/_head.html') pageTitle="ファームウェアに関する問題"}
+</head>
+
+<body class="bg-light">
+  <div class="container" id="container">
+		${require('/common/_header.html')}
+
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+      <h2 class="">現在起きている問題</h2>
+      <div class="form-group p-2 bg-white">
+        <div class="mb-3 form-check">
+      <input class="form-check-input" type="radio" value="environmentErrorQmk" id="environmentErrorQmk"
+        value="該当します" data-relation-label="postEnvironmentLogAlert" name="problem">
+      <label class="form-check-label" for="environmentErrorQmk">ファームウェアのビルド環境を構築できない</label>
+      <div>
+        <label for="writingToolLog" id="infoQMKToolbox" class="m-1 p-1 alert alert-info sr-only sr-only-focusable"
+        role="alert">Windows でビルド環境を構築するなら <a href="https://msys.qmk.fm/" class="link">QMK MSYS</a> を使うと良いです（<a
+          href="https://docs.qmk.fm/#/ja/newbs_getting_started?id=set-up-your-environment">公式ガイド</a>も QMK MSYS
+        を使う方法を紹介しています）。また、Docker を使う方法もあります。<a href="https://docs.qmk.fm/#/ja/getting_started_docker">Docker
+          クイックスタート</a></label>
+      </div>
+    </div>
+        <div class="mb-3 form-check">
+      <input class="form-check-input" type="radio" value="buildErrorQmk" id="buildErrorQmk" value="該当します"
+        data-relation-label="postBuildLogAlert" name="problem">
+      <label class="form-check-label" for="buildErrorQmk">ファームウェアをビルドできない</label>
+      <div>
+        <label for="writingToolLog" id="infoQMKToolbox" class="m-1 p-1 alert alert-info sr-only sr-only-focusable"
+        role="alert">Windows だと <a href="https://msys.qmk.fm/" class="link">QMK MSYS</a>
+        を使うと上手くいくかもしれません。また、Docker を使ってビルドする方法もあります。<a
+          href="https://docs.qmk.fm/#/ja/getting_started_docker">Docker クイックスタート</a></label>
+      </div>
+    </div>
+    <div class="mb-3 form-check">
+          <input class="form-check-input" type="radio" value="writeErrorQmk" id="writeErrorQmk" value="該当します"
+            data-relation-label="postWriteToolLogAlert" name="problem">
+          <label class="form-check-label" for="writeErrorQmk">ファームウェアを書き込めない</label>
+          <div>
+            <label for="writingToolLog" id="infoQMKToolbox" class="m-1 p-1 alert alert-info sr-only sr-only-focusable" role="alert"><a href="https://github.com/qmk/qmk_toolbox/releases">QMK Toolbox</a>を使うと書き込みできる場合があります。Windows だと <a href="https://docs.qmk.fm/#/ja/driver_installation_zadig" class="link">Zadig</a> もインストールする必要がある場合があります。</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+			${require('/common/_firmwareInfo.html')}
+    </div>
+
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+			${require('/common/_microcomputerInfo.html')}
+    </div>
+
+    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+      <h2 class="">OSの情報</h2>
+      <div id="osName" class="form-group p-2 bg-white">
+        <div class="p-2">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="osName" id="windowsNotWSL" value="Windows"
+              data-activate-dom="windowsVersionInput, WSL2Checkbox, windowsTerminalSoftInput"
+              data-disabled-dom="macosVersionInput, linuxDistributionInput">
+            <label class="form-check-label" for="windowsNotWSL">Windows (Not WSL)</label>
+          </div>
+          <div class="form-group p-2 bg-white">
+            <label for="windowsVersionInput">Windows のバージョン</label>
+            <input class="form-control" type="text" name="windowsVersionInput" id="windowsVersionInput" disabled>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="osName" id="WSL" value="WSL"
+              data-activate-dom="windowsVersionInput, WSL2Checkbox, windowsTerminalSoftInput"
+              data-disabled-dom="macosVersionInput, linuxDistributionInput">
+            <label class="form-check-label" for="WSL">WSL</label>
+          </div>
+          <div class="form-group p-2 bg-white">
+            <label for="windowsVersionInput">linuxのディストリビューション</label>
+            <input class="form-control" type="text" name="linuxDistributionInputOnWSL" id="linuxDistributionInputOnWSL" disabled>
+          </div>
+        </div>
+        <div class="p-2">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="osName" id="macos" value="MacOS"
+              data-activate-dom="macosVersionInput"
+              data-disabled-dom="windowsVersionInput, WSL2Checkbox, windowsTerminalSoftInput, linuxDistributionInput">
+            <label class="form-check-label" for="macos">macos</label>
+          </div>
+          <div class="form-group p-2 bg-white">
+            <label for="macosVersionInput">MacOS のバージョン</label>
+            <input class="form-control" type="text" name="macosVersionInput" id="macosVersionInput" disabled>
+          </div>
+        </div>
+        <div class="p-2">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="osName" id="linux" value="Linux"
+              data-activate-dom="linuxDistributionInput"
+              data-disabled-dom="windowsVersionInput, WSL2Checkbox, windowsTerminalSoftInput, macosVersionInput">
+            <label class="form-check-label" for="linux">linux</label>
+          </div>
+          <div class="form-group p-2 bg-white">
+            <label for="linuxDistributionInput">linuxのディストリビューション</label>
+            <input class="form-control" type="text" name="linuxDistributionInput" id="linuxDistributionInput" disabled>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border rounded shadow-sm m-3 p-3 bg-white" id="miscInfomation">
+			${require('/common/_otherInfo.html')}
+		</div>
+		${require('/common/_resultForm.html')}
+  </div>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+  <!-- <script src="js/bundle.js"></script> -->
+  <script src="js/firmware.bundle.js"></script>
+
+</html>

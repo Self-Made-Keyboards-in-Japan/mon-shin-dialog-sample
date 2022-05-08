@@ -1,0 +1,21 @@
+<div class="border rounded shadow-sm m-3 p-3 bg-white">
+	<div class="form-group p-2">
+		<form id="resultForm">
+			<div id="replaceDom">
+				<p id="announceLabel" class="m-0 mb-1" for="result">以下の文章を Discord の #mon-shin チャンネルに投稿してください</p>
+			</div>
+			<div>
+				<label id="postLogAlert" class="mt-1 mb-3 p-1 alert alert-warning sr-only sr-only-focusable"
+					role="alert"><strong>ログも別途投稿してください</strong></label>
+			</div>
+			<div class="form-group rounded">
+				<input id="copyBtn" type="button" class="btn btn-primary shadow mb-2" data-clipboard-target="#postsText" value="Copy">
+				<span id="copyResult" class="fadeout bg-light p-2 rounded border">copied!</span>
+			</div>
+			<div class="form-group rounded">
+				<p class="text-secondary">文字数＋行数 = <span id="characterAndLines">0</span></p>
+				<textarea class="form-control" id="postsText" rows="3" readonly></textarea>
+			</div>
+		</form>
+	</div>
+</div>

@@ -7,7 +7,10 @@
     "dev": "webpack --mode=development",
     "build": "webpack --mode=production",
     "watch": "webpack --watch",
-    "start": "webpack serve --open --mode=development"
+    "start": "webpack serve --open --mode=development",
+		"compile": "html-includes --src src/html --dest dist",
+		"compile:watch": "html-includes --src src/html --dest dist --watch",
+		"compile:min": "html-includes --src src --dest dist --minify"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +22,9 @@
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
+    "html-includes": "^4.4.1",
     "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.2.1",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
