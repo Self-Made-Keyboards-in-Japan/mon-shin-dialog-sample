@@ -1,8 +1,5 @@
-import 'dark-mode-switch';
 import {nameToQuestionaireJP} from './nameToQuestionaireJP.js'
 import {nameToQuestionaireEN} from './nameToQuestionaireEN.js'
-// node-modules を Git の管理対象から除外しているので、ここで dark-mode-switch の CSS を読み込んでおく
-import 'dark-mode-switch/dark-mode.css'
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
 
 //------------------------------------------------------------------------------------------
