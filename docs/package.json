@@ -9,7 +9,7 @@
     "watch": "webpack --watch",
     "start": "webpack serve --open --mode=development --analyze",
     "compile": "html-includes --src src/html --dest dist",
-    "compile:watch": "html-includes --src src/html --dest dist --watch",
+    "compile:watch": "html-includes --src src/html --dest dist --watch"
   },
   "keywords": [],
   "author": "",
