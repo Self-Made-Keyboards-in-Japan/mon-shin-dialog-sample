@@ -20,3 +20,18 @@
   opacity: 1;
   visibility: visible;
 }
+
+/*
+ボタンのテキストが自動的に大文字になるのを阻止する設定
+https://mdbootstrap.com/support/angular/button-text-not-to-be-uppercase/
+*/
+a.btn {
+	text-transform: unset !important;
+}
+input.btn {
+	text-transform: unset !important;
+}
+
+body {
+	background-color: rgba(249,249,249,var(--mdb-bg-opacity)) !important;
+}

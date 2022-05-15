@@ -34,11 +34,13 @@
     		    <label class="form-check-label" for="rp2040">RP2040 を基板直付け</label>
       		</div>
 		      <div class="form-check">
-            <input class="form-check-input" type="radio" name="microcontroller" id="othersMicrocontroller" value="その他のマイコンを基板直付け" data-relation-textarea="microcontrollerNameInput">
+            <input class="form-check-input" type="radio" name="microcontroller" id="othersMicrocontroller" value="その他のマイコンを基板直付け">
             <label class="form-check-label" for="othersMicrocontroller">その他のマイコンを基板直付け</label>
           </div>
           <div class="form-group p-2">
-            <label for="microcontrollerName">マイコン名</label>
-            <input class="form-control" type="text" name="microcontrollerName" id="microcontrollerNameInput" disabled>
+						<div class="form-outline">
+	            <input class="form-control" type="text" name="microcontrollerName" id="microcontrollerNameInput" disabled>
+	            <label class="form-label" for="microcontrollerName">マイコン名</label>
+						</div>
           </div>
         </div>

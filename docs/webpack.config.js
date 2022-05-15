@@ -1,19 +1,15 @@
 // https://coinbaby8.com/javascriptes6-webpack-babel.html を基に設定
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env, argv) => ({
   mode: 'production',
-  // メインとなるJavaScriptファイル（エントリーポイント）
-//   entry: ['@babel/polyfill', './src/js/index.js', './src/js/closest.js' ],
   entry: {
-	  // '@babel/polyfill',
-		index: './src/js/index.js',
+		common: './src/js/common.js',
 		buildProblem: './src/js/buildProblem.js',
 		firmwareProblem: './src/js/firmwareProblem.js'
 	},
-  // IE11 に対応させるために 'es5' でトランスパイルする
-//   target: ['web', 'es5'],
   // IE11 対応を取りやめ 2022/05/05
   target: ['web'],
   output: {
@@ -21,8 +17,17 @@ module.exports = (env, argv) => ({
     path: path.resolve(__dirname, 'dist'),
     publicPath: "/dist/",
   },
-  // ソースマップの設定
-  // [webpack-dev-server で Chrome DevTools にエラーが出る - Qiita](https://qiita.com/YoshinoriKanno/items/322ae6e53daa35059c15)
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					chunks: 'initial',
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendor',
+				},
+			}
+		}
+	},
   devtool: 'eval-source-map',
   devServer:{
     static: {
@@ -42,11 +47,11 @@ module.exports = (env, argv) => ({
     new CopyPlugin({
       patterns: [
         { from: 'css', to: 'css' },
-        // { from: '*.html' },
         { from: 'favicon.ico', to: 'image' },
         { from: 'image', to: 'image'}
       ]
-    })
+    }),
+		new BundleAnalyzerPlugin()
   ],
 
   module: {
@@ -58,7 +63,6 @@ module.exports = (env, argv) => ({
             loader: 'babel-loader',
             options: {
               presets: [
-                // プリセットを指定することで、ES2019 を ES5 に変換
                 '@babel/preset-env',
               ]
             }
@@ -66,7 +70,6 @@ module.exports = (env, argv) => ({
       },
       {
         test: /\.css$/,
-        // loaderを複数使用するときは use を使う
         use: [
           'style-loader',
           {
@@ -76,7 +79,7 @@ module.exports = (env, argv) => ({
             }
           }
         ]
-	  }
+	 	 	}
     ]
   }
 });
