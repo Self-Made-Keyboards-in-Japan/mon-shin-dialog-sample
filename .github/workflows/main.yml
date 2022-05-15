@@ -22,10 +22,11 @@ jobs:
         node-version: 16.x
     - name: Install NPM packages
       run: npm ci
-    - name: Compile HTML
-      run: npm run compile
     - name: Build website
       run: npm run build --if-present
+      # output.clean: true にしているので、HTMLファイルのコンパイルを後回しにしている。
+    - name: Compile HTML
+      run: npm run compile
     - name: Deploy website
       uses: peaceiris/actions-gh-pages@v3
       with:
