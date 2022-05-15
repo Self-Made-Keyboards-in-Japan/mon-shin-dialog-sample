@@ -16,6 +16,7 @@ module.exports = (env, argv) => ({
     filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: "/dist/",
+		clean: true,
   },
 	optimization: {
 		splitChunks: {
@@ -51,7 +52,9 @@ module.exports = (env, argv) => ({
         { from: 'image', to: 'image'}
       ]
     }),
-		new BundleAnalyzerPlugin()
+		new BundleAnalyzerPlugin({
+			analyzerMode: 'static'
+		})
   ],
 
   module: {

@@ -10,7 +10,6 @@
     "start": "webpack serve --open --mode=development --analyze",
     "compile": "html-includes --src src/html --dest dist",
     "compile:watch": "html-includes --src src/html --dest dist --watch",
-    "compile:min": "html-includes --src src --dest dist --minify"
   },
   "keywords": [],
   "author": "",
