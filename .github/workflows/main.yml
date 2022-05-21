@@ -33,6 +33,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: remodel
         keep_files: true
-        publish_dir: ./docs
-        destination_dir: ./dist
+        publish_dir: ./docs/dist
         exclude_assets: '.github,**/.gitignore'
