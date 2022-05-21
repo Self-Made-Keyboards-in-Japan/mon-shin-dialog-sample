@@ -1,0 +1,37 @@
+#postsText.noscrollbars {
+  overflow: hidden;
+}
+
+#alertTextForSelfMadePcb,
+#alertTextForInfinitePossibilities,
+#alertTextForSu120,
+#alertTextForHandWired {
+  color: #856404;
+  background-color: #ffeeba;
+}
+
+.fadeout{
+  opacity: 0;
+  visibility: hidden;
+  transition: 1s;
+  }
+.fadein{
+  transition: 1s;
+  opacity: 1;
+  visibility: visible;
+}
+
+/*
+ボタンのテキストが自動的に大文字になるのを阻止する設定
+https://mdbootstrap.com/support/angular/button-text-not-to-be-uppercase/
+*/
+a.btn {
+	text-transform: unset !important;
+}
+input.btn {
+	text-transform: unset !important;
+}
+
+body {
+	background-color: rgba(249,249,249,var(--mdb-bg-opacity)) !important;
+}
