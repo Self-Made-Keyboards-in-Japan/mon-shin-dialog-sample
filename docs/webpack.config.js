@@ -7,8 +7,12 @@ module.exports = (env, argv) => ({
   mode: 'production',
   entry: {
 		common: './src/js/common.js',
+		index: './src/js/index.js',
 		buildProblem: './src/js/buildProblem.js',
-		firmwareProblem: './src/js/firmwareProblem.js'
+		firmwareProblem: './src/js/firmwareProblem.js',
+		BLEProblem: './src/js/BLEProblem.js',
+		designProblem: './src/js/designProblem.js',
+		otherProblem: './src/js/otherProblem.js'
 	},
   // IE11 対応を取りやめ 2022/05/05
   target: ['web'],

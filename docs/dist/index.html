@@ -27,10 +27,11 @@
 <body class="bg-light">
   <div class="container" id="container">
 		<div class="row m-3">
-	<div class="col p-0 text-end">
-		<p class="text-right m-0">
-			<a href="index_en.html" class="btn btn-outline-info">English Version</a>
-		</p>
+	<div class="d-flex justify-content-end">
+		<div class="form-check form-switch">
+			<input id="languageSwitch" class="form-check-input" type="checkbox" role="switch" />
+			<label class="form-check-label" for="languageSwitch">To English</label>
+		</div>	
 	</div>
 </div>
 
@@ -55,19 +56,19 @@
 						<a class="nav-link text-dark" aria-current="page" href="index.html">Home</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="buildProblem.html">組み立ての問題</a>
+						<a id="navBuildProblem" class="nav-link text-dark" href="buildProblem.html">組み立ての問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="firmwareProblem.html">ファームウェアの問題</a>
+						<a id="navFirmwareProblem" class="nav-link text-dark" href="firmwareProblem.html">ファームウェアの問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="BLEProblem.html">BLE Micro Proの問題</a>
+						<a id="navBLEProblem" class="nav-link text-dark" href="BLEProblem.html">BLE Micro Proの問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="designProblem.html">設計の問題</a>
+						<a id="navDesignProblem" class="nav-link text-dark" href="designProblem.html">設計の問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="otherProblem.html">その他の問題</a>
+						<a id="navOtherProblem" class="nav-link text-dark" href="otherProblem.html">その他の問題</a>
 					</li>
 				</ul>
 			</div>
@@ -76,8 +77,8 @@
 	<!-- Navbar -->
 
 	<div class="border-start border-end border-bottom mb-3 mx-3 p-3 bg-white">
-	  <h1 class="text-center mb-5">問診票テンプレート</h1>
-	  <p class="lead">
+	  <h1 id="headerTitle" class="text-center mb-5">問診票テンプレート</h1>
+	  <p id="headerDescription" class="lead">
 	    Discord の #mon-shin チャンネルに投稿する際の問診票です。<br>
 	    質問に沿って回答していくと投稿用の文章が作成されます。<br>
 	    動作に不具合があったときは、Discord の #keyboard-zatsu チャンネルで知らせてください。
@@ -87,33 +88,38 @@
 
     <div class="m-0 p-3">
       <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p class="fw-bold fs-5">組み立てに関する問題</p>
-        <a class="btn btn-primary text-white fs-6" href="./buildProblem.html" role="button">
-          組み立てたけど入力が出来ない、LEDが点灯しないなどの問題はこちらのページへ
+        <p id="buildProblem" class="fw-bold fs-5">組み立てに関する問題</p>
+				<p id="buildProblemLink">組み立てたけど入力が出来ない、LEDが点灯しないなどの問題。</p>
+        <a class="btn btn-outline-primary text-primary fs-6" href="./buildProblem.html" role="button">
+          Open Form
         </a>
       </div>
       <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p class="fw-bold fs-5">ファームウェアに関する問題</p>
-        <a class="btn btn-primary text-white fs-6" href="./firmwareProblem.html" role="button">
-          ファームウェアの書き込み、ビルド、環境構築の問題はこちらのページへ
+        <p id="firmwareProblem" class="fw-bold fs-5">ファームウェアに関する問題</p>
+				<p id="firmwareProblemLink">ファームウェアの書き込み、ビルド、環境構築の問題</p>
+        <a class="btn btn-outline-primary text-primary fs-6" href="./firmwareProblem.html" role="button">
+          Open Form
         </a>
       </div>
       <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p class="fw-bold fs-5">BLE Micro Pro に関する問題</p>
-        <a class="btn btn-primary text-white fs-6" href="./BLEProblem.html" role="button">
-          BLE Micro Pro で Bluetooth 接続が出来ないなどの問題はこちらのページへ
+        <p id="BLEMicroProProblem" class="fw-bold fs-5">BLE Micro Pro に関する問題</p>
+				<p id="BLEMicroProProblemLink">BLE Micro Pro で Bluetooth 接続が出来ないなどの問題</p>
+        <a class="btn btn-outline-primary text-primary fs-6" href="./BLEProblem.html" role="button">
+          Open Form
         </a>
       </div>
       <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p class="fw-bold fs-5">設計に関する問題</p>
-          <a class="btn btn-primary text-white fs-6" href="./designProblem.html" role="button">
-            キーボード設計に関する相談や質問はこちらのページへ
-          </a>
+        <p id="designProblem" class="fw-bold fs-5">設計に関する問題</p>
+				<p id="designProblemLink">キーボード設計に関する相談や質問</p>
+        <a class="btn btn-outline-primary text-primary fs-6" href="./designProblem.html" role="button">
+          Open Form
+        </a>
       </div>
       <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p class="fw-bold fs-5">その他の問題</p>
-        <a class="btn btn-primary text-white fs-6" href="./otherProblem.html" role="button">
-          上記以外の問題はこちらのページへ
+        <p id="otherProblem" class="fw-bold fs-5">その他の問題</p>
+				<p id="otherProblemLink">上記以外の問題</p>
+        <a class="btn btn-outline-primary text-primary fs-6" href="./otherProblem.html" role="button">
+          Open Form
         </a>
       </div>
     </div>
@@ -125,5 +131,8 @@
 type="text/javascript"
 src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
 ></script>
+<script src="js/vendor.bundle.js"></script>
+<script src="js/common.bundle.js"></script>
 
+	<script src="js/index.bundle.js"></script>
 </html>

@@ -27,10 +27,11 @@
 	<body class="bg-light">
 	  <div class="container" id="container">
 			<div class="row m-3">
-	<div class="col p-0 text-end">
-		<p class="text-right m-0">
-			<a href="index_en.html" class="btn btn-outline-info">English Version</a>
-		</p>
+	<div class="d-flex justify-content-end">
+		<div class="form-check form-switch">
+			<input id="languageSwitch" class="form-check-input" type="checkbox" role="switch" />
+			<label class="form-check-label" for="languageSwitch">To English</label>
+		</div>	
 	</div>
 </div>
 
@@ -55,19 +56,19 @@
 						<a class="nav-link text-dark" aria-current="page" href="index.html">Home</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="buildProblem.html">組み立ての問題</a>
+						<a id="navBuildProblem" class="nav-link text-dark" href="buildProblem.html">組み立ての問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="firmwareProblem.html">ファームウェアの問題</a>
+						<a id="navFirmwareProblem" class="nav-link text-dark" href="firmwareProblem.html">ファームウェアの問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="BLEProblem.html">BLE Micro Proの問題</a>
+						<a id="navBLEProblem" class="nav-link text-dark" href="BLEProblem.html">BLE Micro Proの問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="designProblem.html">設計の問題</a>
+						<a id="navDesignProblem" class="nav-link text-dark" href="designProblem.html">設計の問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="otherProblem.html">その他の問題</a>
+						<a id="navOtherProblem" class="nav-link text-dark" href="otherProblem.html">その他の問題</a>
 					</li>
 				</ul>
 			</div>
@@ -76,8 +77,8 @@
 	<!-- Navbar -->
 
 	<div class="border-start border-end border-bottom mb-3 mx-3 p-3 bg-white">
-	  <h1 class="text-center mb-5">問診票テンプレート</h1>
-	  <p class="lead">
+	  <h1 id="headerTitle" class="text-center mb-5">問診票テンプレート</h1>
+	  <p id="headerDescription" class="lead">
 	    Discord の #mon-shin チャンネルに投稿する際の問診票です。<br>
 	    質問に沿って回答していくと投稿用の文章が作成されます。<br>
 	    動作に不具合があったときは、Discord の #keyboard-zatsu チャンネルで知らせてください。
@@ -86,21 +87,25 @@
 </header>
 
 	    <div class="border rounded m-3 p-3 bg-white shadow-sm">
-	      <h2 class="mb-3">BLE Micro Pro に関する問題の場合</h2>
-	      <p class="lh-base">BLE Micro Pro の問題については、Discord の Self-Made Keyboards in Japan の #ble-micro-pro で質問してください。<br>
-	      質問するときは、現在発生している問題や PC 環境などを具体的に説明した上で質問してください。</p>
+	      <h2 id="BLEProblemTitle" class="mb-3">BLE Micro Pro に関する問題の場合</h2>
+	      <p id="pBLEProblem" class="lh-base">
+					BLE Micro Pro の問題については、Discord の Self-Made Keyboards in Japan の #ble-micro-pro で質問してください。<br>質問するときは、現在発生している問題や PC 環境などを具体的に説明した上で質問してください。
+				</p>
 				<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
 					<i class="fab fa-discord me-2"></i>
-					Discord の Self-Made Keyboards in Japan に参加する</a>
+					Self-Made Keyboards in Japan
+				</a>
 	    </div>
-
+		</div>
 		<link rel="stylesheet" href="css/style.css">
 <!-- MDB -->
 <script
 type="text/javascript"
 src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
 ></script>
+<script src="js/vendor.bundle.js"></script>
+<script src="js/common.bundle.js"></script>
 
-		</div>
+	  <script src="js/BLEProblem.bundle.js"></script>
 	</body>
 </html>

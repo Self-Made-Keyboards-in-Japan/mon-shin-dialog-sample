@@ -8,16 +8,16 @@
 			${require('/common/_header.html')}
 
 	    <div class="border rounded m-3 p-3 bg-white shadow-sm">
-	      <h2 class="mb-3">その他の問題の場合</h2>
-	      <p class="lh-base">設計・組み立て・ファームウェア・BLE Micro Pro 以外の問題については、ひとまず Discord の Self-Made Keyboards in Japan の #easy-question で質問してください。<br>
+	      <h2 id="otherProblemTitle" class="mb-3">その他の問題の場合</h2>
+	      <p id="pOtherProblem" class="lh-base">設計・組み立て・ファームウェア・BLE Micro Pro 以外の問題については、ひとまず Discord の Self-Made Keyboards in Japan の #easy-question で質問してください。<br>
 	      質問するときは、抱えている問題の詳細などを説明してください。</p>
-				<a class="btn btn-primary fs-6 px-2" href="https://discord.gg/zXCss8T" role="button">
+				<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
 					<i class="fab fa-discord me-2"></i>
-					Discord の Self-Made Keyboards in Japan に参加する
+					Self-Made Keyboards in Japan
 				</a>
 			</div>
-
-		${require('/common/_footer.html')}
 		</div>
+		${require('/common/_footer.html')}
+	  <script src="js/otherProblem.bundle.js"></script>
 	</body>
 </html>

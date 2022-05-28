@@ -27,10 +27,11 @@
 	<body class="bg-light">
 	  <div class="container" id="container">
 			<div class="row m-3">
-	<div class="col p-0 text-end">
-		<p class="text-right m-0">
-			<a href="index_en.html" class="btn btn-outline-info">English Version</a>
-		</p>
+	<div class="d-flex justify-content-end">
+		<div class="form-check form-switch">
+			<input id="languageSwitch" class="form-check-input" type="checkbox" role="switch" />
+			<label class="form-check-label" for="languageSwitch">To English</label>
+		</div>	
 	</div>
 </div>
 
@@ -55,19 +56,19 @@
 						<a class="nav-link text-dark" aria-current="page" href="index.html">Home</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="buildProblem.html">組み立ての問題</a>
+						<a id="navBuildProblem" class="nav-link text-dark" href="buildProblem.html">組み立ての問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="firmwareProblem.html">ファームウェアの問題</a>
+						<a id="navFirmwareProblem" class="nav-link text-dark" href="firmwareProblem.html">ファームウェアの問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="BLEProblem.html">BLE Micro Proの問題</a>
+						<a id="navBLEProblem" class="nav-link text-dark" href="BLEProblem.html">BLE Micro Proの問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="designProblem.html">設計の問題</a>
+						<a id="navDesignProblem" class="nav-link text-dark" href="designProblem.html">設計の問題</a>
 					</li>
 					<li class="nav-item border-end">
-						<a class="nav-link text-dark" href="otherProblem.html">その他の問題</a>
+						<a id="navOtherProblem" class="nav-link text-dark" href="otherProblem.html">その他の問題</a>
 					</li>
 				</ul>
 			</div>
@@ -76,8 +77,8 @@
 	<!-- Navbar -->
 
 	<div class="border-start border-end border-bottom mb-3 mx-3 p-3 bg-white">
-	  <h1 class="text-center mb-5">問診票テンプレート</h1>
-	  <p class="lead">
+	  <h1 id="headerTitle" class="text-center mb-5">問診票テンプレート</h1>
+	  <p id="headerDescription" class="lead">
 	    Discord の #mon-shin チャンネルに投稿する際の問診票です。<br>
 	    質問に沿って回答していくと投稿用の文章が作成されます。<br>
 	    動作に不具合があったときは、Discord の #keyboard-zatsu チャンネルで知らせてください。
@@ -89,13 +90,13 @@
 	      <div class="col">
 	        <div class="card border h-100">
 	          <div class="card-body">
-	            <h4 class="card-title text-decoration-underline">設計初心者の方々</h4>
-	            <p class="card-text">キーボードの設計が初めてで分からないことがたくさんある方などは、Discord の Self-Made Keyboards in Japan の #development-beginner チャンネルへ</p>
+	            <h4 id="designBegginerTitle" class="card-title text-decoration-underline">設計初心者の方々</h4>
+	            <p id="pDesignBegginer" class="card-text">キーボードの設計が初めてで分からないことがたくさんある方などは、Discord の Self-Made Keyboards in Japan の #development-beginner チャンネルへ</p>
 	          </div>
 						<div class="card-footer">
-	            <a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
+							<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
 								<i class="fab fa-discord me-2"></i>
-								Discord の Self-Made Keyboards in Japan に参加する
+								Self-Made Keyboards in Japan
 							</a>
 						</div>
 	        </div>
@@ -103,40 +104,42 @@
 	      <div class="col">
 	        <div class="card border h-100">
 	          <div class="card-body">
-	            <h4 class="card-title text-decoration-underline">実装に関する問題や相談したいことがある方々</h4>
-	            <p class="card-text">部品の選定基準や回路設計の相談のほか、新しい実装方法の提案などは、Discord の Self-Made Keyboards in Japan の #development-lobby チャンネルへ</p>
+	            <h4 id="implementationTitle" class="card-title text-decoration-underline">実装に関する問題や相談したいことがある方々</h4>
+	            <p id="pImplmentation" class="card-text">部品の選定基準や回路設計の相談のほか、新しい実装方法の提案などは、Discord の Self-Made Keyboards in Japan の #development-lobby チャンネルへ</p>
 						</div>
 						<div class="card-footer">
-	            <a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
+							<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
 								<i class="fab fa-discord me-2"></i>
-								Discord の Self-Made Keyboards in Japan に参加する
-							</a>
+								Self-Made Keyboards in Japan
+							</a>			
 						</div>
 	        </div>
 				</div>
 	      <div class="col">
 	        <div class="card border h-100">
 	          <div class="card-body">
-	            <h4 class="card-title text-decoration-underline">その他の問題や相談</h4>
-	            <p class="card-text">上記以外の問題や、上記のどちらに当てはまるか分からない場合は、Discord の Self-Made Keyboards in Japan の #keybord-zatsu チャンネルへ</p>
+	            <h4 id="otherDesignTitle" class="card-title text-decoration-underline">その他の問題や相談</h4>
+	            <p id="pOtherDesign" class="card-text">上記以外の問題や、上記のどちらに当てはまるか分からない場合は、Discord の Self-Made Keyboards in Japan の #keybord-zatsu チャンネルへ</p>
 	          </div>
 						<div class="card-footer">
-	            <a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
+							<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
 								<i class="fab fa-discord me-2"></i>
-								Discord の Self-Made Keyboards in Japan に参加する
-							</a>
+								Self-Made Keyboards in Japan
+							</a>			
 						</div>
 	        </div>
 	      </div>
 	    </div>
-
-			<link rel="stylesheet" href="css/style.css">
+		</div>
+		<link rel="stylesheet" href="css/style.css">
 <!-- MDB -->
 <script
 type="text/javascript"
 src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
 ></script>
+<script src="js/vendor.bundle.js"></script>
+<script src="js/common.bundle.js"></script>
 
-		</div>
+		<script src="js/designProblem.bundle.js"></script>
 	</body>
 </html>

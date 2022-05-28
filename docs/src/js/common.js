@@ -1,18 +1,23 @@
-import {nameToQuestionaireJP} from './nameToQuestionaireJP.js'
-import {nameToQuestionaireEN} from './nameToQuestionaireEN.js'
+import { nameToQuestionaireJP } from './locale/ja/nameToQuestionaireJP.js'
+import { nameToQuestionaireEN } from './locale/en/nameToQuestionaireEN.js'
+import { idToValueJP } from './locale/ja/idToValueJP.js';
+import { idToValueEN } from './locale/en/idToValueEN.js';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
+import i18next from 'i18next';
 
 //------------------------------------------------------------------------------------------
 // DOM の Name 属性と投稿文に使う質問文を結びつけた Map を返す
 //-----------------------------------------------------------------------------------------
 export function linkNameToQuestionaire() {
   let nameToQuestionaire = new Map();
-  if (document.documentElement.lang == 'ja') {
-    nameToQuestionaireJP.forEach((value, key) => {
+	const toggleBtn = document.getElementById('languageSwitch');
+	// 英語への翻訳はチェックボックスがチェックされているときに行う設計にしている
+  if (toggleBtn.checked) {
+    nameToQuestionaireEN.forEach((value, key) => {
       nameToQuestionaire.set(key, value);
     });
-  } else if (document.documentElement.lang == 'en') {
-    nameToQuestionaireEN.forEach((value, key) => {
+  } else if (!toggleBtn.checked) {
+    nameToQuestionaireJP.forEach((value, key) => {
       nameToQuestionaire.set(key, value);
     });
   }
@@ -28,7 +33,7 @@ export function linkProblemAndTextbox(e) {
     case 'notExpect':
 		case 'ledOff':
 		case 'trackballDeviceProblem':
-		case 'otherProblem':
+		case 'otherBuildProblem':
   		// 各問題の checkbox の data-relation-textarea には、関係する textarea の ID を格納している。
 			document.getElementById(e.target.dataset.relationTextarea).disabled = !e.target.checked;
       break;
@@ -71,20 +76,13 @@ export function generatePostText(nameToQuestionaire) {
   postsText.value = '';
   for (let key of form_data.keys()) {
     if (nameToQuestionaire.has(key)) {
-			if (key === 'replaceConnectSide') {
-	      userText = '__**左右分離型で片方だけ反応しない**__\n';
-	      postsText.value += userText;
-	      userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key);
-	      postsText.value += userText + "\n\n";
-			} else {
-	      userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key);
-	      postsText.value += userText + "\n\n";
-			}
+      userText = '__**' + nameToQuestionaire.get(key) + '**__\n' +  form_data.get(key);
+      postsText.value += userText + "\n\n";
     }
   }
   postsText.value = postsText.value.replace(ex, '');
   fixedTextBoxHeight(postsText);
-  checkDiscordLimit(postsText);
+	checkDiscordLimit(postsText);
 }
 
 //------------------------------------------------------------------------------------------
@@ -99,48 +97,32 @@ function fixedTextBoxHeight(postsText) {
 //------------------------------------------------------------------------------------------
 // Discord の投稿欄の制限（文字数＋行数が2002になると貼付け不可）対策
 //-----------------------------------------------------------------------------------------
-function checkDiscordLimit(postsText) {
+export function checkDiscordLimit(postsText) {
   const character = postsText.value.length;
   const lineBreak = (postsText.value.match(/\n/g)||[]).length;
   const alertTextDiscord = document.getElementById('alertTextDiscord');
-  const announceLabel = document.getElementById('announceLabel');
-  const replace = document.getElementById('replaceDom');
   const copyBtn = document.getElementById('copyBtn');
-
-  document.getElementById('characterAndLines').innerText = character + lineBreak;
+	const toggleBtn = document.getElementById('languageSwitch');
+	const charactersAndLines = document.getElementById('charactersAndLines');
 
   if (character + lineBreak > 2001) {
-    if (!(alertTextDiscord === null)) {
-      return;
-    } else {
-      const label = document.createElement('label');
-      label.classList.add('mt-1', 'mb-3', 'p-1', 'alert', 'alert-warning', 'rounded');
-      const strong = document.createElement('strong');
-    //   span.classList.add('rounded');
-      if (document.documentElement.lang == 'ja') {
-        strong.textContent = 'Discord の投稿欄の制限は「文字数＋行数 ≦ 2001」です。';
-      } else if(document.documentElement.lang == 'en') {
-        strong.textContent = 'Limitation of Discord is "character + line ≦ 2001".';
-      }
-      label.id = 'alertTextDiscord';
-      label.appendChild(strong);
-      replace.appendChild(label);
-      copyBtn.disabled = true;
-      copyBtn.classList.remove('btn-primary');
-      copyBtn.classList.add('btn-secondary');
+		alertTextDiscord.classList.remove('d-none');
+    if (toggleBtn.checked) {
+			alertTextDiscord.innerText = 'Limitation of Discord is "character + line ≦ 2001".';
+    } else if (!toggleBtn.checked) {
+      alertTextDiscord.innerText = 'Discord の投稿欄の制限は「文字数＋行数 ≦ 2001」です。';
     }
-    announceLabel.style.textDecoration = 'line-through';
+    copyBtn.disabled = true;
   } else {
-    if (!(alertTextDiscord === null)) {
-      replace.removeChild(alertTextDiscord);
-    }
-    announceLabel.style.textDecoration = 'none';
+		alertTextDiscord.classList.add('d-none');
     copyBtn.disabled = false;
-    copyBtn.classList.remove('btn-secondary');
-    copyBtn.classList.add('btn-primary');
   }
+	if (toggleBtn.checked) {
+		charactersAndLines.innerText = 'character + lines = ' + (character + lineBreak);
+	} else if (!toggleBtn.checked) {
+		charactersAndLines.innerText = '文字数＋行数 = ' + (character + lineBreak);
+	}
 }
-
 
 //------------------------------------------------------------------------------------------
 // キーボード名入力ボックスのオートコンプリート用のデータ登録
@@ -199,25 +181,57 @@ export function splitKeyboardLinked(e) {
 // clipboard.js
 //-----------------------------------------------------------------------------------------
 export function setupClipboardJS() {
-  // Clipboard
   let clipboard = new ClipboardJS('#copyBtn');
   const copyResult = document.getElementById('copyResult');
   clipboard.on('success', (e) => {
-	copyResult.classList.remove('fadeout');
-	copyResult.classList.add('fadein');
-	copyResult.innerText = 'Copied!';
-	setTimeout(() => {
-		copyResult.classList.remove('fadein');
-		copyResult.classList.add('fadeout');
-	  }, 2000);
-    });
+		copyResult.classList.remove('fadeout');
+		copyResult.classList.add('fadein');
+		copyResult.innerText = 'Copied!';
+		setTimeout(() => {
+			copyResult.classList.remove('fadein');
+			copyResult.classList.add('fadeout');
+		  }, 2000);
+  });
   clipboard.on('error', (e) => {
-	copyResult.classList.remove('fadeout');
-	copyResult.classList.add('fadein');
-	copyResult.innerText = 'Failed!';
-	setTimeout(() => {
-		copyResult.classList.remove('fadein');
-		copyResult.classList.add('fadeout');
-	  }, 2000);
+		copyResult.classList.remove('fadeout');
+		copyResult.classList.add('fadein');
+		copyResult.innerText = 'Failed!';
+		setTimeout(() => {
+			copyResult.classList.remove('fadein');
+			copyResult.classList.add('fadeout');
+		  }, 2000);
   });
 }
+
+//------------------------------------------------------------------------------------------
+// i18next.js
+//-----------------------------------------------------------------------------------------
+export function updateContent(e, enLocalesTranslationJson, jaLocalesTranslationJson) {
+	if (e.target.checked) {
+		Object.keys(enLocalesTranslationJson).forEach((key) => {
+			if (document.getElementById(key)) {
+				i18next.changeLanguage('en').then((t) => {
+					document.getElementById(key).innerText = t(key)
+				});
+			}
+		})
+		idToValueEN.forEach((value, key) => {
+			if (document.getElementById(key)) {
+				document.getElementById(key).value = value;
+			}
+		})
+	} else {
+		Object.keys(jaLocalesTranslationJson).forEach((key) => {
+			if (document.getElementById(key)) {
+				i18next.changeLanguage('ja').then((t) => {
+					document.getElementById(key).innerText = t(key)
+				});
+			}
+		})
+		idToValueJP.forEach((value, key) => {
+			if (document.getElementById(key)) {
+				document.getElementById(key).value = value;
+			}
+		})
+	}
+};

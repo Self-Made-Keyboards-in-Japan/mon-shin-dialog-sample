@@ -4,12 +4,15 @@
 			<div id="replaceDom">
 				<p id="announceLabel" class="m-0 mb-1" for="result">以下の文章を Discord の #mon-shin チャンネルに投稿してください</p>
 			</div>
+			<label class="mt-1 mb-3 p-1 alert alert-warning rounded d-none" id="alertTextDiscord">
+				<strong>Discord の投稿欄の制限は「文字数＋行数 ≦ 2001」です。</strong>
+			</label>
 			<div class="form-group rounded">
 				<input id="copyBtn" type="button" class="btn btn-primary shadow mb-2 fs-6" data-clipboard-target="#postsText" value="Copy">
 				<span id="copyResult" class="fadeout bg-light p-2 rounded border">copied!</span>
 			</div>
 			<div class="form-group rounded">
-				<p class="">文字数＋行数 = <span id="characterAndLines">0</span></p>
+				<p id="charactersAndLines">文字数＋行数 = 0</p>
 				<textarea class="form-control" id="postsText" rows="3" readonly></textarea>
 			</div>
 		</form>
