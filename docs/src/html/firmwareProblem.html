@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		${require('/common/_head.html') pageTitle="ファームウェアに関する問題"}
+	</head>
+	<body>
+	  <div class="container" id="container">
+			${require('/common/_header.html')}
+	    <form name="questionForm" id="questionForm">
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+		      <h2 id="problemDetailTitle">現在起きている問題</h2>
+		      <div class="form-group p-2 bg-white">
+		        <div class="mb-3 form-check">
+		      		<input class="form-check-input" type="radio" id="notSetupEnvironment" value="ファームウェアのビルド環境を構築できない" name="firmwareProblem">
+		      		<label id="labelNotSetupEnvironment" class="form-check-label" for="notSetupEnvironment">ファームウェアのビルド環境を構築できない</label>
+			      	<div>
+			        	<label for="writingToolLog" class="m-1 p-1 alert alert-info" role="alert">
+									<span id="spanRecommendMethodSetup1">Windows でビルド環境を構築するなら</span> 
+									<a id="linkQMKMSYS" href="https://msys.qmk.fm/" class="link">QMK MSYS</a>
+									<span id="spanRecommendMethodSetup2">を使うと良いです（</span>
+									<a id="linkOfficialBuildGuide" href="https://docs.qmk.fm/#/newbs_getting_started?id=set-up-your-environment">公式ガイド</a>
+									<span id="spanRecommendMethodSetup3">も QMK MSYS を使う方法を紹介しています）。また、Docker を使う方法もあります。</span>
+									<a id="linkQuickStartDocker" href="https://docs.qmk.fm/#/getting_started_docker">Docker クイックスタート</a>
+								</label>
+		      		</div>
+		    		</div>
+			    	<div class="mb-3 form-check">
+			      	<input class="form-check-input" type="radio" id="notBuildFirmware" value="ファームウェアをビルドできない" name="firmwareProblem">
+			      	<label id="labelNotBuildFirmware" class="form-check-label" for="notBuildFirmware">ファームウェアをビルドできない</label>
+				      <div>
+				        <label for="writingToolLog" class="m-1 p-1 alert alert-info"
+				        role="alert">
+									<span id="spanRecommendMethodBuild1">Windows だと </span>
+									<a href="https://msys.qmk.fm/" class="link">QMK MSYS</a>
+					        <span id="spanRecommendMethodBuild2">を使うと上手くいくかもしれません。また、Docker を使ってビルドする方法もあります。</span>
+								</label>
+				      </div>
+				    </div>
+				    <div class="mb-3 form-check">
+			        <input class="form-check-input" type="radio" id="notWriteFirmware" value="ファームウェアを書き込めない" name="firmwareProblem">
+			        <label id="labelNotWriteFirmware" class="form-check-label" for="notWriteFirmware">ファームウェアを書き込めない</label>
+		          <div>
+		            <label class="m-1 p-1 alert alert-info" role="alert">
+									<span id="spanRecommendMethodWrite1"></span>
+									<a href="https://github.com/qmk/qmk_toolbox/releases">QMK Toolbox </a>
+									<span id="spanRecommendMethodWrite2">を使うと書き込みできる場合があります。Windows だと </span>
+									<a href="https://docs.qmk.fm/#/driver_installation_zadig" class="link">Zadig </a>
+									<span id="spanRecommendMethodWrite3">もインストールする必要がある場合があります。</span>
+								</label>
+		          </div>
+		        </div>
+	      	</div>
+	    	</div>
+
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+					${require('/common/_firmwareInfo.html')}
+		    </div>
+
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+					${require('/common/_microcomputerInfo.html')}
+		    </div>
+
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+		      <h2 id="osInformationTitle">OSの情報</h2>
+		      <div id="osName" class="form-group p-2 bg-white">
+		        <div class="p-2">
+		          <div class="form-check">
+		            <input class="form-check-input" type="radio" name="osName" id="windowsNotWSL" value="Windows">
+		            <label class="form-check-label" for="windowsNotWSL">Windows (Not WSL)</label>
+		          </div>
+		          <div class="form-check">
+		            <input class="form-check-input" type="radio" name="osName" id="WSL" value="WSL">
+		            <label class="form-check-label" for="WSL">WSL</label>
+		          </div>
+		          <div class="form-check">
+		            <input class="form-check-input" type="radio" name="osName" id="macos" value="MacOS">
+		            <label class="form-check-label" for="macos">macos</label>
+		          </div>
+		          <div class="form-check">
+		            <input class="form-check-input" type="radio" name="osName" id="linux" value="Linux">
+		            <label class="form-check-label" for="linux">linux</label>
+		          </div>
+		          <div class="form-group p-2 bg-white">
+								<div class="form-outline">
+			            <input class="form-control" type="text" name="osVerAndDirtriInput" id="osVerAndDirtriInput">
+			            <label id="labelOsVersionOrDistribution" class="form-label" for="osVerAndDistriInput">OS のバージョン or ディストリビューション</label>
+								</div>
+		          </div>
+			      </div>
+			    </div>
+				</div>
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white" id="miscInfomation">
+					${require('/common/_otherInfo.html')}
+				</div>
+	    </form>
+			${require('/common/_resultForm.html')}
+		</div>
+		${require('/common/_footer.html')}
+	  <script src="js/firmwareProblem.bundle.js"></script>
+	</body>
+</html>

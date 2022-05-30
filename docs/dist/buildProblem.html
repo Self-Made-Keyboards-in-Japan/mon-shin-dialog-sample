@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+	    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Font Awesome -->
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	rel="stylesheet"
+	/>
+	<!-- Google Fonts -->
+	<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet"
+	/>
+	<!-- MDB -->
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+	rel="stylesheet"
+	/>
+
+	<link rel="icon" href="image/favicon.ico">
+
+	<title>問診票テンプレート - 組み立てに関する問題</title>
+	</head>
+	<body>
+	  <div class="container" id="container">
+	    <div class="row m-3">
+	<div class="d-flex justify-content-end">
+		<div class="form-check form-switch">
+			<input id="languageSwitch" class="form-check-input" type="checkbox" role="switch" />
+			<label class="form-check-label" for="languageSwitch">To English</label>
+		</div>	
+	</div>
+</div>
+
+<header>
+	<!--	 Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white mx-3">
+		<div class="container">
+			<button
+			class="navbar-toggler"
+			type="button"
+			data-mdb-toggle="collapse"
+			data-mdb-target="#navbar"
+			aria-controls="navbar"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+			>
+				<i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="navbar-nav me-auto mb-1 mb-lg-0">
+					<li class="nav-item border-end">
+						<a class="nav-link text-dark" aria-current="page" href="index.html">Home</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navBuildProblem" class="nav-link text-dark" href="buildProblem.html">組み立ての問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navFirmwareProblem" class="nav-link text-dark" href="firmwareProblem.html">ファームウェアの問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navBLEProblem" class="nav-link text-dark" href="BLEProblem.html">BLE Micro Proの問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navDesignProblem" class="nav-link text-dark" href="designProblem.html">設計の問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navOtherProblem" class="nav-link text-dark" href="otherProblem.html">その他の問題</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Navbar -->
+
+	<div class="border-start border-end border-bottom mb-3 mx-3 p-3 bg-white">
+	  <h1 id="headerTitle" class="text-center mb-5">問診票テンプレート</h1>
+	  <p id="headerDescription" class="lead">
+	    Discord の #mon-shin チャンネルに投稿する際の問診票です。<br>
+	    質問に沿って回答していくと投稿用の文章が作成されます。<br>
+	    動作に不具合があったときは、Discord の #keyboard-zatsu チャンネルで知らせてください。
+	  </p>
+	</div>
+</header>
+	    <form name="questionForm" id="questionForm">
+	      <div class="border rounded shadow-sm m-3 p-3 bg-white">
+	        <h2 id="problemDetailTitle" class="">現在起きている問題</h2>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="noInput" id="noInput" value="入力できないキーがある" data-relation-textarea="noInputTextarea" data-relation-label="postPhotoKeySwitch">
+	          <label id="labelNoInput" class="form-check-label" for="noInput">入力できないキーがある</label>
+						<div class="form-outline">
+							<textarea class="mt-0 mb-2 form-control" name="noInputTextarea" id="noInputTextarea" rows="3" disabled></textarea>
+							<label id="labelNoInputDetail" class="form-label" for="noInputTextarea">どのキーが入力できないか記入してください</label>
+						</div>
+	          <div id="solderingTrouble">
+							<p id="pPostSolderingPhotoKeySwitch" class="m-1 p-1 alert alert-info">はんだ付けの写真も投稿してください。</p>
+	            <p id="labelTroubleCause" class="m-1 p-1 alert alert-info" role="alert">はんだ付けの失敗が原因であることが多いです。はんだ付けの失敗例を掲載します。</p>
+	            <div class="border rounded row mx-0">
+	              <div class="col-xl-4 col-lg-6 col-md-12 img-thumbnail border-0">
+	                <figure class="figure">
+	                  <p id="pTooMuchSolderLED" class="fs-6 mb-0">いもはんだ</p>
+										<a href="./image/イモはんだ.jpg">
+											<img src="./image/イモはんだ.jpg" class="border border-dark rounded" height="220" width="300">
+										</a>
+	                  <figcaption class="figure-caption text-wrap"><a href="https://www.kogadenshi.co.jp/%E5%8D%8A%E7%94%B0%E4%BB%98%E3%81%91%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF/%E5%8D%8A%E7%94%B0%E4%BB%98%E3%81%91%E4%B8%8D%E8%89%AF%E3%81%A8%E3%81%AF/">株式会社古賀電子「はんだ付けテクニック はんだ付け不良とは」より</a> </figcaption>
+	                </figure>
+	              </div>
+	              <div class="col-xl-4 col-lg-6 col-md-12 img-thumbnail border-0">
+	                <figure class="figure">
+	                  <p id="pTooLittleSolderLED" class="fs-6 mb-0">はんだの量が少ない</p>
+										<a href="./image/はんだ過小.jpg">
+											<img src="./image/はんだ過小.jpg" class="border border-dark rounded" height="220" width="300">
+										</a>
+	                  <figcaption class="figure-caption text-wrap"><a href="https://handa-craft.hakko.com/support/soldering-failures.html">白光株式会社「もっと詳しく！はんだ付けを学ぶ はんだ付けの失敗例」より</a> </figcaption>
+	                </figure>
+	              </div>
+	              <div class="col-xl-4 col-lg-6 col-md-12 img-thumbnail border-0">
+	                <figure class="figure">
+	                  <p id="pSolderBridgeLED" class="fs-6 mb-0">はんだブリッジ</p>
+										<a href="./image/はんだブリッジ.jpg">
+											<img src="./image/はんだブリッジ.jpg" class="border border-dark rounded" height="220" width="300">
+										</a>
+	                  <figcaption class="figure-caption text-wrap"><a href="https://www.kogadenshi.co.jp/%E5%8D%8A%E7%94%B0%E4%BB%98%E3%81%91%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF/%E5%8D%8A%E7%94%B0%E4%BB%98%E3%81%91%E4%B8%8D%E8%89%AF%E3%81%A8%E3%81%AF/">株式会社古賀電子「はんだ付けテクニック はんだ付け不良とは」より</a> </figcaption>
+	                </figure>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="notExpect" id="notExpect" value="設定と異なる反応をするキーがある" data-relation-textarea="notExpectTextarea">
+	          <label id="labelNotExpect" class="form-check-label" for="notExpect">設定と異なる反応をするキーがある</label>
+						<div class="form-outline">
+							<textarea class="mt-2 mb-2 form-control" name="notExpectTextarea" id="notExpectTextarea" rows="3" disabled></textarea>
+		          <label id="labelNotExpectDetail" class="form-label" for="noExpectTextarea">設定した動作と実際の動作を記入してください</label>
+						</div>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="notActionOneHand" id="notActionOneHand" value="左右分離型で片方だけ反応しない">
+	          <label id="labelNotActionOneHand" class="form-check-label" for="notActionOneHand">左右分離型で片方だけ反応しない</label>
+	          <div>
+	            <p id="pReplaceConnectSide" class="mt-3">左右どちら側を繋いでも症状は同じですか</p>
+	            <div class="form-check form-check-inline">
+	              <input class="form-check-input" type="radio" name="replaceConnectSide" id="replaceConnectSideYes" value="Yes" disabled>
+	              <label class="form-check-label" for="replaceConnectSideYes">Yes</label>
+	            </div>  
+	            <div class="form-check form-check-inline">
+	              <input class="form-check-input" type="radio" name="replaceConnectSide" id="replaceConnectSideNo" value="No" disabled>
+	              <label class="form-check-label" for="replaceConnectSideNo">No</label>
+	            </div>  
+	          </div>
+	          <div>
+	            <p id="pConnectOnlyOneHand" class="mt-3">左側（右側）だけ接続した場合、左側（右側）のキーボードとして適切に動作しますか</p>
+	            <div class="form-check form-check-inline">
+	              <input class="form-check-input" type="radio" name="connectOnlyOneHand" id="connectOneHandOK" value="Yes" disabled>
+	              <label class="form-check-label" for="connectOneHandOK">Yes</label>
+	            </div>  
+	            <div class="form-check form-check-inline">
+	              <input class="form-check-input" type="radio" name="connectOnlyOneHand" id="connectOneHandNG" value="No" disabled>
+	              <label class="form-check-label" for="connectOneHandNG">No</label>
+	            </div>  
+	          </div>
+	          <label id="addInformationTRRS" class="m-1 p-1 alert ale role="alert">TRRS コネクタのはんだ付けをやり直したり、TRRS ケーブルを変えたりすると解決する場合があります。</label>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="ledOff" id="ledOff" value="LEDが点灯しない" data-relation-textarea="ledOffTextarea" data-relation-label="postPhotoLED">
+	          <label id="labelLedOff" class="form-check-label" for="ledOff">LEDが点灯しない</label>
+						<div class="form-outline">
+							<textarea class="mt-2 mb-2 form-control" name="ledOffTextarea" id="ledOffTextarea" rows="3" disabled></textarea>
+	          	<label id="labelLedOffDetail" class="form-label" for="ledOffTextarea">どのLEDが点灯しないか記入してください</label>
+						</div>
+						<div id="addInformationLED">
+							<p id="pPostSolderingPhotoLED" class="m-1 p-1 alert alert-info">点灯しない LED の半田付けの写真と、LED を取り付ける側全体の写真も別途投稿してください</p>
+	            <p id="warningShortCircuit" class="m-1 p-1 alert alert-danger" role="alert">マイコンが熱くなっている場合、すぐに USB ケーブルを抜いてください！</p>
+	            <p id="solderingTroubleLED" class="m-1 p-1 alert alert-info" role="alert">はんだ付けの失敗が原因であることが多いです。</p>
+						</div>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="trackballDeviceProblem" id="trackballDeviceProblem" value="トラックボールやロータリーエンコーダーの問題" data-relation-textarea="trackballDeviceProblemTextarea">
+	          <label id="labelTrackballDeviceProblem" class="form-check-label" for="trackballDeviceProblem">トラックボールやロータリーエンコーダーの問題</label>
+						<div class="form-outline">
+							<textarea class="mt-2 mb-2 form-control" name="trackballDeviceProblemTextarea" id="trackballDeviceProblemTextarea" rows="3" disabled></textarea>
+		          <label id="labelTrackballDeviceProblemDetail" class="form-label" for="trackballDeviceProblemTextarea">どんな問題が発生しているか記入してください</label>
+						</div>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="otherBuildProblem" id="otherBuildProblem" value="上記以外の問題（ランドが剥がれた etc）が起きている" data-relation-textarea="otherBuildProblemTextarea">
+	          <label id="labelOtherBuildProblem" class="form-check-label" for="otherBuildProblem">上記以外の問題（ランドが剥がれた etc）</label>
+						<div class="form-outline">
+							<textarea class="mt-2 mb-2 form-control" name="otherBuildProblemTextarea" id="otherBuildProblemTextarea" rows="3" disabled></textarea>
+		          <label id="labelOtherBuildProblemDetail" class="form-label" for="otherBuildProblemTextarea">どんな問題が発生しているか記入してください</label>
+						</div>
+	        </div>
+	      </div>
+	  
+	      <div class="border rounded shadow-sm m-3 p-3 bg-white">
+	        <h2 id="keyboardInfoHeader">キーボードの情報</h2>
+	        <div id="keyboardInfomation">
+	          <div class="form-group p-2">
+							<div class="form-outline">
+		            <input class="form-control" type="text" name="keyboardName" id="keyboardName" autocomplete="on" list="keyboardList" aria-describedby="keyboardNameExplain"/>
+		            <label id="labelKeyboardName" class="form-label" for="keyboardName">キーボード名</label>
+							</div>
+	            <datalist id="keyboardList"></datalist>
+							<div id="keyboardNameExplain" class="form-text">
+								候補にないキーボード名も入力可能。オリジナルなら「オリジナル」と記入。
+							</div>
+	          </div>
+	          <div class="form-group p-2">
+							<div class="form-outline">
+		            <input class="form-control" type="url" placeholder="https://" name="buildGuideURL" id="buildGuideURL"/>
+		            <label id="labelBuildGuideURL" class="form-label" for="buildGuideURL">公式ビルドガイドのURL</label>
+							</div>
+	          </div>
+	          <div class="form-group p-2">
+							<div class="form-outline">
+								<input class="form-control" type="url" placeholder="https://" name="kicadFileURL" id="kicadFileURL" aria-describedby="kicadFileURLExplain"/>	
+								<label id="labelKicadFileURL" class="form-label" for="kicadFileURL">KicadファイルのURL</label>
+							</div>
+							<div id="kicadFileURLExplain" class="form-text">
+								Kicadファイルが公表されていなければ入力不要
+							</div>
+	          </div>
+	        </div>
+				</div>
+				<div class="border rounded shadow-sm m-3 p-3 bg-white">
+	        			<h2 id="microcomputerInfomationTitle">マイコンの情報</h2>  
+	      <div class="form-group p-2" id="microcomputerInfomation">
+          <label id="labelMicrocomputerInfo">マイコンの種類</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="promicro(atmega32u4)" value="Pro Micro(ATmega32U4)">
+            <label id="labelProMicro(ATMega32U4)" class="form-check-label" for="promicro(atmega32u4)">Pro Micro(ATmega32U4)</label>
+          </div>
+          <div class="form-check">
+		        <input class="form-check-input" type="radio" name="microcontroller" id="promicro(RP2040)" value="Pro Micro(RP2040)">
+    		    <label id="labelProMicro(RP2040)" class="form-check-label" for="promicro(RP2040)">Pro Micro(RP2040)</label>
+      	  </div>
+          <div class="form-check">
+		        <input class="form-check-input" type="radio" name="microcontroller" id="raspipico" value="Raspberry Pi Pico">
+    		    <label id="RaspberryPiPico" class="form-check-label" for="raspipico">Raspberry Pi Pico</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="blemicropro" value="BLE Micro Pro">
+            <label id="BLEMicroPro" class="form-check-label" for="blemicropro">BLE Micro Pro</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="elite-c" value="Elite-C">
+            <label id="Elite-C" class="form-check-label" for="elite-c">Elite-C</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="atmega32u4" value="ATmega32U4を基板直付け">
+            <label id="MountATmega32U4PCB" class="form-check-label" for="atmega32u4">ATmega32U4 を基板直付け</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="atmega328" value="ATmega328を基板直付け">
+            <label id="MountATmega328PCB" class="form-check-label" for="atmega328">ATmega328 を基板直付け</label>
+          </div>
+          <div class="form-check">
+		        <input class="form-check-input" type="radio" name="microcontroller" id="rp2040" value="RP2040を基板直付け">
+    		    <label id="MountRP2040PCB" class="form-check-label" for="rp2040">RP2040 を基板直付け</label>
+      		</div>
+		      <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="othersMicrocontroller" value="その他のマイコンを基板直付け">
+            <label id="MountMicrocomputerPCB" class="form-check-label" for="othersMicrocontroller">その他のマイコンを基板直付け</label>
+          </div>
+          <div class="form-group p-2">
+						<div class="form-outline">
+	            <input class="form-control" type="text" name="microcontrollerName" id="microcontrollerNameInput" disabled>
+	            <label id="MicrocomputerName" class="form-label" for="microcontrollerName">マイコン名</label>
+						</div>
+          </div>
+        </div>
+
+				</div>
+				<div class="border rounded shadow-sm m-3 p-3 bg-white">
+							<h2 id="firmwareInfomationTitle">ファームウェアの情報</h2>
+		<div class="form-group p-2 bg-white" id="firmwareInfomation">
+      <label id="labelFirmwareName">ファームウェアの種類</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="QMKFirmware" value="QMK Firmware">
+        <label id="labelQMKFirmware" class="form-check-label" for="QMKFirmware">QMK firmware</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="VIA" value="VIA (Remap)">
+        <label id="labelVIA(Remap)" class="form-check-label" for="VIA">VIA (Remap)</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="KMKFirmware" value="KMK Firmware">
+        <label id="labelKMKFirmware" class="form-check-label" for="KMKFirmware">KMK Firmware</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="PRKFirmware" value="PRK Firmware">
+        <label id="labelPRKFirmware" class="form-check-label" for="PRKFirmware">PRK Firmware</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="otherFirmware" value="その他のファームウェア">
+        <label id="labelotherFirmware" class="form-check-label" for="otherFirmware">その他のファームウェア</label>
+      </div>
+			<div class="form-group p-2">
+				<div class="form-outline">
+					<input class="form-control" type="text" name="firmwareName" id="otherFirmwareInput" disabled>
+					<label id="labelOtherFirmwareName" class="form-label" for="otherFirmwareInput">ファームウェア名</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group p-2 bg-white" id="writingToolInformation">
+			<label id="firmwareWrittingTool">ファームウェア書き込みツール</label>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="qmkToolbox" value="QMK Toolbox">
+				<label id="labelQMKToolbox" class="form-check-label" for="qmkToolbox">QMK Toolbox</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="qmkCommandline" value="make コマンドでビルド＆書き込み">
+				<label id="labelQmkCommandline" class="form-check-label" for="qmkCommandline"><code>make</code> or <code>qmk flash</code>
+					コマンドでビルド＆書き込み</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="proMicroWebUpdater" value="proMicroWebUpdater">
+				<label id="labelProMicroWebUpdater" class="form-check-label" for="proMicroWebUpdater">Pro Micro Web Updater</label>
+				<a href="https://sekigon-gonnoc.github.io/promicro-web-updater/index.html">( link )</a>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="otherMethod" value="その他のツール">
+				<label id="labelOtherWrittingTool" class="form-check-label" for="otherMethod">その他の書き込み方法</label>
+			</div>
+			<div class="form-group p-2">
+				<div class="form-outline">
+					<input class="form-control" type="text" name="writingToolName" id="otherMethodInput" disabled>
+					<label id="labelOtherWrittingToolDetail" class="form-label" for="otherMethodInput">書き込み方法</label>
+				</div>
+			</div>
+		</div>
+
+	      </div>
+	      <div class="border rounded shadow-sm m-3 p-3 bg-white" id="miscInfomation">
+	                <h2 id="otherInformationTitle">その他の情報</h2>
+        <div class="form-group p-2" id="detailWork">
+					<div class="form-outline">
+	          <textarea class="form-control" rows="3" name="detailWork" id="detailWorkTextarea"></textarea>
+	          <label id="labelDetailWork" class="form-label" for="detailWork">これまでに行った作業の内容</label>
+					</div>
+        </div>
+        <div class="form-group p-2">
+					<div class="form-outline">
+	          <textarea class="form-control" type="text" placeholder="https://" rows="3" name="informationReferredTo"
+	            id="informationReferredTo"></textarea>
+						<label id="labelInformationReferredTo" class="form-label" for="informationReferredTo">参考にした情報（ビルドガイド除く）</label>
+					</div>
+					</div>
+        <div class="form-group p-2" id="haveTester">
+          <label id="labelHaveTester">テスターを持っていますか？</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="haveTester" id="haveTesteryes" value="Yes">
+            <label class="form-check-label" for="haveTesteryes">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="haveTester" id="haveTesterno" value="No">
+            <label class="form-check-label" for="haveTesterno">No</label>
+          </div>
+        </div>
+
+	                <div class="form-group p-2" id="promicroOnly">
+          <label id="labelMicrocomputerOnly" for="microcomputeronly">マイコンボードだけ PC に接続したらキーボードとして認識されますか？</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="testMicrocomputerOnly" id="microcomputerOnlyYes" value="Yes">
+            <label class="form-check-label" for="microcomputerOnlyYes">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="testMicrocomputerOnly" id="microcomputerOnlyNo" value="No">
+            <label class="form-check-label" for="microcomputerOnlyNo">No</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="testMicrocomputerOnly" id="noUseConthrough" value="コンスルー未使用">
+            <label id="labelNoUseConthrough" class="form-check-label" for="noUseConthrough">コンスルー未使用</label>
+          </div>
+        </div>
+
+	      </div>
+	    </form>
+	    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+	<div class="form-group p-2">
+		<form id="resultForm">
+			<div id="replaceDom">
+				<p id="announceLabel" class="m-0 mb-1" for="result">以下の文章を Discord の #mon-shin チャンネルに投稿してください</p>
+			</div>
+			<label class="mt-1 mb-3 p-1 alert alert-warning rounded d-none" id="alertTextDiscord">
+				<strong>Discord の投稿欄の制限は「文字数＋行数 ≦ 2001」です。</strong>
+			</label>
+			<div class="form-group rounded">
+				<input id="copyBtn" type="button" class="btn btn-primary shadow mb-2 fs-6" data-clipboard-target="#postsText" value="Copy">
+				<span id="copyResult" class="fadeout bg-light p-2 rounded border">copied!</span>
+			</div>
+			<div class="form-group rounded">
+				<p id="charactersAndLines">文字数＋行数 = 0</p>
+				<textarea class="form-control" id="postsText" rows="3" readonly></textarea>
+			</div>
+		</form>
+	</div>
+</div>
+
+	  </div>
+		<link rel="stylesheet" href="css/style.css">
+<!-- MDB -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+></script>
+<script src="js/vendor.bundle.js"></script>
+<script src="js/common.bundle.js"></script>
+
+	  <script src="js/buildProblem.bundle.js"></script>
+	</body>
+</html>
