@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+	  ${require('/common/_head.html') pageTitle="組み立てに関する問題"}
+	</head>
+	<body>
+	  <div class="container" id="container">
+	    ${require('/common/_header.html')}
+	    <form name="questionForm" id="questionForm">
+	      <div class="border rounded shadow-sm m-3 p-3 bg-white">
+	        <h2 id="problemDetailTitle" class="">現在起きている問題</h2>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="noInput" id="noInput" value="入力できないキーがある" data-relation-textarea="noInputTextarea" data-relation-label="postPhotoKeySwitch">
+	          <label id="labelNoInput" class="form-check-label" for="noInput">入力できないキーがある</label>
+						<div class="form-outline">
+							<textarea class="mt-0 mb-2 form-control" name="noInputTextarea" id="noInputTextarea" rows="3" disabled></textarea>
+							<label id="labelNoInputDetail" class="form-label" for="noInputTextarea">どのキーが入力できないか記入してください</label>
+						</div>
+	          <div id="solderingTrouble">
+							<p id="pPostSolderingPhotoKeySwitch" class="m-1 p-1 alert alert-info">はんだ付けの写真も投稿してください。</p>
+	            <p id="labelTroubleCause" class="m-1 p-1 alert alert-info" role="alert">はんだ付けの失敗が原因であることが多いです。はんだ付けの失敗例を掲載します。</p>
+	            <div class="border rounded row mx-0">
+	              <div class="col-xl-4 col-lg-6 col-md-12 img-thumbnail border-0">
+	                <figure class="figure">
+	                  <p id="pTooMuchSolderLED" class="fs-6 mb-0">いもはんだ</p>
+										<a href="./image/イモはんだ.jpg">
+											<img src="./image/イモはんだ.jpg" class="border border-dark rounded" height="220" width="300">
+										</a>
+	                  <figcaption class="figure-caption text-wrap"><a href="https://www.kogadenshi.co.jp/%E5%8D%8A%E7%94%B0%E4%BB%98%E3%81%91%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF/%E5%8D%8A%E7%94%B0%E4%BB%98%E3%81%91%E4%B8%8D%E8%89%AF%E3%81%A8%E3%81%AF/">株式会社古賀電子「はんだ付けテクニック はんだ付け不良とは」より</a> </figcaption>
+	                </figure>
+	              </div>
+	              <div class="col-xl-4 col-lg-6 col-md-12 img-thumbnail border-0">
+	                <figure class="figure">
+	                  <p id="pTooLittleSolderLED" class="fs-6 mb-0">はんだの量が少ない</p>
+										<a href="./image/はんだ過小.jpg">
+											<img src="./image/はんだ過小.jpg" class="border border-dark rounded" height="220" width="300">
+										</a>
+	                  <figcaption class="figure-caption text-wrap"><a href="https://handa-craft.hakko.com/support/soldering-failures.html">白光株式会社「もっと詳しく！はんだ付けを学ぶ はんだ付けの失敗例」より</a> </figcaption>
+	                </figure>
+	              </div>
+	              <div class="col-xl-4 col-lg-6 col-md-12 img-thumbnail border-0">
+	                <figure class="figure">
+	                  <p id="pSolderBridgeLED" class="fs-6 mb-0">はんだブリッジ</p>
+										<a href="./image/はんだブリッジ.jpg">
+											<img src="./image/はんだブリッジ.jpg" class="border border-dark rounded" height="220" width="300">
+										</a>
+	                  <figcaption class="figure-caption text-wrap"><a href="https://www.kogadenshi.co.jp/%E5%8D%8A%E7%94%B0%E4%BB%98%E3%81%91%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF/%E5%8D%8A%E7%94%B0%E4%BB%98%E3%81%91%E4%B8%8D%E8%89%AF%E3%81%A8%E3%81%AF/">株式会社古賀電子「はんだ付けテクニック はんだ付け不良とは」より</a> </figcaption>
+	                </figure>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="notExpect" id="notExpect" value="設定と異なる反応をするキーがある" data-relation-textarea="notExpectTextarea">
+	          <label id="labelNotExpect" class="form-check-label" for="notExpect">設定と異なる反応をするキーがある</label>
+						<div class="form-outline">
+							<textarea class="mt-2 mb-2 form-control" name="notExpectTextarea" id="notExpectTextarea" rows="3" disabled></textarea>
+		          <label id="labelNotExpectDetail" class="form-label" for="noExpectTextarea">設定した動作と実際の動作を記入してください</label>
+						</div>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="notActionOneHand" id="notActionOneHand" value="左右分離型で片方だけ反応しない">
+	          <label id="labelNotActionOneHand" class="form-check-label" for="notActionOneHand">左右分離型で片方だけ反応しない</label>
+	          <div>
+	            <p id="pReplaceConnectSide" class="mt-3">左右どちら側を繋いでも症状は同じですか</p>
+	            <div class="form-check form-check-inline">
+	              <input class="form-check-input" type="radio" name="replaceConnectSide" id="replaceConnectSideYes" value="Yes" disabled>
+	              <label class="form-check-label" for="replaceConnectSideYes">Yes</label>
+	            </div>  
+	            <div class="form-check form-check-inline">
+	              <input class="form-check-input" type="radio" name="replaceConnectSide" id="replaceConnectSideNo" value="No" disabled>
+	              <label class="form-check-label" for="replaceConnectSideNo">No</label>
+	            </div>  
+	          </div>
+	          <div>
+	            <p id="pConnectOnlyOneHand" class="mt-3">左側（右側）だけ接続した場合、左側（右側）のキーボードとして適切に動作しますか</p>
+	            <div class="form-check form-check-inline">
+	              <input class="form-check-input" type="radio" name="connectOnlyOneHand" id="connectOneHandOK" value="Yes" disabled>
+	              <label class="form-check-label" for="connectOneHandOK">Yes</label>
+	            </div>  
+	            <div class="form-check form-check-inline">
+	              <input class="form-check-input" type="radio" name="connectOnlyOneHand" id="connectOneHandNG" value="No" disabled>
+	              <label class="form-check-label" for="connectOneHandNG">No</label>
+	            </div>  
+	          </div>
+	          <label id="addInformationTRRS" class="m-1 p-1 alert ale role="alert">TRRS コネクタのはんだ付けをやり直したり、TRRS ケーブルを変えたりすると解決する場合があります。</label>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="ledOff" id="ledOff" value="LEDが点灯しない" data-relation-textarea="ledOffTextarea" data-relation-label="postPhotoLED">
+	          <label id="labelLedOff" class="form-check-label" for="ledOff">LEDが点灯しない</label>
+						<div class="form-outline">
+							<textarea class="mt-2 mb-2 form-control" name="ledOffTextarea" id="ledOffTextarea" rows="3" disabled></textarea>
+	          	<label id="labelLedOffDetail" class="form-label" for="ledOffTextarea">どのLEDが点灯しないか記入してください</label>
+						</div>
+						<div id="addInformationLED">
+							<p id="pPostSolderingPhotoLED" class="m-1 p-1 alert alert-info">点灯しない LED の半田付けの写真と、LED を取り付ける側全体の写真も別途投稿してください</p>
+	            <p id="warningShortCircuit" class="m-1 p-1 alert alert-danger" role="alert">マイコンが熱くなっている場合、すぐに USB ケーブルを抜いてください！</p>
+	            <p id="solderingTroubleLED" class="m-1 p-1 alert alert-info" role="alert">はんだ付けの失敗が原因であることが多いです。</p>
+						</div>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="trackballDeviceProblem" id="trackballDeviceProblem" value="トラックボールやロータリーエンコーダーの問題" data-relation-textarea="trackballDeviceProblemTextarea">
+	          <label id="labelTrackballDeviceProblem" class="form-check-label" for="trackballDeviceProblem">トラックボールやロータリーエンコーダーの問題</label>
+						<div class="form-outline">
+							<textarea class="mt-2 mb-2 form-control" name="trackballDeviceProblemTextarea" id="trackballDeviceProblemTextarea" rows="3" disabled></textarea>
+		          <label id="labelTrackballDeviceProblemDetail" class="form-label" for="trackballDeviceProblemTextarea">どんな問題が発生しているか記入してください</label>
+						</div>
+	        </div>
+	        <div class="mb-3 form-check">
+	          <input class="form-check-input" type="checkbox" name="otherBuildProblem" id="otherBuildProblem" value="上記以外の問題（ランドが剥がれた etc）が起きている" data-relation-textarea="otherBuildProblemTextarea">
+	          <label id="labelOtherBuildProblem" class="form-check-label" for="otherBuildProblem">上記以外の問題（ランドが剥がれた etc）</label>
+						<div class="form-outline">
+							<textarea class="mt-2 mb-2 form-control" name="otherBuildProblemTextarea" id="otherBuildProblemTextarea" rows="3" disabled></textarea>
+		          <label id="labelOtherBuildProblemDetail" class="form-label" for="otherBuildProblemTextarea">どんな問題が発生しているか記入してください</label>
+						</div>
+	        </div>
+	      </div>
+	  
+	      <div class="border rounded shadow-sm m-3 p-3 bg-white">
+	        <h2 id="keyboardInfoHeader">キーボードの情報</h2>
+	        <div id="keyboardInfomation">
+	          <div class="form-group p-2">
+							<div class="form-outline">
+		            <input class="form-control" type="text" name="keyboardName" id="keyboardName" autocomplete="on" list="keyboardList" aria-describedby="keyboardNameExplain"/>
+		            <label id="labelKeyboardName" class="form-label" for="keyboardName">キーボード名</label>
+							</div>
+	            <datalist id="keyboardList"></datalist>
+							<div id="keyboardNameExplain" class="form-text">
+								候補にないキーボード名も入力可能。オリジナルなら「オリジナル」と記入。
+							</div>
+	          </div>
+	          <div class="form-group p-2">
+							<div class="form-outline">
+		            <input class="form-control" type="url" placeholder="https://" name="buildGuideURL" id="buildGuideURL"/>
+		            <label id="labelBuildGuideURL" class="form-label" for="buildGuideURL">公式ビルドガイドのURL</label>
+							</div>
+	          </div>
+	          <div class="form-group p-2">
+							<div class="form-outline">
+								<input class="form-control" type="url" placeholder="https://" name="kicadFileURL" id="kicadFileURL" aria-describedby="kicadFileURLExplain"/>	
+								<label id="labelKicadFileURL" class="form-label" for="kicadFileURL">KicadファイルのURL</label>
+							</div>
+							<div id="kicadFileURLExplain" class="form-text">
+								Kicadファイルが公表されていなければ入力不要
+							</div>
+	          </div>
+	        </div>
+				</div>
+				<div class="border rounded shadow-sm m-3 p-3 bg-white">
+	        ${require('/common/_microcomputerInfo.html')}
+				</div>
+				<div class="border rounded shadow-sm m-3 p-3 bg-white">
+					${require('/common/_firmwareInfo.html')}
+	      </div>
+	      <div class="border rounded shadow-sm m-3 p-3 bg-white" id="miscInfomation">
+	        ${require('/common/_otherInfo.html')}
+	        ${require('/common/_testMicrocomputerOnly.html')}
+	      </div>
+	    </form>
+	    ${require('/common/_resultForm.html')}
+	  </div>
+		${require('/common/_footer.html')}
+	  <script src="js/buildProblem.bundle.js"></script>
+	</body>
+</html>

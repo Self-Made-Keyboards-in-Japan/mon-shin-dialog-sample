@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Font Awesome -->
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	rel="stylesheet"
+	/>
+	<!-- Google Fonts -->
+	<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet"
+	/>
+	<!-- MDB -->
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+	rel="stylesheet"
+	/>
+
+	<link rel="icon" href="image/favicon.ico">
+
+	<title>問診票テンプレート - ファームウェアに関する問題</title>
+	</head>
+	<body>
+	  <div class="container" id="container">
+			<div class="row m-3">
+	<div class="d-flex justify-content-end">
+		<div class="form-check form-switch">
+			<input id="languageSwitch" class="form-check-input" type="checkbox" role="switch" />
+			<label class="form-check-label" for="languageSwitch">To English</label>
+		</div>	
+	</div>
+</div>
+
+<header>
+	<!--	 Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white mx-3">
+		<div class="container">
+			<button
+			class="navbar-toggler"
+			type="button"
+			data-mdb-toggle="collapse"
+			data-mdb-target="#navbar"
+			aria-controls="navbar"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+			>
+				<i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="navbar-nav me-auto mb-1 mb-lg-0">
+					<li class="nav-item border-end">
+						<a class="nav-link text-dark" aria-current="page" href="index.html">Home</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navBuildProblem" class="nav-link text-dark" href="buildProblem.html">組み立ての問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navFirmwareProblem" class="nav-link text-dark" href="firmwareProblem.html">ファームウェアの問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navBLEProblem" class="nav-link text-dark" href="BLEProblem.html">BLE Micro Proの問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navDesignProblem" class="nav-link text-dark" href="designProblem.html">設計の問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navOtherProblem" class="nav-link text-dark" href="otherProblem.html">その他の問題</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Navbar -->
+
+	<div class="border-start border-end border-bottom mb-3 mx-3 p-3 bg-white">
+	  <h1 id="headerTitle" class="text-center mb-5">問診票テンプレート</h1>
+	  <p id="headerDescription" class="lead">
+	    Discord の #mon-shin チャンネルに投稿する際の問診票です。<br>
+	    質問に沿って回答していくと投稿用の文章が作成されます。<br>
+	    動作に不具合があったときは、Discord の #keyboard-zatsu チャンネルで知らせてください。
+	  </p>
+	</div>
+</header>
+	    <form name="questionForm" id="questionForm">
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+		      <h2 id="problemDetailTitle">現在起きている問題</h2>
+		      <div class="form-group p-2 bg-white">
+		        <div class="mb-3 form-check">
+		      		<input class="form-check-input" type="radio" id="notSetupEnvironment" value="ファームウェアのビルド環境を構築できない" name="firmwareProblem">
+		      		<label id="labelNotSetupEnvironment" class="form-check-label" for="notSetupEnvironment">ファームウェアのビルド環境を構築できない</label>
+			      	<div>
+			        	<label for="writingToolLog" class="m-1 p-1 alert alert-info" role="alert">
+									<span id="spanRecommendMethodSetup1">Windows でビルド環境を構築するなら</span> 
+									<a id="linkQMKMSYS" href="https://msys.qmk.fm/" class="link">QMK MSYS</a>
+									<span id="spanRecommendMethodSetup2">を使うと良いです（</span>
+									<a id="linkOfficialBuildGuide" href="https://docs.qmk.fm/#/newbs_getting_started?id=set-up-your-environment">公式ガイド</a>
+									<span id="spanRecommendMethodSetup3">も QMK MSYS を使う方法を紹介しています）。また、Docker を使う方法もあります。</span>
+									<a id="linkQuickStartDocker" href="https://docs.qmk.fm/#/getting_started_docker">Docker クイックスタート</a>
+								</label>
+		      		</div>
+		    		</div>
+			    	<div class="mb-3 form-check">
+			      	<input class="form-check-input" type="radio" id="notBuildFirmware" value="ファームウェアをビルドできない" name="firmwareProblem">
+			      	<label id="labelNotBuildFirmware" class="form-check-label" for="notBuildFirmware">ファームウェアをビルドできない</label>
+				      <div>
+				        <label for="writingToolLog" class="m-1 p-1 alert alert-info"
+				        role="alert">
+									<span id="spanRecommendMethodBuild1">Windows だと </span>
+									<a href="https://msys.qmk.fm/" class="link">QMK MSYS</a>
+					        <span id="spanRecommendMethodBuild2">を使うと上手くいくかもしれません。また、Docker を使ってビルドする方法もあります。</span>
+								</label>
+				      </div>
+				    </div>
+				    <div class="mb-3 form-check">
+			        <input class="form-check-input" type="radio" id="notWriteFirmware" value="ファームウェアを書き込めない" name="firmwareProblem">
+			        <label id="labelNotWriteFirmware" class="form-check-label" for="notWriteFirmware">ファームウェアを書き込めない</label>
+		          <div>
+		            <label class="m-1 p-1 alert alert-info" role="alert">
+									<span id="spanRecommendMethodWrite1"></span>
+									<a href="https://github.com/qmk/qmk_toolbox/releases">QMK Toolbox </a>
+									<span id="spanRecommendMethodWrite2">を使うと書き込みできる場合があります。Windows だと </span>
+									<a href="https://docs.qmk.fm/#/driver_installation_zadig" class="link">Zadig </a>
+									<span id="spanRecommendMethodWrite3">もインストールする必要がある場合があります。</span>
+								</label>
+		          </div>
+		        </div>
+	      	</div>
+	    	</div>
+
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+							<h2 id="firmwareInfomationTitle">ファームウェアの情報</h2>
+		<div class="form-group p-2 bg-white" id="firmwareInfomation">
+      <label id="labelFirmwareName">ファームウェアの種類</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="QMKFirmware" value="QMK Firmware">
+        <label id="labelQMKFirmware" class="form-check-label" for="QMKFirmware">QMK firmware</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="VIA" value="VIA (Remap)">
+        <label id="labelVIA(Remap)" class="form-check-label" for="VIA">VIA (Remap)</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="KMKFirmware" value="KMK Firmware">
+        <label id="labelKMKFirmware" class="form-check-label" for="KMKFirmware">KMK Firmware</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="PRKFirmware" value="PRK Firmware">
+        <label id="labelPRKFirmware" class="form-check-label" for="PRKFirmware">PRK Firmware</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="otherFirmware" value="その他のファームウェア">
+        <label id="labelotherFirmware" class="form-check-label" for="otherFirmware">その他のファームウェア</label>
+      </div>
+			<div class="form-group p-2">
+				<div class="form-outline">
+					<input class="form-control" type="text" name="firmwareName" id="otherFirmwareInput" disabled>
+					<label id="labelOtherFirmwareName" class="form-label" for="otherFirmwareInput">ファームウェア名</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group p-2 bg-white" id="writingToolInformation">
+			<label id="firmwareWrittingTool">ファームウェア書き込みツール</label>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="qmkToolbox" value="QMK Toolbox">
+				<label id="labelQMKToolbox" class="form-check-label" for="qmkToolbox">QMK Toolbox</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="qmkCommandline" value="make コマンドでビルド＆書き込み">
+				<label id="labelQmkCommandline" class="form-check-label" for="qmkCommandline"><code>make</code> or <code>qmk flash</code>
+					コマンドでビルド＆書き込み</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="proMicroWebUpdater" value="proMicroWebUpdater">
+				<label id="labelProMicroWebUpdater" class="form-check-label" for="proMicroWebUpdater">Pro Micro Web Updater</label>
+				<a href="https://sekigon-gonnoc.github.io/promicro-web-updater/index.html">( link )</a>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="otherMethod" value="その他のツール">
+				<label id="labelOtherWrittingTool" class="form-check-label" for="otherMethod">その他の書き込み方法</label>
+			</div>
+			<div class="form-group p-2">
+				<div class="form-outline">
+					<input class="form-control" type="text" name="writingToolName" id="otherMethodInput" disabled>
+					<label id="labelOtherWrittingToolDetail" class="form-label" for="otherMethodInput">書き込み方法</label>
+				</div>
+			</div>
+		</div>
+
+		    </div>
+
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+								<h2 id="microcomputerInfomationTitle">マイコンの情報</h2>  
+	      <div class="form-group p-2" id="microcomputerInfomation">
+          <label id="labelMicrocomputerInfo">マイコンの種類</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="promicro(atmega32u4)" value="Pro Micro(ATmega32U4)">
+            <label id="labelProMicro(ATMega32U4)" class="form-check-label" for="promicro(atmega32u4)">Pro Micro(ATmega32U4)</label>
+          </div>
+          <div class="form-check">
+		        <input class="form-check-input" type="radio" name="microcontroller" id="promicro(RP2040)" value="Pro Micro(RP2040)">
+    		    <label id="labelProMicro(RP2040)" class="form-check-label" for="promicro(RP2040)">Pro Micro(RP2040)</label>
+      	  </div>
+          <div class="form-check">
+		        <input class="form-check-input" type="radio" name="microcontroller" id="raspipico" value="Raspberry Pi Pico">
+    		    <label id="RaspberryPiPico" class="form-check-label" for="raspipico">Raspberry Pi Pico</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="blemicropro" value="BLE Micro Pro">
+            <label id="BLEMicroPro" class="form-check-label" for="blemicropro">BLE Micro Pro</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="elite-c" value="Elite-C">
+            <label id="Elite-C" class="form-check-label" for="elite-c">Elite-C</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="atmega32u4" value="ATmega32U4を基板直付け">
+            <label id="MountATmega32U4PCB" class="form-check-label" for="atmega32u4">ATmega32U4 を基板直付け</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="atmega328" value="ATmega328を基板直付け">
+            <label id="MountATmega328PCB" class="form-check-label" for="atmega328">ATmega328 を基板直付け</label>
+          </div>
+          <div class="form-check">
+		        <input class="form-check-input" type="radio" name="microcontroller" id="rp2040" value="RP2040を基板直付け">
+    		    <label id="MountRP2040PCB" class="form-check-label" for="rp2040">RP2040 を基板直付け</label>
+      		</div>
+		      <div class="form-check">
+            <input class="form-check-input" type="radio" name="microcontroller" id="othersMicrocontroller" value="その他のマイコンを基板直付け">
+            <label id="MountMicrocomputerPCB" class="form-check-label" for="othersMicrocontroller">その他のマイコンを基板直付け</label>
+          </div>
+          <div class="form-group p-2">
+						<div class="form-outline">
+	            <input class="form-control" type="text" name="microcontrollerName" id="microcontrollerNameInput" disabled>
+	            <label id="MicrocomputerName" class="form-label" for="microcontrollerName">マイコン名</label>
+						</div>
+          </div>
+        </div>
+
+		    </div>
+
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white">
+		      <h2 id="osInformationTitle">OSの情報</h2>
+		      <div id="osName" class="form-group p-2 bg-white">
+		        <div class="p-2">
+		          <div class="form-check">
+		            <input class="form-check-input" type="radio" name="osName" id="windowsNotWSL" value="Windows">
+		            <label class="form-check-label" for="windowsNotWSL">Windows (Not WSL)</label>
+		          </div>
+		          <div class="form-check">
+		            <input class="form-check-input" type="radio" name="osName" id="WSL" value="WSL">
+		            <label class="form-check-label" for="WSL">WSL</label>
+		          </div>
+		          <div class="form-check">
+		            <input class="form-check-input" type="radio" name="osName" id="macos" value="MacOS">
+		            <label class="form-check-label" for="macos">macos</label>
+		          </div>
+		          <div class="form-check">
+		            <input class="form-check-input" type="radio" name="osName" id="linux" value="Linux">
+		            <label class="form-check-label" for="linux">linux</label>
+		          </div>
+		          <div class="form-group p-2 bg-white">
+								<div class="form-outline">
+			            <input class="form-control" type="text" name="osVerAndDirtriInput" id="osVerAndDirtriInput">
+			            <label id="labelOsVersionOrDistribution" class="form-label" for="osVerAndDistriInput">OS のバージョン or ディストリビューション</label>
+								</div>
+		          </div>
+			      </div>
+			    </div>
+				</div>
+		    <div class="border rounded shadow-sm m-3 p-3 bg-white" id="miscInfomation">
+					        <h2 id="otherInformationTitle">その他の情報</h2>
+        <div class="form-group p-2" id="detailWork">
+					<div class="form-outline">
+	          <textarea class="form-control" rows="3" name="detailWork" id="detailWorkTextarea"></textarea>
+	          <label id="labelDetailWork" class="form-label" for="detailWork">これまでに行った作業の内容</label>
+					</div>
+        </div>
+        <div class="form-group p-2">
+					<div class="form-outline">
+	          <textarea class="form-control" type="text" placeholder="https://" rows="3" name="informationReferredTo"
+	            id="informationReferredTo"></textarea>
+						<label id="labelInformationReferredTo" class="form-label" for="informationReferredTo">参考にした情報（ビルドガイド除く）</label>
+					</div>
+					</div>
+        <div class="form-group p-2" id="haveTester">
+          <label id="labelHaveTester">テスターを持っていますか？</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="haveTester" id="haveTesteryes" value="Yes">
+            <label class="form-check-label" for="haveTesteryes">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="haveTester" id="haveTesterno" value="No">
+            <label class="form-check-label" for="haveTesterno">No</label>
+          </div>
+        </div>
+
+				</div>
+	    </form>
+			<div class="border rounded shadow-sm m-3 p-3 bg-white">
+	<div class="form-group p-2">
+		<form id="resultForm">
+			<div id="replaceDom">
+				<p id="announceLabel" class="m-0 mb-1" for="result">以下の文章を Discord の #mon-shin チャンネルに投稿してください</p>
+			</div>
+			<label class="mt-1 mb-3 p-1 alert alert-warning rounded d-none" id="alertTextDiscord">
+				<strong>Discord の投稿欄の制限は「文字数＋行数 ≦ 2001」です。</strong>
+			</label>
+			<div class="form-group rounded">
+				<input id="copyBtn" type="button" class="btn btn-primary shadow mb-2 fs-6" data-clipboard-target="#postsText" value="Copy">
+				<span id="copyResult" class="fadeout bg-light p-2 rounded border">copied!</span>
+			</div>
+			<div class="form-group rounded">
+				<p id="charactersAndLines">文字数＋行数 = 0</p>
+				<textarea class="form-control" id="postsText" rows="3" readonly></textarea>
+			</div>
+		</form>
+	</div>
+</div>
+
+		</div>
+		<link rel="stylesheet" href="css/style.css">
+<!-- MDB -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+></script>
+<script src="js/vendor.bundle.js"></script>
+<script src="js/common.bundle.js"></script>
+
+	  <script src="js/firmwareProblem.bundle.js"></script>
+	</body>
+</html>

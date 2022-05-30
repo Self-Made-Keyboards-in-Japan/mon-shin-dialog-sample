@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Font Awesome -->
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	rel="stylesheet"
+	/>
+	<!-- Google Fonts -->
+	<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet"
+	/>
+	<!-- MDB -->
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+	rel="stylesheet"
+	/>
+
+	<link rel="icon" href="image/favicon.ico">
+
+	<title>問診票テンプレート - その他の問題に関する問題</title>
+	</head>
+	<body class="bg-light">
+	  <div class="container" id="container">
+			<div class="row m-3">
+	<div class="d-flex justify-content-end">
+		<div class="form-check form-switch">
+			<input id="languageSwitch" class="form-check-input" type="checkbox" role="switch" />
+			<label class="form-check-label" for="languageSwitch">To English</label>
+		</div>	
+	</div>
+</div>
+
+<header>
+	<!--	 Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white mx-3">
+		<div class="container">
+			<button
+			class="navbar-toggler"
+			type="button"
+			data-mdb-toggle="collapse"
+			data-mdb-target="#navbar"
+			aria-controls="navbar"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+			>
+				<i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="navbar-nav me-auto mb-1 mb-lg-0">
+					<li class="nav-item border-end">
+						<a class="nav-link text-dark" aria-current="page" href="index.html">Home</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navBuildProblem" class="nav-link text-dark" href="buildProblem.html">組み立ての問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navFirmwareProblem" class="nav-link text-dark" href="firmwareProblem.html">ファームウェアの問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navBLEProblem" class="nav-link text-dark" href="BLEProblem.html">BLE Micro Proの問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navDesignProblem" class="nav-link text-dark" href="designProblem.html">設計の問題</a>
+					</li>
+					<li class="nav-item border-end">
+						<a id="navOtherProblem" class="nav-link text-dark" href="otherProblem.html">その他の問題</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Navbar -->
+
+	<div class="border-start border-end border-bottom mb-3 mx-3 p-3 bg-white">
+	  <h1 id="headerTitle" class="text-center mb-5">問診票テンプレート</h1>
+	  <p id="headerDescription" class="lead">
+	    Discord の #mon-shin チャンネルに投稿する際の問診票です。<br>
+	    質問に沿って回答していくと投稿用の文章が作成されます。<br>
+	    動作に不具合があったときは、Discord の #keyboard-zatsu チャンネルで知らせてください。
+	  </p>
+	</div>
+</header>
+
+	    <div class="border rounded m-3 p-3 bg-white shadow-sm">
+	      <h2 id="otherProblemTitle" class="mb-3">その他の問題の場合</h2>
+	      <p id="pOtherProblem" class="lh-base">設計・組み立て・ファームウェア・BLE Micro Pro 以外の問題については、ひとまず Discord の Self-Made Keyboards in Japan の #easy-question で質問してください。<br>
+	      質問するときは、抱えている問題の詳細などを説明してください。</p>
+				<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
+					<i class="fab fa-discord me-2"></i>
+					Self-Made Keyboards in Japan
+				</a>
+			</div>
+		</div>
+		<link rel="stylesheet" href="css/style.css">
+<!-- MDB -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+></script>
+<script src="js/vendor.bundle.js"></script>
+<script src="js/common.bundle.js"></script>
+
+	  <script src="js/otherProblem.bundle.js"></script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+		<h2 id="firmwareInfomationTitle">ファームウェアの情報</h2>
+		<div class="form-group p-2 bg-white" id="firmwareInfomation">
+      <label id="labelFirmwareName">ファームウェアの種類</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="QMKFirmware" value="QMK Firmware">
+        <label id="labelQMKFirmware" class="form-check-label" for="QMKFirmware">QMK firmware</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="VIA" value="VIA (Remap)">
+        <label id="labelVIA(Remap)" class="form-check-label" for="VIA">VIA (Remap)</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="KMKFirmware" value="KMK Firmware">
+        <label id="labelKMKFirmware" class="form-check-label" for="KMKFirmware">KMK Firmware</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="PRKFirmware" value="PRK Firmware">
+        <label id="labelPRKFirmware" class="form-check-label" for="PRKFirmware">PRK Firmware</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="firmware" id="otherFirmware" value="その他のファームウェア">
+        <label id="labelotherFirmware" class="form-check-label" for="otherFirmware">その他のファームウェア</label>
+      </div>
+			<div class="form-group p-2">
+				<div class="form-outline">
+					<input class="form-control" type="text" name="firmwareName" id="otherFirmwareInput" disabled>
+					<label id="labelOtherFirmwareName" class="form-label" for="otherFirmwareInput">ファームウェア名</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group p-2 bg-white" id="writingToolInformation">
+			<label id="firmwareWrittingTool">ファームウェア書き込みツール</label>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="qmkToolbox" value="QMK Toolbox">
+				<label id="labelQMKToolbox" class="form-check-label" for="qmkToolbox">QMK Toolbox</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="qmkCommandline" value="make コマンドでビルド＆書き込み">
+				<label id="labelQmkCommandline" class="form-check-label" for="qmkCommandline"><code>make</code> or <code>qmk flash</code>
+					コマンドでビルド＆書き込み</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="proMicroWebUpdater" value="proMicroWebUpdater">
+				<label id="labelProMicroWebUpdater" class="form-check-label" for="proMicroWebUpdater">Pro Micro Web Updater</label>
+				<a href="https://sekigon-gonnoc.github.io/promicro-web-updater/index.html">( link )</a>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="writingTool" id="otherMethod" value="その他のツール">
+				<label id="labelOtherWrittingTool" class="form-check-label" for="otherMethod">その他の書き込み方法</label>
+			</div>
+			<div class="form-group p-2">
+				<div class="form-outline">
+					<input class="form-control" type="text" name="writingToolName" id="otherMethodInput" disabled>
+					<label id="labelOtherWrittingToolDetail" class="form-label" for="otherMethodInput">書き込み方法</label>
+				</div>
+			</div>
+		</div>
