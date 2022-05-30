@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-	  <meta charset="UTF-8">
+	<head>
+		  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Font Awesome -->
@@ -22,11 +22,11 @@
 
 	<link rel="icon" href="image/favicon.ico">
 
-	<title>問診票テンプレート - </title>
-</head>
-<body class="bg-light">
-  <div class="container" id="container">
-		<div class="row m-3">
+	<title>問診票テンプレート - その他の問題に関する問題</title>
+	</head>
+	<body class="bg-light">
+	  <div class="container" id="container">
+			<div class="row m-3">
 	<div class="d-flex justify-content-end">
 		<div class="form-check form-switch">
 			<input id="languageSwitch" class="form-check-input" type="checkbox" role="switch" />
@@ -86,46 +86,17 @@
 	</div>
 </header>
 
-    <div class="m-0 p-3">
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="buildProblem" class="fw-bold fs-5">組み立てに関する問題</p>
-				<p id="buildProblemLink">組み立てたけど入力が出来ない、LEDが点灯しないなどの問題。</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./buildProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="firmwareProblem" class="fw-bold fs-5">ファームウェアに関する問題</p>
-				<p id="firmwareProblemLink">ファームウェアの書き込み、ビルド、環境構築の問題</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./firmwareProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="BLEMicroProProblem" class="fw-bold fs-5">BLE Micro Pro に関する問題</p>
-				<p id="BLEMicroProProblemLink">BLE Micro Pro で Bluetooth 接続が出来ないなどの問題</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./BLEProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="designProblem" class="fw-bold fs-5">設計に関する問題</p>
-				<p id="designProblemLink">キーボード設計に関する相談や質問</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./designProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="otherProblem" class="fw-bold fs-5">その他の問題</p>
-				<p id="otherProblemLink">上記以外の問題</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./otherProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-    </div>
-  </div>
-
-	<link rel="stylesheet" href="css/style.css">
+	    <div class="border rounded m-3 p-3 bg-white shadow-sm">
+	      <h2 id="otherProblemTitle" class="mb-3">その他の問題の場合</h2>
+	      <p id="pOtherProblem" class="lh-base">設計・組み立て・ファームウェア・BLE Micro Pro 以外の問題については、ひとまず Discord の Self-Made Keyboards in Japan の #easy-question で質問してください。<br>
+	      質問するときは、抱えている問題の詳細などを説明してください。</p>
+				<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
+					<i class="fab fa-discord me-2"></i>
+					Self-Made Keyboards in Japan
+				</a>
+			</div>
+		</div>
+		<link rel="stylesheet" href="css/style.css">
 <!-- MDB -->
 <script
 type="text/javascript"
@@ -134,5 +105,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
 <script src="js/vendor.bundle.js"></script>
 <script src="js/common.bundle.js"></script>
 
-	<script src="js/index.bundle.js"></script>
+	  <script src="js/otherProblem.bundle.js"></script>
+	</body>
 </html>

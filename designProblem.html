@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-	  <meta charset="UTF-8">
+	<head>
+		  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Font Awesome -->
@@ -22,11 +22,11 @@
 
 	<link rel="icon" href="image/favicon.ico">
 
-	<title>問診票テンプレート - </title>
-</head>
-<body class="bg-light">
-  <div class="container" id="container">
-		<div class="row m-3">
+	<title>問診票テンプレート - 設計に関する問題</title>
+	</head>
+	<body class="bg-light">
+	  <div class="container" id="container">
+			<div class="row m-3">
 	<div class="d-flex justify-content-end">
 		<div class="form-check form-switch">
 			<input id="languageSwitch" class="form-check-input" type="checkbox" role="switch" />
@@ -86,46 +86,52 @@
 	</div>
 </header>
 
-    <div class="m-0 p-3">
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="buildProblem" class="fw-bold fs-5">組み立てに関する問題</p>
-				<p id="buildProblemLink">組み立てたけど入力が出来ない、LEDが点灯しないなどの問題。</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./buildProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="firmwareProblem" class="fw-bold fs-5">ファームウェアに関する問題</p>
-				<p id="firmwareProblemLink">ファームウェアの書き込み、ビルド、環境構築の問題</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./firmwareProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="BLEMicroProProblem" class="fw-bold fs-5">BLE Micro Pro に関する問題</p>
-				<p id="BLEMicroProProblemLink">BLE Micro Pro で Bluetooth 接続が出来ないなどの問題</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./BLEProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="designProblem" class="fw-bold fs-5">設計に関する問題</p>
-				<p id="designProblemLink">キーボード設計に関する相談や質問</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./designProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-      <div class="border rounded mt-1 mb-1 p-3 bg-light shadow-sm">
-        <p id="otherProblem" class="fw-bold fs-5">その他の問題</p>
-				<p id="otherProblemLink">上記以外の問題</p>
-        <a class="btn btn-outline-primary text-primary fs-6" href="./otherProblem.html" role="button">
-          Open Form
-        </a>
-      </div>
-    </div>
-  </div>
-
-	<link rel="stylesheet" href="css/style.css">
+	    <div class="border rounded m-3 p-3 bg-white shadow-sm row row-cols-md-3">
+	      <div class="col">
+	        <div class="card border h-100">
+	          <div class="card-body">
+	            <h4 id="designBegginerTitle" class="card-title text-decoration-underline">設計初心者の方々</h4>
+	            <p id="pDesignBegginer" class="card-text">キーボードの設計が初めてで分からないことがたくさんある方などは、Discord の Self-Made Keyboards in Japan の #development-beginner チャンネルへ</p>
+	          </div>
+						<div class="card-footer">
+							<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
+								<i class="fab fa-discord me-2"></i>
+								Self-Made Keyboards in Japan
+							</a>
+						</div>
+	        </div>
+				</div>
+	      <div class="col">
+	        <div class="card border h-100">
+	          <div class="card-body">
+	            <h4 id="implementationTitle" class="card-title text-decoration-underline">実装に関する問題や相談したいことがある方々</h4>
+	            <p id="pImplmentation" class="card-text">部品の選定基準や回路設計の相談のほか、新しい実装方法の提案などは、Discord の Self-Made Keyboards in Japan の #development-lobby チャンネルへ</p>
+						</div>
+						<div class="card-footer">
+							<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
+								<i class="fab fa-discord me-2"></i>
+								Self-Made Keyboards in Japan
+							</a>			
+						</div>
+	        </div>
+				</div>
+	      <div class="col">
+	        <div class="card border h-100">
+	          <div class="card-body">
+	            <h4 id="otherDesignTitle" class="card-title text-decoration-underline">その他の問題や相談</h4>
+	            <p id="pOtherDesign" class="card-text">上記以外の問題や、上記のどちらに当てはまるか分からない場合は、Discord の Self-Made Keyboards in Japan の #easy-question チャンネルへ</p>
+	          </div>
+						<div class="card-footer">
+							<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
+								<i class="fab fa-discord me-2"></i>
+								Self-Made Keyboards in Japan
+							</a>			
+						</div>
+	        </div>
+	      </div>
+	    </div>
+		</div>
+		<link rel="stylesheet" href="css/style.css">
 <!-- MDB -->
 <script
 type="text/javascript"
@@ -134,5 +140,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
 <script src="js/vendor.bundle.js"></script>
 <script src="js/common.bundle.js"></script>
 
-	<script src="js/index.bundle.js"></script>
+		<script src="js/designProblem.bundle.js"></script>
+	</body>
 </html>
