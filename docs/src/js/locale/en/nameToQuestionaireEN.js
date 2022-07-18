@@ -31,6 +31,12 @@ const nameToQuestionaireEN = new Map([
 	['firmwareProblem', 'Detail Firmware Trouble'],
 	["osName", "OS"],
 	['osVerAndDirtriInput', 'OS Version or OS Distribution'],
+	// BLEProblem.html
+	['mainProblem', 'Main problem (BLE Micro Pro)'],
+	['bootloaderVersion', 'Bootloader version'],
+	['applicationVersion', 'Application version'],
+	['configJson', 'Contents of config.json'],
+	['keymapJson', 'Contents of keymap.json'],
 ]);
 
 export {nameToQuestionaireEN};
