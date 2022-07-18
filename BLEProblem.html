@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-	<head>
-		  <meta charset="UTF-8">
+
+<head>
+	  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Font Awesome -->
@@ -23,10 +24,11 @@
 	<link rel="icon" href="image/favicon.ico">
 
 	<title>問診票テンプレート - BLE Micro Pro に関する問題</title>
-	</head>
-	<body class="bg-light">
-	  <div class="container" id="container">
-			<div class="row m-3">
+</head>
+
+<body class="bg-light">
+	<div class="container" id="container">
+		<div class="row m-3">
 	<div class="d-flex justify-content-end">
 		<div class="form-check form-switch">
 			<input id="languageSwitch" class="form-check-input" type="checkbox" role="switch" />
@@ -85,19 +87,104 @@
 	  </p>
 	</div>
 </header>
+		<form name="questionForm" id="questionForm">
+			<div class="border rounded shadow-sm m-3 p-3 bg-white">
+				<h2 id="problemDetailTitle">現在起きている問題</h2>
+				<div class="form-group p-2" id="mainProblem">
+					<div class="form-outline">
+						<textarea class="form-control" rows="3" name="mainProblem" id="mainProblemTextarea"></textarea>
+						<label id="labelMainProblem" class="form-label" for="mainProblem">現在起きている問題</label>
+					</div>
+				</div>
+				<h2 id="problemDetailTitle">書き込んだファームウェアの情報</h2>
+				<div class="form-group p-2">
+					<div class="form-outline">
+						<input class="form-control" type="text" name="bootloaderVersion" id="bootloaderVersion"
+							aria-describedby="bootloader version" />
+						<label id="labelBootloaderVersion" class="form-label"
+							for="bootloaderVersion">ブートローダのバージョン</label>
+					</div>
+				</div>
+				<div class="form-group p-2">
+					<div class="form-outline">
+						<input class="form-control" type="text" name="applicationVersion" id="applicationVersion"
+							aria-describedby="application version" />
+						<label id="labelApplicationVersion" class="form-label" for="applicationVersion">アプリケーションのバージョン</label>
+					</div>
+				</div>
+				<h2 id="problemDetailTitle">書き込んだ設定の情報</h2>
+				<div>
+					<div class="form-group p-2" id="configJson">
+						<div class="form-outline">
+							<textarea class="form-control" rows="3" name="configJson"
+								id="configJsonTextarea"></textarea>
+							<label id="labelConfigJson" class="form-label" for="configJson">config.jsonの中身</label>
+						</div>
+					</div>
+					<div class="form-group p-2" id="keymapJson">
+						<div class="form-outline">
+							<textarea class="form-control" rows="3" name="keymapJson"
+								id="keymapJsonTextarea"></textarea>
+							<label id="labelKeymapJson" class="form-label" for="keymapJson">keymap.jsonの中身</label>
+						</div>
+					</div>
 
-	    <div class="border rounded m-3 p-3 bg-white shadow-sm">
-	      <h2 id="BLEProblemTitle" class="mb-3">BLE Micro Pro に関する問題の場合</h2>
-	      <p id="pBLEProblem" class="lh-base">
-					BLE Micro Pro の問題については、Discord の Self-Made Keyboards in Japan の #ble-micro-pro で質問してください。<br>質問するときは、現在発生している問題や PC 環境などを具体的に説明した上で質問してください。
-				</p>
-				<a class="btn btn-primary fs-6 px-2 text-start" href="https://discord.gg/zXCss8T" role="button">
-					<i class="fab fa-discord me-2"></i>
-					Self-Made Keyboards in Japan
-				</a>
-	    </div>
-		</div>
-		<link rel="stylesheet" href="css/style.css">
+				</div>
+			</div>
+
+			<div class="border rounded shadow-sm m-3 p-3 bg-white" id="miscInfomation">
+				        <h2 id="otherInformationTitle">その他の情報</h2>
+        <div class="form-group p-2" id="detailWork">
+					<div class="form-outline">
+	          <textarea class="form-control" rows="3" name="detailWork" id="detailWorkTextarea"></textarea>
+	          <label id="labelDetailWork" class="form-label" for="detailWork">これまでに行った作業の内容</label>
+					</div>
+        </div>
+        <div class="form-group p-2">
+					<div class="form-outline">
+	          <textarea class="form-control" type="text" placeholder="https://" rows="3" name="informationReferredTo"
+	            id="informationReferredTo"></textarea>
+						<label id="labelInformationReferredTo" class="form-label" for="informationReferredTo">参考にした情報（ビルドガイド除く）</label>
+					</div>
+					</div>
+        <div class="form-group p-2" id="haveTester">
+          <label id="labelHaveTester">テスターを持っていますか？</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="haveTester" id="haveTesteryes" value="Yes">
+            <label class="form-check-label" for="haveTesteryes">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="haveTester" id="haveTesterno" value="No">
+            <label class="form-check-label" for="haveTesterno">No</label>
+          </div>
+        </div>
+
+			</div>
+		</form>
+		<div class="border rounded shadow-sm m-3 p-3 bg-white">
+	<div class="form-group p-2">
+		<form id="resultForm">
+			<div id="replaceDom">
+				<p id="announceLabel" class="m-0 mb-1" for="result">以下の文章を Discord の #mon-shin チャンネルに投稿してください</p>
+			</div>
+			<label class="mt-1 mb-3 p-1 alert alert-warning rounded d-none" id="alertTextDiscord">
+				<strong>Discord の投稿欄の制限は「文字数＋行数 ≦ 2001」です。</strong>
+			</label>
+			<div class="form-group rounded">
+				<input id="copyBtn" type="button" class="btn btn-primary shadow mb-2 fs-6" data-clipboard-target="#postsText" value="Copy">
+				<span id="copyResult" class="fadeout bg-light p-2 rounded border">copied!</span>
+			</div>
+			<div class="form-group rounded">
+				<p id="charactersAndLines">文字数＋行数 = 0</p>
+				<textarea class="form-control" id="postsText" rows="3" readonly></textarea>
+			</div>
+		</form>
+	</div>
+</div>
+
+	</div>
+	</div>
+	<link rel="stylesheet" href="css/style.css">
 <!-- MDB -->
 <script
 type="text/javascript"
@@ -106,6 +193,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
 <script src="js/vendor.bundle.js"></script>
 <script src="js/common.bundle.js"></script>
 
-	  <script src="js/BLEProblem.bundle.js"></script>
-	</body>
+	<script src="js/BLEProblem.bundle.js"></script>
+</body>
+
 </html>
